@@ -1,0 +1,31 @@
+@import "~src/scss/variables";
+
+nav {
+  padding-top: 0;
+  padding-left: 0;
+  padding-bottom: 0;
+  margin-top: 2px;
+
+  .navbar-brand {
+    padding: 0;
+    margin-right: 0;
+
+    .spacer {
+      float: left;
+      width: 52px;
+      height: 40px;
+    }
+
+    .arrow-right {
+      float: right;
+      width: 0;
+      height: 0;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      border-left: 20px solid $black;
+    }
+  }
+
+}
+
+
