@@ -1,4 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 
 @Component({
   selector: 'brx-nav-item',
@@ -8,10 +12,13 @@ import {Component, Input, OnInit} from '@angular/core';
 export class NavItemComponent implements OnInit {
   @Input() path = '/';
   @Input() label = 'Home';
+  @Input() firstItem = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
+
 
 }

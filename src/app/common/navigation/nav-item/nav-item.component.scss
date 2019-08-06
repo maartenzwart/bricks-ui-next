@@ -1,5 +1,28 @@
 @import "~src/scss/variables";
 
+.nav-item {
+  .nav-arrow {
+    position: absolute;
+
+    .arrow-highlight {
+      display: none;
+    }
+  }
+}
+
+.nav-item.active {
+ .nav-arrow{
+
+   .arrow-highlight {
+     display: block;
+   }
+ }
+}
+
+.nav-link.first {
+  padding-left: 20px;
+}
+
 .nav-link.active {
   background-color: $black;
 }

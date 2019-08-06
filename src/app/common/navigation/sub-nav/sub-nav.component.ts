@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'brx-sub-nav',
@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubNavComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
-
 }
