@@ -1,15 +1,23 @@
 @import "scss/variables";
-
 @import "~node_modules/angular-calendar/scss/angular-calendar";
 
-//
-//.cal-week-view .cal-time-events {
-//  max-height: 300px !important;
-//  overflow-y: auto !important;
-//}
+.cal-week-view {
+  padding-bottom: $hour-label-width;
+}
+
+.cal-week-view .cal-time-events {
+  max-height: 600px;
+  overflow-y: auto !important;
+}
+
+.cal-day-columns {
+  height: 100%;
+}
 
 .cal-time-events {
-  padding-right:$hour-label-width;
+  margin-right: calc( #{$hour-label-width} - 10px );
+  padding-right: 10px;
+
 }
 
 .cal-after-hour-start {
@@ -33,7 +41,7 @@
   margin-right: 2px;
 
   .cal-hour:not(:last-of-type) {
-    background: linear-gradient(to top, $white 0%,darken($brx-agenda-dark-gray, 10%) 0%,#ffffff 1%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: linear-gradient(to top, $white 0%, darken($brx-agenda-dark-gray, 10%) 0%, #ffffff 1%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   }
 
   .cal-hour:not(:first-of-type) {
@@ -41,27 +49,29 @@
     .cal-hour-start {
       //border-bottom: 1px solid transparent;
     }
+
     .mask {
       position: relative;
-      top:-1px;
-      left:0;
-      width:50%;
+      top: -1px;
+      left: 0;
+      width: 50%;
       height: 1px;
-      background-color:$white;
+      background-color: $white;
     }
   }
-  .cal-hour-odd{
+
+  .cal-hour-odd {
     background-color: $white;
     //border-top: 1px solid darken($brx-agenda-gray, 10%);
     //border-bottom: 1px solid darken($brx-agenda-gray, 10%);
 
     .mask {
       position: relative;
-      top:-1px;
-      left:0;
-      width:50%;
+      top: -1px;
+      left: 0;
+      width: 50%;
       height: 1px;
-      background-color:$white;
+      background-color: $white;
     }
   }
 
@@ -91,7 +101,7 @@
     }
 
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,757575+0,ffffff+1,ffffff+49,EEEEEE+50,ffffff+51,ffffff+99,757575+100 */
-    background: linear-gradient(to bottom, #ffffff 49%,$brx-agenda-gray 50%,#ffffff 51%,#ffffff 99%,darken($brx-agenda-dark-gray, 10%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: linear-gradient(to bottom, #ffffff 49%, $brx-agenda-gray 50%, #ffffff 51%, #ffffff 99%, darken($brx-agenda-dark-gray, 10%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   }
 
   //.cal-hour-odd {

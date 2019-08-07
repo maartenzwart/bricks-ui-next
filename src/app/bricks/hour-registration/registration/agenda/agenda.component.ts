@@ -145,6 +145,8 @@ export class AgendaComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.enableDrag();
+    const target = document.querySelector('.hour-7-half');
+    target.scrollIntoView();
   }
 
   private calculateTotals(): void {

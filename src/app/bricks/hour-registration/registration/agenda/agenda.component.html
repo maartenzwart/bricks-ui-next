@@ -28,7 +28,7 @@
   let-isTimeLabel="isTimeLabel">
   <div class="mask"></div>
   <div
-    class="cal-hour-segment1 brx-cal-hour-segment"
+    class="cal-hour-segment1 brx-cal-hour-segment hour-{{ segment.date | date:'H':undefined:locale }}-{{segment.isStart? 'full':'half'}}"
     [style.height.px]="segmentHeight"
     [class.cal-hour-start]="segment.isStart"
     [class.cal-after-hour-start]="!segment.isStart"
