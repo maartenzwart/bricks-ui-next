@@ -147,6 +147,10 @@ export class AgendaComponent implements OnInit, AfterViewInit {
     this.enableDrag();
     const target = document.querySelector('.hour-7-half');
     target.scrollIntoView();
+
+    // Correct view scroll position for scrolling to specific time on agenda in line above
+    const body = document.querySelector('body');
+    body.scrollIntoView();
   }
 
   private calculateTotals(): void {
