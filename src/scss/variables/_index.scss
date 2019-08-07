@@ -1,0 +1,35 @@
+@import "bootstrap";
+
+$black: #000;
+//$brx-primary: #ff004e;
+//$brx-dark: #424242;
+
+$brx-color-primary: #00CFA1;
+$brx-color-secondary: #FC1C4E;
+$brx-color-warning: #FD8D5E;
+$brx-color-danger: #E82414;
+$brx-color-dark: #424242;
+
+$brx-color-map: (
+  "primary": $brx-color-primary,
+  "secondary": $brx-color-secondary,
+  "warning": $brx-color-warning,
+  "danger": $brx-color-danger,
+  "dark": $brx-color-dark,
+);
+
+
+// Angular Calendar Overrides
+$cal-event-color-primary: #1e90ff !default;
+$cal-event-color-secondary: #d1e8ff !default;
+$cal-border-color: #e1e1e1 !default;
+$cal-bg-primary: #fff !default;
+$cal-bg-secondary: #fafafa !default;
+$cal-bg-active: #ededed !default;
+$cal-today-bg: #e8fde7 !default;
+$cal-weekend-color: #8b0000 !default;
+$cal-badge-color: #b94a48 !default;
+$cal-white: #fff !default;
+$cal-gray: #555 !default;
+$cal-black: #000 !default;
+

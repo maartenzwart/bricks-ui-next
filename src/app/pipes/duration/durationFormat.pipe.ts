@@ -1,7 +1,4 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import 'moment/locale/nl';
-import 'moment/locale/nl-be';
-import 'moment/locale/en-gb';
 
 @Pipe({
   name: 'durationFormat',

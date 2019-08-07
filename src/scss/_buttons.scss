@@ -1,0 +1,34 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+//@import "variables/index";
+
+
+.brx-btn {
+  cursor: pointer;
+}
+
+@each $key, $value in $brx-color-map {
+  $background: $value;
+  $color: $value;
+  $border: $value;
+
+  .brx-btn-#{$key} {
+    @include button-variant($background, $border, $hover-background: darken($background, 7.5%), $hover-border: darken($border, 10%), $active-background: darken($background, 10%), $active-border: darken($border, 12.5%));
+  }
+
+  .brx-btn-outline-#{$key} {
+    @include button-outline-variant($color, $color-hover: color-yiq($color), $active-background: $color, $active-border: $color);
+  }
+}
+
+.brx-btn-default {
+  $background: transparent;
+  $border: #757575;
+  @include button-variant($background, $border, $hover-background: darken($background, 7.5%), $hover-border: darken($border, 10%), $active-background: darken($background, 10%), $active-border: darken($border, 12.5%));
+}
+
+.brx-btn-outline-default {
+  $color: #757575;
+  @include button-outline-variant($color, $color-hover: color-yiq($color), $active-background: $color, $active-border: $color);
+}
