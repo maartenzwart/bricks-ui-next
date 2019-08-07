@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>Icon/Date</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icon/Date" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-7" stroke="#757575" x="1.5" y="2.5" width="11" height="11" rx="2"></rect>
+        <path d="M3,2 L11,2 C12.1045695,2 13,2.8954305 13,4 L13,5 L1,5 L1,4 C1,2.8954305 1.8954305,2 3,2 Z" id="Rectangle-7" fill="#757575"></path>
+        <rect id="Rectangle-7-Copy-3" fill="#757575" x="3" y="7" width="3" height="3"></rect>
+        <rect id="Rectangle-7-Copy" fill="#757575" x="3" y="0" width="1" height="3"></rect>
+        <rect id="Rectangle-7-Copy-2" fill="#757575" x="10" y="0" width="1" height="3"></rect>
+    </g>
+</svg>

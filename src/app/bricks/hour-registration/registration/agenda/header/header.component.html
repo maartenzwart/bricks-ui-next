@@ -1,0 +1,17 @@
+<div class="cal-day-headers1 brx-weekday-headers">
+  <div
+    class="cal-header1 brx-weekday-header align-bottom"
+    *ngFor="let day of days"
+    [class.cal-past]="day.isPast"
+    [class.cal-today]="day.isToday"
+    [class.cal-future]="day.isFuture"
+    [class.cal-weekend]="day.isWeekend"
+    [ngClass]="day.cssClass"
+    (mwlClick)="dayHeaderClicked.emit({day: day})"
+    mwlDroppable
+    dragOverClass="cal-drag-over"
+    (drop)="eventDropped.emit({event: $event.dropData.event, newStart: day.date})">
+    <span class="align-baseline float-left">{{ day.date | date:'EEEEEE | dd':undefined:locale }}</span>
+    <span class="align-baseline float-right small">{{dayTotals[day.day] | durationFormat}}</span>
+  </div>
+</div>

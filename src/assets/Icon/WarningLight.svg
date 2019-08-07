@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>Icon/WarningLight</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icon/WarningLight" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M6.5,2.0497957 L0.839472669,12.5 L12.1605273,12.5 L6.5,2.0497957 Z" id="Triangle" stroke="#FFFFFF"></path>
+        <rect id="Rectangle" fill="#FFFFFF" x="6" y="6" width="1" height="3"></rect>
+        <rect id="Rectangle-2" fill="#FFFFFF" x="6" y="10" width="1" height="1"></rect>
+    </g>
+</svg>

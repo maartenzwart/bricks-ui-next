@@ -1,0 +1,70 @@
+$brx-event-dark: #424242;
+$white: #fff;
+
+.cal-week-view .cal-time-events .brx-cal-event {
+  background-color: $brx-event-dark;
+  border-radius: 0;
+  border: none;
+  color: $white;
+  padding: 1em;
+  line-height: normal;
+  border-left-style: solid;
+  border-left-width: 5px;
+
+  .cal-event-action-edit {
+    position:absolute;
+    bottom:10px;
+    right:10px;
+    display: none;
+  }
+
+  &:hover {
+    .cal-event-action-edit {
+      display: block;
+    }
+  }
+
+}
+
+.brx-proposed {
+  border-image: repeating-linear-gradient( -45deg, $white, $white 5px, transparent 5px, transparent 8px) 5 !important;
+  background-color: rgba(66, 66, 66, 0.7) !important;
+}
+
+.cal-event-container {
+  .cal-resize-handle {
+    position: relative !important;
+    max-width: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+    height: 10px !important;
+  }
+
+  &:hover {
+    .cal-resize-handle {
+      display: block;
+    }
+  }
+
+  .cal-resize-handle-before-start {
+    margin-top:-10px;
+    top: 11px;
+
+    svg {
+      position: absolute;
+      top: 10px;
+    }
+  }
+
+  .cal-resize-handle-after-end {
+    top: -11px;
+
+    svg {
+      position: absolute;
+      bottom: 10px;
+    }
+  }
+}
+
+

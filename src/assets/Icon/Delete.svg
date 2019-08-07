@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>Icon/Delete</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icon/Delete" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M2.5,2.5 L11.5,2.5 L10.5826786,12.5905357 C10.5358532,13.1056149 10.1039886,13.5 9.58678536,13.5 L4.41321464,13.5 C3.89601143,13.5 3.46414681,13.1056149 3.41732143,12.5905357 L2.5,2.5 Z" id="Rectangle-10" stroke="#757575"></path>
+        <path d="M6,0.5 L8,0.5 C8.55228475,0.5 9,0.94771525 9,1.5 L9,2.5 L5,2.5 L5,1.5 C5,0.94771525 5.44771525,0.5 6,0.5 Z" id="Rectangle" stroke="#757575"></path>
+        <path d="M5.5,4 L6,11" id="Path-5" stroke="#757575"></path>
+        <path d="M8.5,4 L8,11" id="Path-6" stroke="#757575"></path>
+        <path d="M1,2.5 L13,2.5" id="Path-8" stroke="#757575"></path>
+    </g>
+</svg>

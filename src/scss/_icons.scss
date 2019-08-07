@@ -1,0 +1,7 @@
+$icons: 'ChevronDown', 'ChevronRight', 'ClientLight', 'Close', 'CloseLight', 'Confirmation', 'Date', 'Delete', 'Edit', 'EditLight', 'Job', 'JobLight', 'Move', 'Profile', 'ProjectLight', 'Search', 'Team', 'WarningLight';
+
+@each $name in $icons{
+  .brx-icon-#{$name} {
+    background-image: url('assets/Icon/#{$name}.svg');
+  }
+}

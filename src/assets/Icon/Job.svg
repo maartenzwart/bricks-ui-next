@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>Icon/Job</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icon/Job" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Oval" stroke="#757575" stroke-width="1.5" cx="7" cy="8" r="5.25"></circle>
+        <polygon id="Rectangle" fill="#757575" points="9.5 0 9.5 1.5 7.83333333 1.5 6.16666667 1.5 4.5 1.5 4.5 0"></polygon>
+        <rect id="Rectangle-2" fill="#757575" transform="translate(11.090990, 3.590990) rotate(45.000000) translate(-11.090990, -3.590990) " x="10.3409903" y="2.09099026" width="1.5" height="3"></rect>
+        <rect id="Rectangle-3" fill="#757575" x="6.25" y="5" width="1.5" height="3.5"></rect>
+    </g>
+</svg>

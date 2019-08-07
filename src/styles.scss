@@ -1,6 +1,4 @@
-
 @import "scss/index";
-
 // Bootstrap
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
@@ -35,3 +33,13 @@
 @import "~bootstrap/scss/popover";
 @import "~bootstrap/scss/carousel";
 @import "~bootstrap/scss/utilities";
+
+body {
+  background-color: #FAFAFA;
+}
+
+.brx-content {
+  margin: 25px;
+}
+
+@import "app/bricks/hour-registration/registration/agenda/agenda.component";

@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {RegistrationComponent} from './registration/registration.component';
 import {AssessComponent} from './assess/assess.component';
 import {ManageComponent} from './manage/manage.component';
 import {HourRegistrationComponent} from './hour-registration.component';
@@ -14,9 +13,6 @@ const routes: Routes = [
         path: '',
         redirectTo: 'registration',
         pathMatch: 'full'
-      }, {
-        path: 'registration',
-        component: RegistrationComponent
       }, {
         path: 'assess',
         component: AssessComponent
