@@ -16,6 +16,12 @@ $primary-border-top-height: 3px;
 
       text-transform: uppercase;
     }
+    padding-top: calc(0.5rem + 3px);
+
+  }
+
+  .nav-link.active {
+    padding-top: 0.5rem;
   }
 
   .nav-item {
