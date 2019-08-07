@@ -1,9 +1,7 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import * as moment from 'moment';
 import 'moment/locale/nl';
 import 'moment/locale/nl-be';
 import 'moment/locale/en-gb';
-import DurationConstructor = moment.unitOfTime.DurationConstructor;
 
 @Pipe({
   name: 'durationFormat',
