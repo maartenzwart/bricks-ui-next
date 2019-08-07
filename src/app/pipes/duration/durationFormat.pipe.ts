@@ -11,15 +11,12 @@ import DurationConstructor = moment.unitOfTime.DurationConstructor;
 })
 export class DurationFormatPipe implements PipeTransform {
 
-  transform(time: number, unit: DurationConstructor = 'minutes'): string {
-    const duration = moment.duration(time, unit).asHours().toString();
-    const hours = duration.split('.')[0];
-    let minutes = '';
-    let durationMinutes = parseInt(duration.split('.')[1], 10);
-    if (durationMinutes) {
-      durationMinutes = (durationMinutes * 60) / 100;
-      minutes = durationMinutes < 10 ? durationMinutes.toString() + '0' : durationMinutes.toString();
-    }
-    return `${hours || '0'}:${minutes || '00'}`;
+  transform(time: number): string {
+    const hours = (time / 60);
+    const resultHours = Math.floor(hours);
+    const minutes = (hours - resultHours) * 60;
+    const tempMinutes = Math.round(minutes);
+    const resultMinutes = tempMinutes < 10 ? '0' + tempMinutes : tempMinutes;
+    return `${resultHours}:${resultMinutes}`;
   }
 }
