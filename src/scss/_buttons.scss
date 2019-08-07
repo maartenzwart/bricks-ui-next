@@ -6,6 +6,10 @@
 
 .brx-btn {
   cursor: pointer;
+
+  &:focus {
+    box-shadow: none !important;
+  }
 }
 
 @each $key, $value in $brx-color-map {
@@ -20,6 +24,10 @@
   .brx-btn-outline-#{$key} {
     @include button-outline-variant($color, $color-hover: color-yiq($color), $active-background: $color, $active-border: $color);
   }
+}
+
+.brx-btn-warning {
+  color: $white;
 }
 
 .brx-btn-default {

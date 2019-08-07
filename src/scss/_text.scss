@@ -1,0 +1,8 @@
+@import "~bootstrap/scss/mixins";
+@import "variables/index";
+
+@each $key, $value in $brx-color-map{
+  .brx-#{$key} {
+    color: $value;
+  }
+}

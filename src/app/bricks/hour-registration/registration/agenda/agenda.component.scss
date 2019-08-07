@@ -1,9 +1,4 @@
-$brx-agenda-gray: #EEEEEE;
-$brx-agenda-dark-gray: #757575;
-
-$brx-agenda-header-bg: $brx-agenda-gray;
-$black: #000;
-$white: #fff;
+@import "scss/variables";
 
 @import "~node_modules/angular-calendar/scss/angular-calendar";
 
@@ -13,23 +8,8 @@ $white: #fff;
 //  overflow-y: auto !important;
 //}
 
-
-.brx-weekday-headers {
-  display: flex;
-  padding-left: 50px;
-  border-bottom: 1px solid $brx-agenda-dark-gray;
-}
-
-.brx-weekday-header {
-  background-color: $brx-agenda-header-bg;
-  margin-left: 2px;
-  margin-right: 2px;
-  flex: 1;
-  padding: 10px;
-
-  &:last-of-type {
-    margin-right: 0;
-  }
+.cal-time-events {
+  padding-right:$hour-label-width;
 }
 
 .cal-after-hour-start {
@@ -45,7 +25,7 @@ $white: #fff;
 }
 
 .cal-week-view .cal-time-label-column {
-  width: 50px;
+  width: $hour-label-width;
 }
 
 .cal-time-label-column {

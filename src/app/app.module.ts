@@ -9,6 +9,7 @@ import {RelationsComponent} from './views/relations/relations.component';
 import {SettingsComponent} from './views/settings/settings.component';
 import {HourRegistrationModule} from './bricks/hour-registration/hour-registration.module';
 import {NavigationModule} from './common/navigation/navigation.module';
+import {IconsModule} from './common/icons/icons.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {NavigationModule} from './common/navigation/navigation.module';
     BrowserModule,
     AppRoutingModule,
     HourRegistrationModule,
-    NavigationModule
+    NavigationModule,
+    IconsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

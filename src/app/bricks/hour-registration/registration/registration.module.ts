@@ -12,6 +12,7 @@ import {RegistrationRoutingModule} from './registration-routing.module';
 import { EventComponent } from './agenda/event/event.component';
 import {PipesModule} from '../../../pipes/pipes.module';
 import { HeaderComponent } from './agenda/header/header.component';
+import {IconsModule} from '../../../common/icons/icons.module';
 
 
 
@@ -33,7 +34,8 @@ import { HeaderComponent } from './agenda/header/header.component';
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    IconsModule
   ]
 })
 export class RegistrationModule { }

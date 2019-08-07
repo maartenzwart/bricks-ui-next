@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {addDays, addHours, startOfDay} from 'date-fns';
+import {addDays, addHours, addMinutes, startOfDay} from 'date-fns';
 import {CalendarEvent, CalendarEventTimesChangedEvent} from 'angular-calendar';
 import {Subject} from 'rxjs';
 
@@ -9,6 +9,7 @@ import {Subject} from 'rxjs';
   styleUrls: ['./agenda.component.scss']
 })
 export class AgendaComponent implements OnInit, AfterViewInit {
+  view = 'week';
   viewDate: Date = new Date();
 
 
@@ -16,8 +17,8 @@ export class AgendaComponent implements OnInit, AfterViewInit {
 
   events: CalendarEvent[] = [
     {
-      start: addHours(startOfDay(new Date()), 5),
-      end: addHours(startOfDay(new Date()), 17),
+      start: addHours(startOfDay(addDays(new Date(), 2)), 5),
+      end: addMinutes(addHours(startOfDay(addDays(new Date(), 2)), 9), 9),
       title: 'Event 1',
       color: {
         primary: 'red',
@@ -56,7 +57,7 @@ export class AgendaComponent implements OnInit, AfterViewInit {
     },
     {
       start: addHours(startOfDay(addDays(new Date(), 1)), 2),
-      end: addHours(startOfDay(addDays(new Date(), 1)), 18),
+      end: addHours(startOfDay(addDays(new Date(), 1)), 4),
       title: 'Event 2',
       draggable: true,
       resizable: {
@@ -135,13 +136,15 @@ export class AgendaComponent implements OnInit, AfterViewInit {
   constructor(private elRef: ElementRef) {
   }
 
+  headerClicked(event) {
+    console.log('HEADER CLICK', event);
+  }
+
   ngOnInit() {
   }
 
   ngAfterViewInit(): void {
     this.enableDrag();
-
-
   }
 
   private calculateTotals(): void {

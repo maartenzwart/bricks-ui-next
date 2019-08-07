@@ -1,0 +1,64 @@
+@import "../scss/variables";
+
+.brx-header-controls-container {
+  padding-top: 15px;
+  padding-bottom: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+
+  .brx-btn-warning {
+    padding-left: 25px;
+    padding-right: 25px;
+    text-transform: uppercase;
+  }
+
+  .brx-btn-copy-week {
+    color: darken($brx-agenda-gray, 15%);
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .brx-header-controls {
+    .btn {
+      margin-left:5px;
+      margin-right:5px;
+    }
+
+    .brx-week-title {
+      position: absolute;
+      top: -1.5em;
+      left: 0;
+    }
+
+    .brx-week-span {
+      border: 1px solid $brx-agenda-dark-gray;
+
+      brx-icon-date {
+        margin-left:2em;
+      }
+    }
+  }
+
+  .brx-week-total {
+    background: $brx-agenda-gray;
+  }
+}
+
+.brx-weekday-headers {
+  display: flex;
+  padding-left: $hour-label-width;
+  border-bottom: 1px solid $brx-agenda-dark-gray;
+  padding-right: $hour-label-width;
+}
+
+.brx-weekday-header {
+  background-color: $brx-agenda-header-bg;
+  margin-left: 2px;
+  margin-right: 2px;
+  flex: 1;
+  padding: 10px;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}

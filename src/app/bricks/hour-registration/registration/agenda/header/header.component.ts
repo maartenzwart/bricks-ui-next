@@ -12,17 +12,23 @@ import {DayTotals} from './header.interfaces';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnChanges {
+  @Input() view: string;
+
+  @Input() viewDate: Date;
+
   @Input() days: WeekDay[];
 
   @Input() events: CalendarEvent[];
 
-  @Input() locale: string;
+  @Input() locale = 'nl';
 
-  @Output()
-  dayHeaderClicked: EventEmitter<{ day: WeekDay }> = new EventEmitter<{ day: WeekDay; }>();
+  @Output() dayHeaderClicked: EventEmitter<{ day: WeekDay }> = new EventEmitter<{ day: WeekDay; }>();
 
-  @Output()
-  eventDropped: EventEmitter<{ event: CalendarEvent; newStart: Date; }> = new EventEmitter<{ event: CalendarEvent; newStart: Date }>();
+  @Output() eventDropped: EventEmitter<{ event: CalendarEvent; newStart: Date; }> = new EventEmitter<{ event: CalendarEvent; newStart: Date }>();
+
+  @Output() viewChange: EventEmitter<string> = new EventEmitter();
+
+  @Output() viewDateChange: EventEmitter<Date> = new EventEmitter();
 
   dayTotals = new DayTotals();
 
@@ -34,6 +40,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    console.log(this.days);
     moment.locale(this.locale);
     this.calculateTotals();
   }
