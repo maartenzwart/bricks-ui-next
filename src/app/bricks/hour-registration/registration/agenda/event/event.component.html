@@ -1,6 +1,6 @@
 <div
   class="cal-event brx-cal-event"
-  [style.borderColor]="!weekEvent.event.meta.proposed ? weekEvent.event.color?.primary: ''"
+  [style.borderColor]="!weekEvent.event.meta?.proposed ? weekEvent.event.color?.primary: ''"
   [class.brx-proposed]="weekEvent.event.meta?.proposed"
   [class.brx-event-create]="weekEvent.event.meta?.createEvent"
   [class.brx-event-temp]="weekEvent.event.meta?.tmpEvent"
@@ -29,8 +29,8 @@
     class="cal-event-title"
     [innerHTML]="event.title | calendarEventTitle:view:event">
   </h6>
-  <span>{{event.meta.project}}</span><br/>
-  <span>{{event.meta.relation}}</span>
+  <span>{{event.meta?.project}}</span><br/>
+  <span>{{event.meta?.relation}}</span>
 </ng-template>
 
 <ng-template

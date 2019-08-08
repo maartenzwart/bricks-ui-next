@@ -31,4 +31,10 @@ export class EventService {
     event.meta.tmpEvent = true;
     return event;
   }
+
+  createNewEvent(events: CalendarEvent[], startDate: Date, actions: EventAction[], endDate?: Date): CalendarEvent {
+    const event = newEvent({id: events.length, start: startDate, end: endDate || moment(startDate).add(30, 'minutes').toDate()});
+    event.actions = actions;
+    return event;
+  }
 }

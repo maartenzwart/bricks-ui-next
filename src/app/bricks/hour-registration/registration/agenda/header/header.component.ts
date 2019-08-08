@@ -20,6 +20,8 @@ export class HeaderComponent implements OnInit, OnChanges, AfterViewInit {
 
   @Input() events: CalendarEvent[];
 
+  @Input() externalEvents: CalendarEvent[];
+
   @Input() locale = 'nl';
 
   @Output() dayHeaderClicked: EventEmitter<{ day: WeekDay }> = new EventEmitter<{ day: WeekDay; }>();
@@ -33,6 +35,8 @@ export class HeaderComponent implements OnInit, OnChanges, AfterViewInit {
   @Output() afterRender: EventEmitter<any> = new EventEmitter();
 
   dayTotals = new DayTotals();
+
+  jobsOpen = false;
 
   constructor() {
   }
@@ -65,6 +69,14 @@ export class HeaderComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.afterRender.emit();
+  }
+
+  toggleJobs() {
+    this.jobsOpen = !this.jobsOpen;
+  }
+
+  closeJobs() {
+    this.jobsOpen = false;
   }
 
 }

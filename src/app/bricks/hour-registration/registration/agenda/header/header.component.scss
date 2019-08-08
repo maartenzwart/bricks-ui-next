@@ -1,4 +1,7 @@
 @import "../scss/variables";
+@import "~src/scss/variables/index";
+
+$circle-width: 35px;
 
 .brx-header-controls-container {
   padding-top: 40px;
@@ -20,8 +23,8 @@
 
   .brx-header-controls {
     .btn {
-      margin-left:5px;
-      margin-right:5px;
+      margin-left: 5px;
+      margin-right: 5px;
     }
 
     .brx-week-title {
@@ -34,7 +37,7 @@
       border: 1px solid $brx-agenda-dark-gray;
 
       brx-icon-date {
-        margin-left:2em;
+        margin-left: 2em;
       }
     }
   }
@@ -61,4 +64,67 @@
   &:last-of-type {
     margin-right: 0;
   }
+}
+
+.brx-jobs-container {
+  position: absolute;
+  right: 25px;
+  top: 350px;
+  z-index: 10;
+  //background: green;
+
+  .brx-jobs-header {
+    border: 1px solid $brx-agenda-gray;
+    padding: 5px 10px 5px 5px;
+    box-shadow: -2px 2px 4px 0 rgba($black, 0.3);
+    background-color: $white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+
+    min-width: 48px;
+    min-height: 64px;
+    max-height: 64px;
+
+    div {
+      padding: 0 10px;
+    }
+
+    .brx-jobs-circle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      background-color: $brx-color-primary;
+      width: $circle-width;
+      height: $circle-width;
+      border-radius: $circle-width/2;
+
+      .brx-icon-job {
+        margin-top: -4px;
+      }
+    }
+
+    .brx-jobs-overview {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      align-content: center;
+
+      .brx-jobs-title {
+        margin-right: 100px;
+      }
+    }
+  }
+
+  .brx-jobs-selection-container {
+    float: right;
+    background: $white;
+    box-shadow: -2px 2px 4px 0 rgba($black, 0.3);
+    width: 90%;
+  }
+
 }

@@ -40,6 +40,21 @@ export class AgendaComponent implements OnInit {
     }
   }];
 
+  externalEvents: CalendarEvent[] = [
+    {
+      title: 'Event 1',
+      color: {primary: 'blue', secondary: 'gray'},
+      start: new Date(),
+      draggable: true
+    },
+    {
+      title: 'Event 2',
+      color: {primary: 'red', secondary: 'gray'},
+      start: new Date(),
+      draggable: true
+    }
+  ];
+
   constructor(private elRef: ElementRef, private cdr: ChangeDetectorRef, private eventService: EventService) {
   }
 
@@ -50,6 +65,7 @@ export class AgendaComponent implements OnInit {
 
   getEvents(): void {
     this.eventService.getEvents().subscribe(events => {
+      events.forEach(event => event.actions = this.actions);
       this.events$ = events;
     });
   }
@@ -59,16 +75,25 @@ export class AgendaComponent implements OnInit {
   }
 
   eventRendered(event: CalendarEvent): void {
-    console.log(event);
-    if (!event.actions) {
-      event.actions = this.actions;
-    }
     this.enableDrag();
   }
 
   eventTimesChanged({event, newStart, newEnd}: CalendarEventTimesChangedEvent): void {
+    const externalEventIndex = this.externalEvents.indexOf(event);
+    console.log('E Index', externalEventIndex);
     event.start = newStart;
-    event.end = newEnd;
+    if (newEnd) {
+      event.end = newEnd;
+    }
+
+    if (externalEventIndex > -1) {
+      const tempEvent: CalendarEvent = this.eventService.createNewEvent(this.events$, newStart, this.actions, newEnd);
+      const newEvent = Object.assign(tempEvent, event);
+      // this.externalEvents.splice(externalEventIndex, 1);
+      newEvent.id = this.events$.length;
+      this.events$.push(newEvent);
+    }
+    this.events$ = [...this.events$];
     this.refresh.next();
   }
 
@@ -160,7 +185,6 @@ export class AgendaComponent implements OnInit {
 
       // If clicked after making new event, remove the new event. NOTE: check if statement above this
       if (this.newEvent) {
-        console.log('Removing Event');
         const index = this.events$.findIndex((event: CalendarEvent) => event.id === this.newEvent.id);
         this.events$.splice(index, index);
         this.newEvent = null;

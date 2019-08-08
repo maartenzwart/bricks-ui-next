@@ -31,6 +31,7 @@
                 [locale]="locale"
                 (dayHeaderClicked)="headerClicked($event)"
                 (afterRender)="hoursSegmentRendered()"
+                [externalEvents]="externalEvents"
                 (eventDropped)="eventDropped"></brx-header>
   </ng-template>
 
