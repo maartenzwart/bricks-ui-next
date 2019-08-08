@@ -111,7 +111,7 @@ export class AgendaComponent implements OnInit {
     const segmentPosition = segmentElement.getBoundingClientRect();
 
     this.dragToCreateActive = true;
-    const endOfView = endOfWeek(this.viewDate);
+    const endOfView = endOfWeek(this.viewDate, {weekStartsOn: 1});
 
     fromEvent(document, 'mousemove')
       .pipe(
