@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {CalendarEvent, WeekDay} from 'calendar-utils';
 import * as moment from 'moment';
 import 'moment/locale/nl';
@@ -11,7 +11,7 @@ import {DayTotals} from './header.interfaces';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnChanges {
+export class HeaderComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() view: string;
 
   @Input() viewDate: Date;
@@ -30,11 +30,9 @@ export class HeaderComponent implements OnInit, OnChanges {
 
   @Output() viewDateChange: EventEmitter<Date> = new EventEmitter();
 
-  dayTotals = new DayTotals();
+  @Output() afterRender: EventEmitter<any> = new EventEmitter();
 
-  private trackByEventId(index: number, event: CalendarEvent) {
-    return event.id ? event.id : event;
-  }
+  dayTotals = new DayTotals();
 
   constructor() {
   }
@@ -63,6 +61,10 @@ export class HeaderComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.calculateTotals();
+  }
+
+  ngAfterViewInit(): void {
+    this.afterRender.emit();
   }
 
 }

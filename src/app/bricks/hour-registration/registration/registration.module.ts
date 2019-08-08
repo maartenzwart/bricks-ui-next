@@ -26,6 +26,7 @@ import {IconsModule} from '../../../common/icons/icons.module';
   ],
   imports: [
     CommonModule,
+    PipesModule,
     NavigationModule,
     RouterModule,
     RegistrationRoutingModule,

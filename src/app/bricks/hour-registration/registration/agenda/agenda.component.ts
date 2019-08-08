@@ -1,150 +1,144 @@
-import {AfterViewInit, Component, ElementRef, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {addDays, addHours, addMinutes, startOfDay} from 'date-fns';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {addDays, addHours, addMinutes, endOfWeek, startOfDay} from 'date-fns';
 import {CalendarEvent, CalendarEventTimesChangedEvent} from 'angular-calendar';
-import {Subject} from 'rxjs';
+import {fromEvent, Observable, Subject, timer} from 'rxjs';
+import {finalize, first, takeUntil} from 'rxjs/operators';
+import {DayViewHourSegment, EventAction} from 'calendar-utils';
+import * as moment from 'moment';
+import {EventService} from '../../services/event/event.service';
+import {brxIconEdit, brxIconResize} from '../../../../common/icons/svg';
+
+function floorToNearest(amount: number, precision: number) {
+  return Math.floor(amount / precision) * precision;
+}
+
+function ceilToNearest(amount: number, precision: number) {
+  return Math.ceil(amount / precision) * precision;
+}
 
 @Component({
   selector: 'brx-agenda',
   templateUrl: './agenda.component.html',
   styleUrls: ['./agenda.component.scss']
 })
-export class AgendaComponent implements OnInit, AfterViewInit {
+export class AgendaComponent implements OnInit {
   view = 'week';
   viewDate: Date = new Date();
-
+  dragToCreateActive = false;
+  newEvent: CalendarEvent;
 
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [
-    {
-      start: addHours(startOfDay(addDays(new Date(), 2)), 5),
-      end: addMinutes(addHours(startOfDay(addDays(new Date(), 2)), 9), 9),
-      title: 'Event 1',
-      color: {
-        primary: 'red',
-        secondary: 'blue'
-      },
-      draggable: true,
-      meta: {
-        project: 'Bricks Urenmodule',
-        relation: 'Key2Solutions',
-        proposed: true,
-        actions: {
-          editClicked: ({event}: { event: CalendarEvent }): void => {
-            console.log('EDIT CLICKED', event);
-          }
-        }
-      },
-      actions: [
-        {
-          label: 'x',
-          onClick: ({event}: { event: CalendarEvent }): void => {
-            this.events = this.events.filter(iEvent => iEvent !== event);
-            console.log('Event deleted', event);
-          }
-        },
-        {
-          label: 'edit',
-          onClick: ({event}: { event: CalendarEvent }): void => {
-            console.log('Event Edit', event);
-          }
-        }
-      ],
-      resizable: {
-        beforeStart: true, // this allows you to configure the sides the event is resizable from
-        afterEnd: true
-      }
-    },
-    {
-      start: addHours(startOfDay(addDays(new Date(), 1)), 2),
-      end: addHours(startOfDay(addDays(new Date(), 1)), 4),
-      title: 'Event 2',
-      draggable: true,
-      resizable: {
-        beforeStart: true, // this allows you to configure the sides the event is resizable from
-        afterEnd: true
-      },
-      color: {
-        primary: 'yellow',
-        secondary: 'gray'
-      },
-      meta: {
-        project: 'Bricks Urenmodule',
-        relation: 'Key2Solutions'
-      },
-      actions: [
-        {
-          label: 'x',
-          onClick: ({event}: { event: CalendarEvent }): void => {
-            this.events = this.events.filter(iEvent => iEvent !== event);
-            console.log('Event deleted', event);
-          }
-        }
-      ]
-    },
-    {
-      start: addHours(startOfDay(new Date()), 4),
-      end: addHours(startOfDay(new Date()), 5),
-      title: 'Design',
-      draggable: true,
-      resizable: {
-        beforeStart: true, // this allows you to configure the sides the event is resizable from
-        afterEnd: true
-      },
-      meta: {
-        project: 'Bricks Urenmodule',
-        relation: 'Key2Solutions'
-      },
-      color: {
-        primary: 'green',
-        secondary: 'gray'
-      },
-      actions: [
-        {
-          label: 'x',
-          onClick: ({event}: { event: CalendarEvent }): void => {
-            this.events = this.events.filter(iEvent => iEvent !== event);
-            console.log('Event deleted', event);
-          }
-        },
-        {
-          label: 'edit',
-          onClick: ({event}: { event: CalendarEvent }): void => {
-            console.log('Event Edit', event);
-          }
-        }
-      ]
-    }
-  ];
+  events$: CalendarEvent[];
 
-  eventTimesChanged({
-                      event,
-                      newStart,
-                      newEnd
-                    }: CalendarEventTimesChangedEvent): void {
+  actions: EventAction[] = [{
+    label: brxIconEdit.asString,
+    cssClass: 'brx-event-action-edit',
+    onClick: ({event}: { event: CalendarEvent }): void => {
+      // this.events$ = this.events$.filter(iEvent => iEvent !== event);
+      console.log('Event edit', event);
+    }
+  }];
+
+  constructor(private elRef: ElementRef, private cdr: ChangeDetectorRef, private eventService: EventService) {
+  }
+
+  ngOnInit(): void {
+    this.listenForMouseDown();
+    this.getEvents();
+  }
+
+  getEvents(): void {
+    this.eventService.getEvents().subscribe(events => {
+      this.events$ = events;
+    });
+  }
+
+  hoursSegmentRendered(): void {
+    this.scrollToWorkingHours();
+  }
+
+  eventRendered(event: CalendarEvent): void {
+    console.log(event);
+    if (!event.actions) {
+      event.actions = this.actions;
+    }
+    this.enableDrag();
+  }
+
+  eventTimesChanged({event, newStart, newEnd}: CalendarEventTimesChangedEvent): void {
     event.start = newStart;
     event.end = newEnd;
-    console.log(event);
     this.refresh.next();
-    this.enableDrag();
   }
 
   handleEventClick(event) {
     console.log('event: ', event);
   }
 
-  constructor(private elRef: ElementRef) {
-  }
-
   headerClicked(event) {
     console.log('HEADER CLICK', event);
   }
 
-  ngOnInit() {
+  startDragToCreate(segment: DayViewHourSegment, mouseDownEvent: MouseEvent, segmentElement: HTMLElement) {
+    const dragToSelectEvent: CalendarEvent = this.eventService.createDragEvent(this.events$, segment);
+    this.events$ = [...this.events$, dragToSelectEvent];
+    const segmentPosition = segmentElement.getBoundingClientRect();
+
+    this.dragToCreateActive = true;
+    const endOfView = endOfWeek(this.viewDate);
+
+    fromEvent(document, 'mousemove')
+      .pipe(
+        finalize(() => {
+          delete dragToSelectEvent.meta.createEvent;
+          this.newEvent = dragToSelectEvent;
+          this.dragToCreateActive = false;
+          this.refreshView();
+
+          this.newEvent = Object.assign({}, dragToSelectEvent);
+
+          const keyboardEvent = fromEvent(document, 'keyup').pipe(
+            first(),
+            finalize(() => {
+              if (this.newEvent && this.newEvent.meta.tmpEvent) {
+                const index = this.events$.findIndex((event: CalendarEvent) => event.id === this.newEvent.id);
+                this.events$.splice(index, index);
+              }
+              this.refreshView();
+              this.newEvent = null;
+            })
+          );
+          const keyboardEventListener = keyboardEvent.subscribe((key: KeyboardEvent) => {
+            if (key.code.toLowerCase() === 'enter') {
+              delete dragToSelectEvent.meta.tmpEvent;
+              return;
+            }
+          });
+        }),
+        takeUntil(fromEvent(document, 'mouseup'))
+      )
+      .subscribe((mouseMoveEvent: MouseEvent) => {
+        const minutesDiff = ceilToNearest(
+          mouseMoveEvent.clientY - segmentPosition.top,
+          30
+        );
+
+        const daysDiff =
+          floorToNearest(
+            mouseMoveEvent.clientX - segmentPosition.left,
+            segmentPosition.width
+          ) / segmentPosition.width;
+
+        const newEnd = addDays(addMinutes(segment.date, minutesDiff), daysDiff);
+        if (newEnd > segment.date && newEnd < endOfView) {
+          dragToSelectEvent.end = newEnd;
+        }
+        this.refreshView();
+      });
   }
 
-  ngAfterViewInit(): void {
-    this.enableDrag();
+  scrollToWorkingHours(): void {
     const target = document.querySelector('.hour-7-half');
     target.scrollIntoView();
 
@@ -153,8 +147,27 @@ export class AgendaComponent implements OnInit, AfterViewInit {
     body.scrollIntoView();
   }
 
-  private calculateTotals(): void {
+  private listenForMouseDown() {
+    fromEvent(window, 'mousedown').subscribe((mouseEvent: MouseEvent) => {
+      console.log(mouseEvent.target);
+      // Don't remove the new event, the user is resizing it
+      if (mouseEvent.target instanceof Element) {
+        const classList = mouseEvent.target.classList;
+        if (classList.contains('brx-resize') || classList.contains('brx-icon-resize')) {
+          return;
+        }
+      }
 
+      // If clicked after making new event, remove the new event. NOTE: check if statement above this
+      if (this.newEvent) {
+        console.log('Removing Event');
+        const index = this.events$.findIndex((event: CalendarEvent) => event.id === this.newEvent.id);
+        this.events$.splice(index, index);
+        this.newEvent = null;
+        this.enableDrag();
+        this.refreshView();
+      }
+    });
   }
 
   private enableDrag(): void {
@@ -167,31 +180,12 @@ export class AgendaComponent implements OnInit, AfterViewInit {
     });
   }
 
+  private refreshView(): void {
+    this.events$ = [...this.events$];
+    this.cdr.detectChanges();
+  }
+
   private addDragIcon(item: HTMLElement): void {
-    const dragIcon = `<svg width="12px"
-      height="7px"
-      viewBox="0 0 12 7"
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg">
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <g transform="translate(-337.000000, -655.000000)" fill="#F7F7F7">
-            <g transform="translate(251.000000, 593.000000)">
-              <g transform="translate(86.000000, 62.000000)">
-                <rect x="0" y="0" width="12" height="1"></rect>
-                <rect x="0" y="3" width="12" height="1"></rect>
-                <rect x="0" y="6" width="12" height="1"></rect>
-              </g>
-            </g>
-          </g>
-        </g>
-      </svg>`;
-    item.appendChild(this.createElementFromHTML(dragIcon));
+    item.appendChild(brxIconResize.asNode());
   }
-
-  private createElementFromHTML(htmlString) {
-    const div = document.createElement('div');
-    div.innerHTML = htmlString.trim();
-    return div.firstChild;
-  }
-
 }

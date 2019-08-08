@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ComponentFactoryResolver,
   EventEmitter,
@@ -11,44 +12,39 @@ import {
 } from '@angular/core';
 import {WeekViewAllDayEvent, DayViewEvent} from 'calendar-utils';
 import {PlacementArray} from 'positioning';
+import {brxIconEdit} from '../../../../../common/icons/svg';
 
 @Component({
   selector: 'brx-event',
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.scss']
 })
-export class EventComponent implements OnInit {
+export class EventComponent implements OnInit, AfterViewInit {
+  brxIconEdit = brxIconEdit;
+
   @ViewChild('container', {read: ViewContainerRef, static: false}) container: ViewContainerRef;
 
-  @Input()
-  weekEvent: WeekViewAllDayEvent | DayViewEvent;
+  @Input() weekEvent: WeekViewAllDayEvent | DayViewEvent;
 
-  @Input()
-  tooltipPlacement: PlacementArray;
+  @Input() tooltipPlacement: PlacementArray;
 
-  @Input()
-  tooltipAppendToBody: boolean;
+  @Input() tooltipAppendToBody: boolean;
 
-  @Input()
-  tooltipDisabled: boolean;
+  @Input() tooltipDisabled: boolean;
 
-  @Input()
-  customTemplate: TemplateRef<any>;
+  @Input() customTemplate: TemplateRef<any>;
 
-  @Input()
-  eventTitleTemplate: TemplateRef<any>;
+  @Input() eventTitleTemplate: TemplateRef<any>;
 
-  @Input()
-  eventActionsTemplate: TemplateRef<any>;
+  @Input() eventActionsTemplate: TemplateRef<any>;
 
-  @Input()
-  tooltipTemplate: TemplateRef<any>;
+  @Input() tooltipTemplate: TemplateRef<any>;
 
-  @Output()
-  eventClicked: EventEmitter<any> = new EventEmitter();
+  @Output() eventClicked: EventEmitter<any> = new EventEmitter();
 
-  @Output()
-  editClicked: EventEmitter<any> = new EventEmitter();
+  @Output() editClicked: EventEmitter<any> = new EventEmitter();
+
+  @Output() afterRender: EventEmitter<any> = new EventEmitter();
 
   onEdit(event) {
     this.editClicked.emit(event);
@@ -59,5 +55,10 @@ export class EventComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  ngAfterViewInit(): void {
+    this.afterRender.emit(this.weekEvent.event);
+  }
+
 
 }

@@ -2,6 +2,8 @@
   class="cal-event brx-cal-event"
   [style.borderColor]="!weekEvent.event.meta.proposed ? weekEvent.event.color?.primary: ''"
   [class.brx-proposed]="weekEvent.event.meta?.proposed"
+  [class.brx-event-create]="weekEvent.event.meta?.createEvent"
+  [class.brx-event-temp]="weekEvent.event.meta?.tmpEvent"
   [mwlCalendarTooltip]="!tooltipDisabled ? (weekEvent.event.title | calendarEventTitle:'weekTooltip':weekEvent.event) : ''"
   [tooltipPlacement]="tooltipPlacement"
   [tooltipEvent]="weekEvent.event"
@@ -34,30 +36,15 @@
 <ng-template
   #eventActionsTemplate
   let-event="event">
-  <a class="cal-event-action cal-event-action-edit" href="javascript:;" (mwlClick)="onEdit({event: event})">
-    <svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Icon/EditLight" transform="translate(1.000000, 0.000000)" stroke="#FFFFFF">
-          <g id="Group" transform="translate(0.375252, 1.122836)">
-            <path d="M12.1349831,3.12716448 L3.74239482,11.4081645 L-8.8817842e-16,12.6339184 L1.27180658,8.97066448 L9.66439482,0.689664479 C11.5784242,-1.17183106 14.1821926,1.10679618 12.1349831,3.12716448 Z" id="Stroke-6"></path>
-            <path d="M3.74239482,11.2521645 C3.74239482,9.90422698 2.63721835,8.81466448 1.27180658,8.81466448" id="Stroke-9"></path>
-            <path d="M9.16662971,1.12353536 L11.7602866,3.70861837" id="Stroke-11"></path>
-          </g>
-        </g>
-      </g>
-    </svg>
-  </a>
-
-
-<!--      <span *ngIf="event.actions" class="cal-event-actions">-->
-<!--        <a-->
-<!--          class="cal-event-action"-->
-<!--          href="javascript:;"-->
-<!--          *ngFor="let action of event.actions"-->
-<!--          (mwlClick)="action.onClick({event: event})"-->
-<!--          [ngClass]="action.cssClass"-->
-<!--          [innerHTML]="action.label | sanitizeHTML"-->
-<!--        >-->
-<!--        </a>-->
-<!--      </span>-->
+<!--  <a class="cal-event-action cal-event-action-edit" href="javascript:;" (mwlClick)="onEdit({event: event})" [innerHTML]="brxIconEdit.asString | sanitizeHTML"></a>-->
+      <span *ngIf="event.actions" class="cal-event-actions">
+        <a
+          class="cal-event-action pointer"
+          *ngFor="let action of event.actions"
+          (mwlClick)="action.onClick({event: event})"
+          [ngClass]="action.cssClass"
+          [innerHTML]="action.label | sanitizeHTML"
+        >
+        </a>
+      </span>
 </ng-template>

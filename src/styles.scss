@@ -47,4 +47,8 @@ body {
   margin: 25px;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 @import "app/bricks/hour-registration/registration/agenda/agenda.component";
