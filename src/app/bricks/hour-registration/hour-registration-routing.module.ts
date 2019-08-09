@@ -8,19 +8,22 @@ const routes: Routes = [
   {
     path: 'hour-registration',
     component: HourRegistrationComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: '/hour-registration/registration',
-        pathMatch: 'full'
-      }, {
-        path: 'assess',
-        component: AssessComponent
-      }, {
-        path: 'manage',
-        component: ManageComponent
-      }
-    ]
+    children: [{
+      path: '',
+      redirectTo: '/hour-registration/registration/agenda',
+      pathMatch: 'full'
+    }, {
+      path: 'registration',
+      redirectTo: '/hour-registration/registration/agenda',
+      pathMatch: 'full'
+    }, {
+      path: 'assess',
+      component: AssessComponent
+    }, {
+      path: 'manage',
+      component: ManageComponent
+    }
+    ],
   }
 ];
 

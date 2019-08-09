@@ -10,6 +10,13 @@ import {SettingsComponent} from './views/settings/settings.component';
 import {HourRegistrationModule} from './bricks/hour-registration/hour-registration.module';
 import {NavigationModule} from './common/navigation/navigation.module';
 import {IconsModule} from './common/icons/icons.module';
+import {IconDashboardComponent} from './common/icons/icon-dashboard/icon-dashboard.component';
+import {IconProjectLightComponent} from './common/icons/icon-project-light/icon-project-light.component';
+import {IconClientLightComponent} from './common/icons/icon-client-light/icon-client-light.component';
+import {IconHoursComponent} from './common/icons/icon-hours/icon-hours.component';
+import {IconSettingsComponent} from './common/icons/icon-settings/icon-settings.component';
+import {IconSearchComponent} from './common/icons/icon-search/icon-search.component';
+import {IconProfileComponent} from './common/icons/icon-profile/icon-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +34,17 @@ import {IconsModule} from './common/icons/icons.module';
     IconsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  exports: [],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    IconDashboardComponent,
+    IconProjectLightComponent,
+    IconClientLightComponent,
+    IconHoursComponent,
+    IconSettingsComponent,
+    IconSearchComponent,
+    IconProfileComponent
+  ]
 })
-
 export class AppModule {
 }

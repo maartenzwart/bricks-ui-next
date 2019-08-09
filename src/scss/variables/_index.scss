@@ -1,6 +1,7 @@
 @import "bootstrap";
 
 $black: #000;
+$white: #fff;
 //$brx-primary: #ff004e;
 //$brx-dark: #424242;
 
@@ -18,6 +19,8 @@ $brx-color-map: (
   "dark": $brx-color-dark,
 );
 
+// Navbar
+$brx-navbar-logo-size: 52px;
 
 // Angular Calendar Overrides
 $cal-event-color-primary: #1e90ff !default;

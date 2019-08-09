@@ -10,10 +10,6 @@ const routes: Routes = [
     component: RegistrationComponent,
     children: [
       {
-        path: '',
-        redirectTo: 'agenda',
-        pathMatch: 'full'
-      }, {
         path: 'agenda',
         component: AgendaComponent
       }, {

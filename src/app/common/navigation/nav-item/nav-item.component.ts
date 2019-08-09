@@ -1,7 +1,8 @@
 import {
-  Component,
+  AfterViewInit,
+  Component, ComponentFactoryResolver,
   Input,
-  OnInit,
+  OnInit, ViewChild, ViewContainerRef,
 } from '@angular/core';
 
 @Component({
@@ -9,15 +10,29 @@ import {
   templateUrl: './nav-item.component.html',
   styleUrls: ['./nav-item.component.scss']
 })
-export class NavItemComponent implements OnInit {
+export class NavItemComponent implements OnInit, AfterViewInit {
   @Input() path = '/';
-  @Input() label = 'Home';
+  @Input() title = 'Home';
+  @Input() icon: any;
   @Input() firstItem = false;
+  @Input() cssClass = '';
+  @ViewChild('brxDynamicComponent', {read: ViewContainerRef, static: false}) dynamicHost;
 
-  constructor() {
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit(): void {
+    if (this.icon) {
+      this.loadComponent();
+    }
+  }
+
+  loadComponent() {
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.icon);
+    this.dynamicHost.createComponent(componentFactory);
   }
 
 

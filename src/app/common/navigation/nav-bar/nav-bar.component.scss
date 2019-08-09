@@ -1,3 +1,5 @@
+@import "~src/scss/variables/index";
+
 .navbar {
   padding-top: 0;
   padding-left: 0;
@@ -6,10 +8,35 @@
   .navbar-brand {
     padding-bottom: 0;
     padding-top: 0;
+    margin-right: 0;
 
     img {
-      width: 52px;
-      height: 52px;
+      width: $brx-navbar-logo-size;
+      height: $brx-navbar-logo-size;
+    }
+  }
+
+  .brx-navbar-search {
+
+  }
+}
+
+
+:host ::ng-deep {
+  brx-nav-item {
+
+    .nav-link {
+      padding: calc(#{$brx-navbar-logo-size} - 40px) 1rem;
+
+      svg {
+        vertical-align: baseline;
+      }
+
+    }
+
+    .no-border {
+      border: 0;
     }
   }
 }
+

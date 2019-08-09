@@ -6,18 +6,26 @@ import { IconDateComponent } from './icon-date/icon-date.component';
 import {IconJobComponent} from './icon-job/icon-job.component';
 import {IconCloseComponent} from './icon-close/icon-close.component';
 import {IconWarningLightComponent} from './icon-warning-light/icon-warning-light.component';
+import {IconDashboardComponent} from './icon-dashboard/icon-dashboard.component';
+import {IconProjectLightComponent} from './icon-project-light/icon-project-light.component';
+import {IconClientLightComponent} from './icon-client-light/icon-client-light.component';
+import {IconHoursComponent} from './icon-hours/icon-hours.component';
+import {IconSettingsComponent} from './icon-settings/icon-settings.component';
+import {IconProfileComponent} from './icon-profile/icon-profile.component';
+import {IconSearchComponent} from './icon-search/icon-search.component';
 
 
 
 @NgModule({
-  declarations: [IconChevronLeftComponent, IconChevronRightComponent, IconDateComponent, IconJobComponent, IconCloseComponent, IconWarningLightComponent],
+  declarations: [IconChevronLeftComponent, IconChevronRightComponent, IconDateComponent, IconJobComponent, IconCloseComponent, IconWarningLightComponent, IconDashboardComponent, IconProjectLightComponent, IconClientLightComponent, IconHoursComponent, IconSettingsComponent, IconProfileComponent, IconSearchComponent],
   exports: [
     IconChevronLeftComponent,
     IconChevronRightComponent,
     IconDateComponent,
     IconJobComponent,
     IconCloseComponent,
-    IconWarningLightComponent
+    IconWarningLightComponent,
+    IconSearchComponent
   ],
   imports: [
     CommonModule

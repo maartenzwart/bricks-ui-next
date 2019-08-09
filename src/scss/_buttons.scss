@@ -30,6 +30,14 @@
   color: $white;
 }
 
+.brx-btn-search {
+  $background: $white;
+  $border: #CED4DE;
+  @include button-variant($background, $border, $background, $border, $background, $border);
+  border-left: 0;
+
+}
+
 .brx-btn-default {
   $background: transparent;
   $border: #757575;

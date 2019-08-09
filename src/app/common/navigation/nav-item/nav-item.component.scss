@@ -11,16 +11,43 @@
 }
 
 .nav-item.active {
- .nav-arrow{
-
-   .arrow-highlight {
-     display: block;
-   }
- }
+  .nav-arrow {
+    .arrow-highlight {
+      display: block;
+    }
+  }
 }
 
 .nav-link.first {
   padding-left: 20px;
+}
+
+.nav-item.first {
+  &:hover {
+    .nav-arrow {
+      .arrow-highlight {
+        display: block;
+      }
+    }
+  }
+}
+
+.nav-link {
+  border-right: 1px solid grey;
+  color: $white !important;
+  font-weight: lighter;
+
+  &:hover {
+    background-color: $black;
+
+    .nav-arrow {
+      .arrow-highlight {
+        display: block;
+      }
+    }
+  }
+
+
 }
 
 .nav-link.active {

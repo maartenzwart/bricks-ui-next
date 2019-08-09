@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Route} from '../../../interfaces/route';
 
 @Component({
   selector: 'brx-sub-nav',
@@ -6,6 +7,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./sub-nav.component.scss']
 })
 export class SubNavComponent implements OnInit {
+  @Input() routes: Route[] = [];
 
   constructor() {
   }

@@ -4,14 +4,16 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { SubNavComponent } from './sub-nav/sub-nav.component';
 import {RouterModule} from '@angular/router';
-
-
+import {PipesModule} from '../../pipes/pipes.module';
+import {IconsModule} from '../icons/icons.module';
 
 @NgModule({
   declarations: [NavBarComponent, NavItemComponent, SubNavComponent],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    PipesModule,
+    IconsModule
   ],
   exports: [
     NavItemComponent,

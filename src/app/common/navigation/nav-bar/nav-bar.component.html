@@ -5,12 +5,23 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <brx-nav-item *ngFor="let route of routes" [path]="route.path" [label]="route.title"></brx-nav-item>
+    <ul class="navbar-nav mr-3">
+      <brx-nav-item *ngFor="let route of routesLeft" [path]="route.path" [icon]="route.icon" [title]="route.title"></brx-nav-item>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class="my-2 my-lg-0 mr-auto">
+      <div class="input-group brx-navbar-search">
+        <input class="form-control" type="search" placeholder="Zoek op alles..." aria-label="Search"/>
+        <div class="input-group-append">
+          <button class="btn brx-btn-search brx-btn" type="button">
+            <brx-icon-search></brx-icon-search>
+          </button>
+
+
+        </div>
+      </div>
+    </div>
+    <ul class="navbar-nav">
+      <brx-nav-item *ngFor="let route of routesRight" [path]="route.path" [icon]="route.icon" [title]="route.title" cssClass="no-border"></brx-nav-item>
+    </ul>
   </div>
 </nav>
