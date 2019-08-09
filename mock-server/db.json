@@ -1,0 +1,64 @@
+{
+  "timeRegistrations": [
+    {
+      "id": 0,
+      "start": 1565339400,
+      "end": 1565346600,
+      "meta": {
+        "activity": {
+          "id": 0,
+          "name": "Activity 1"
+        },
+        "project": {
+          "id": 0,
+          "name": "Project 1"
+        },
+        "relation": {
+          "id": 0,
+          "name": "Relation 1"
+        },
+        "status": "incomplete"
+      }
+    },
+    {
+      "id": 1,
+      "start": 1565155800,
+      "end": 1565170200,
+      "meta": {
+        "activity": {
+          "id": 0,
+          "name": "Activity 1"
+        },
+        "project": {
+          "id": 0,
+          "name": "Project 2"
+        },
+        "relation": {
+          "id": 0,
+          "name": "Relation 1"
+        },
+        "status": "complete"
+      }
+    },
+    {
+      "id": 3,
+      "start": 1565263800,
+      "end": 1565272800,
+      "meta": {
+        "activity": {
+          "id": 0,
+          "name": "New Event"
+        },
+        "project": {
+          "id": 0,
+          "name": "Project 1"
+        },
+        "relation": {
+          "id": 0,
+          "name": "Relation 1"
+        },
+        "status": "incomplete"
+      }
+    }
+  ]
+}

@@ -42,7 +42,6 @@ export class HeaderComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log(this.days);
     moment.locale(this.locale);
     this.calculateTotals();
   }

@@ -6,6 +6,7 @@ import {HourRegistrationComponent} from './hour-registration.component';
 import {HourRegistrationRoutingModule} from './hour-registration-routing.module';
 import {NavigationModule} from '../../common/navigation/navigation.module';
 import {RegistrationModule} from './registration/registration.module';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {RegistrationModule} from './registration/registration.module';
     CommonModule,
     HourRegistrationRoutingModule,
     NavigationModule,
-    RegistrationModule
+    RegistrationModule,
+    HttpClientModule
   ]
 })
 export class HourRegistrationModule {

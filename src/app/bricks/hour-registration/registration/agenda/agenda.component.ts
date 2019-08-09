@@ -67,6 +67,7 @@ export class AgendaComponent implements OnInit {
     this.eventService.getEvents().subscribe(events => {
       events.forEach(event => event.actions = this.actions);
       this.events$ = events;
+      console.log(events);
     });
   }
 
@@ -80,7 +81,6 @@ export class AgendaComponent implements OnInit {
 
   eventTimesChanged({event, newStart, newEnd}: CalendarEventTimesChangedEvent): void {
     const externalEventIndex = this.externalEvents.indexOf(event);
-    console.log('E Index', externalEventIndex);
     event.start = newStart;
     if (newEnd) {
       event.end = newEnd;
@@ -88,11 +88,17 @@ export class AgendaComponent implements OnInit {
 
     if (externalEventIndex > -1) {
       const tempEvent: CalendarEvent = this.eventService.createNewEvent(this.events$, newStart, this.actions, newEnd);
+      event.id = this.events$.length;
       const newEvent = Object.assign(tempEvent, event);
-      // this.externalEvents.splice(externalEventIndex, 1);
-      newEvent.id = this.events$.length;
+      event = newEvent;
       this.events$.push(newEvent);
+      console.log(this.events$);
     }
+    this.eventService.postEvent(event).subscribe(response => {
+      console.log('RESPONSE', response);
+    }, error => {
+      console.error('ERROR', error);
+    });
     this.events$ = [...this.events$];
     this.refresh.next();
   }
