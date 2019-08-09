@@ -13,6 +13,7 @@ import { EventComponent } from './agenda/event/event.component';
 import {PipesModule} from '../../../pipes/pipes.module';
 import { HeaderComponent } from './agenda/header/header.component';
 import {IconsModule} from '../../../common/icons/icons.module';
+import {FooterComponent} from './agenda/footer/footer.component';
 
 
 
@@ -22,7 +23,8 @@ import {IconsModule} from '../../../common/icons/icons.module';
     AgendaComponent,
     TableComponent,
     EventComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

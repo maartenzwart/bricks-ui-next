@@ -1,8 +1,11 @@
 @import "scss/variables";
 @import "~node_modules/angular-calendar/scss/angular-calendar";
 
-.cal-week-view {
-  padding-bottom: $hour-label-width;
+
+.brx-agenda-container[show-notification=false] {
+  .cal-week-view {
+    padding-bottom: $hour-label-width;
+  }
 }
 
 .cal-week-view .cal-time-events {

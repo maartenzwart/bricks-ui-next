@@ -78,3 +78,15 @@ export const brxIconClose = new SvgIcon(`
           </g>
       </svg>`);
 
+export const brxIconWarningLight = new SvgIcon(`
+      <svg width="13px" height="12px" viewBox="0 0 13 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="Icon/WarningLight" transform="translate(0.000000, -1.000000)">
+                  <g id="Group" transform="translate(0.000000, 1.000000)">
+                      <path d="M6.5,1.0497957 L0.839472669,11.5 L12.1605273,11.5 L6.5,1.0497957 Z" id="Triangle" stroke="#FFFFFF"></path>
+                      <rect id="Rectangle" fill="#FFFFFF" x="6" y="5" width="1" height="3"></rect>
+                      <rect id="Rectangle-2" fill="#FFFFFF" x="6" y="9" width="1" height="1"></rect>
+                  </g>
+              </g>
+          </g>
+      </svg>`);

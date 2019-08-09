@@ -4,7 +4,6 @@ import {CalendarEvent, CalendarEventTimesChangedEvent} from 'angular-calendar';
 import {fromEvent, Observable, Subject, timer} from 'rxjs';
 import {finalize, first, takeUntil} from 'rxjs/operators';
 import {DayViewHourSegment, EventAction} from 'calendar-utils';
-import * as moment from 'moment';
 import {EventService} from '../../services/event/event.service';
 import {brxIconEdit, brxIconResize} from '../../../../common/icons/svg';
 
@@ -26,6 +25,7 @@ export class AgendaComponent implements OnInit {
   viewDate: Date = new Date();
   dragToCreateActive = false;
   newEvent: CalendarEvent;
+  showNotification = true;
 
   refresh: Subject<any> = new Subject();
 
@@ -69,6 +69,10 @@ export class AgendaComponent implements OnInit {
       this.events$ = events;
       console.log(events);
     });
+  }
+
+  notificationClosed(): void {
+    this.showNotification = false;
   }
 
   hoursSegmentRendered(): void {

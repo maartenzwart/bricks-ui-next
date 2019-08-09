@@ -5,7 +5,7 @@
   </div>
 </ng-template>
 
-<div *ngIf="events$; else loading; let events">
+<div *ngIf="events$; else loading; let events" [attr.show-notification]="showNotification" class="brx-agenda-container">
   <mwl-calendar-week-view
     precision="minutes"
     [viewDate]="viewDate"
@@ -72,4 +72,5 @@
       [tooltipDisabled]="true">
     </brx-event>
   </ng-template>
+  <brx-footer *ngIf="showNotification" (close)="notificationClosed()"></brx-footer>
 </div>
