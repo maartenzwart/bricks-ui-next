@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BrxRoute} from '../../../interfaces/brxRoute';
+import {BrxRoutes} from '../../../interfaces/brxRoute';
 
 @Component({
   selector: 'brx-registration',
@@ -7,7 +7,7 @@ import {BrxRoute} from '../../../interfaces/brxRoute';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  routes: BrxRoute[] = [{
+  routes: BrxRoutes = [{
     path: '/hour-registration/registration',
     title: 'Mijn uren',
     firstItem: true
@@ -18,6 +18,16 @@ export class RegistrationComponent implements OnInit {
     path: '/hour-registration/manage',
     title: 'Beheer'
   }];
+
+  tabRoutes: BrxRoutes = [
+    {
+      path: 'agenda',
+      title: 'Agenda'
+    }, {
+      path: 'table',
+      title: 'Time Sheet'
+    }
+  ];
 
   constructor() { }
 

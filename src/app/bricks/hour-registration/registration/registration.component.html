@@ -1,14 +1,4 @@
 <brx-sub-nav [routes]="routes"></brx-sub-nav>
-<div class="brx-content">
-  <nav class="bg-white">
-    <ul class="nav nav-tabs">
-      <li class="nav-item" routerLinkActive="active">
-        <a [routerLink]="'/hour-registration/registration/agenda'" class="nav-link" routerLinkActive="active"><h4>Agenda</h4></a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a [routerLink]="'/hour-registration/registration/table'" class="nav-link" routerLinkActive="active"><h4>Time sheet</h4></a>
-      </li>
-    </ul>
-  </nav>
+<brx-tabs [routes]="tabRoutes">
   <router-outlet></router-outlet>
-</div>
+</brx-tabs>
