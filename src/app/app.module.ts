@@ -17,6 +17,11 @@ import {IconHoursComponent} from './common/icons/icon-hours/icon-hours.component
 import {IconSettingsComponent} from './common/icons/icon-settings/icon-settings.component';
 import {IconSearchComponent} from './common/icons/icon-search/icon-search.component';
 import {IconProfileComponent} from './common/icons/icon-profile/icon-profile.component';
+import {OrganisationComponent} from './views/settings/organisation/organisation.component';
+import {AdminComponent} from './views/settings/admin/admin.component';
+import {AdminSettingsTenantsComponent} from './views/settings/admin/admin-settings-tenants/admin-settings-tenants.component';
+import {AdminSettingsUsersComponent} from './views/settings/admin/admin-settings-users/admin-settings-users.component';
+import {OrganisationSettingsUsersComponent} from './views/settings/organisation/organisation-settings-users/organisation-settings-users.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,12 @@ import {IconProfileComponent} from './common/icons/icon-profile/icon-profile.com
     DashboardComponent,
     ProjectsComponent,
     RelationsComponent,
-    SettingsComponent
+    SettingsComponent,
+    OrganisationComponent,
+    AdminComponent,
+    AdminSettingsTenantsComponent,
+    AdminSettingsUsersComponent,
+    OrganisationSettingsUsersComponent
   ],
   imports: [
     BrowserModule,

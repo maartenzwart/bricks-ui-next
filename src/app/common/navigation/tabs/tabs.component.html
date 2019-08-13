@@ -1,0 +1,14 @@
+<div class="brx-content">
+  <nav class="bg-white">
+    <ul class="nav nav-tabs">
+      <ng-container *ngFor="let route of routes">
+        <li class="nav-item" routerLinkActive="active" *ngIf="route.path && route.title">
+          <a [routerLink]="route.path" class="nav-link" routerLinkActive="active"><h4>{{route.title}}</h4></a>
+        </li>
+      </ng-container>
+    </ul>
+  </nav>
+  <div class="brx-tabs-content">
+    <ng-content></ng-content>
+  </div>
+</div>

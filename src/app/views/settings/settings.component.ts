@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {BrxRoute} from '../../interfaces/brxRoute';
 
 @Component({
   selector: 'brx-settings',
@@ -6,6 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
+
+  routes: BrxRoute[] = [{
+    path: 'organisation',
+    title: 'Organisatie',
+    firstItem: true
+  }, {
+    path: 'admin',
+    title: 'Admin'
+  }
+  ];
 
   constructor() { }
 

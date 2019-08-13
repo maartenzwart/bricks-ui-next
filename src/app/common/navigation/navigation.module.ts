@@ -6,9 +6,10 @@ import { SubNavComponent } from './sub-nav/sub-nav.component';
 import {RouterModule} from '@angular/router';
 import {PipesModule} from '../../pipes/pipes.module';
 import {IconsModule} from '../icons/icons.module';
+import {TabsComponent} from './tabs/tabs.component';
 
 @NgModule({
-  declarations: [NavBarComponent, NavItemComponent, SubNavComponent],
+  declarations: [NavBarComponent, NavItemComponent, SubNavComponent, TabsComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -18,7 +19,8 @@ import {IconsModule} from '../icons/icons.module';
   exports: [
     NavItemComponent,
     NavBarComponent,
-    SubNavComponent
+    SubNavComponent,
+    TabsComponent
   ]
 })
 export class NavigationModule { }

@@ -5,7 +5,7 @@ import {IconClientLightComponent} from '../../icons/icon-client-light/icon-clien
 import {IconHoursComponent} from '../../icons/icon-hours/icon-hours.component';
 import {IconSettingsComponent} from '../../icons/icon-settings/icon-settings.component';
 import {IconProfileComponent} from '../../icons/icon-profile/icon-profile.component';
-import {Route} from '../../../interfaces/route';
+import {BrxRoute} from '../../../interfaces/brxRoute';
 
 @Component({
   selector: 'brx-nav-bar',
@@ -13,7 +13,7 @@ import {Route} from '../../../interfaces/route';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
-  routesLeft: Route[] = [
+  routesLeft: BrxRoute[] = [
     {
       path: 'dashboard',
       icon: IconDashboardComponent,
@@ -37,7 +37,7 @@ export class NavBarComponent implements OnInit {
     }
   ];
 
-  routesRight: Route[] = [
+  routesRight: BrxRoute[] = [
     {
       path: 'profile',
       icon: IconProfileComponent,

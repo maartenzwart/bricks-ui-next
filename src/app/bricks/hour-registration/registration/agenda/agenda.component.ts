@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {addDays, addHours, addMinutes, endOfWeek, startOfDay} from 'date-fns';
 import {CalendarEvent, CalendarEventTimesChangedEvent} from 'angular-calendar';
 import {fromEvent, Observable, Subject, timer} from 'rxjs';
@@ -20,12 +20,13 @@ function ceilToNearest(amount: number, precision: number) {
   templateUrl: './agenda.component.html',
   styleUrls: ['./agenda.component.scss']
 })
-export class AgendaComponent implements OnInit {
+export class AgendaComponent implements OnInit, OnDestroy {
   view = 'week';
   viewDate: Date = new Date();
   dragToCreateActive = false;
   newEvent: CalendarEvent;
   showNotification = true;
+  mouseClickListener;
 
   refresh: Subject<any> = new Subject();
 
@@ -61,6 +62,10 @@ export class AgendaComponent implements OnInit {
   ngOnInit(): void {
     this.listenForMouseDown();
     this.getEvents();
+  }
+
+  ngOnDestroy(): void {
+    this.mouseClickListener.unsubscribe();
   }
 
   getEvents(): void {
@@ -183,8 +188,8 @@ export class AgendaComponent implements OnInit {
   }
 
   private listenForMouseDown() {
-    fromEvent(window, 'mousedown').subscribe((mouseEvent: MouseEvent) => {
-      console.log(mouseEvent.target);
+    this.mouseClickListener = fromEvent(window, 'mousedown').subscribe((mouseEvent: MouseEvent) => {
+      console.log('Agenda', mouseEvent.target);
       // Don't remove the new event, the user is resizing it
       if (mouseEvent.target instanceof Element) {
         const classList = mouseEvent.target.classList;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Route} from '../../interfaces/route';
+import {BrxRoute} from '../../interfaces/brxRoute';
 
 @Component({
   selector: 'brx-hour-registration',
@@ -7,7 +7,7 @@ import {Route} from '../../interfaces/route';
   styleUrls: ['./hour-registration.component.scss']
 })
 export class HourRegistrationComponent implements OnInit {
-  routes: Route[] = [{
+  routes: BrxRoute[] = [{
     path: '/hour-registration/registration',
     title: 'Mijn uren',
     firstItem: true
