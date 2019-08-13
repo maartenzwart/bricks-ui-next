@@ -32,7 +32,10 @@
     </div>
     <div class="col-md-4 text-right">
       <div class="btn-group">
-        <span class="btn brx-week-total"><span class="small text-black-50">Totaal</span> {{dayTotals.total | durationFormat}}</span>
+        <div class="brx-week-total">
+          <div class="small text-black-50">Totaal</div>
+          <div>{{dayTotals.total | durationFormat}}</div>
+        </div>
         <button class="btn brx-btn brx-btn-warning">Verzenden</button>
       </div>
     </div>

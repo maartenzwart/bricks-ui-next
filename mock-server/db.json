@@ -1,4 +1,52 @@
 {
+  "relations": [
+    {
+      "id": "1",
+      "name": "Serendipi"
+    },
+    {
+      "id": "2",
+      "name": "Key"
+    },
+    {
+      "id": "3",
+      "name": "Cavemen"
+    },
+    {
+      "id": "4",
+      "name": "SNN"
+    },
+    {
+      "id": "5",
+      "name": "Nordic Pharma"
+    },
+    {
+      "id": "6",
+      "name": "VindSubsidies"
+    }
+  ],
+  "projects": [
+    {
+      "id": "1",
+      "name": "Bricks"
+    },
+    {
+      "id": "2",
+      "name": "Javascript"
+    },
+    {
+      "id": "3",
+      "name": "Sectorplan Noord Nederland"
+    },
+    {
+      "id": "4",
+      "name": "Grant manager"
+    },
+    {
+      "id": "5",
+      "name": "flo"
+    }
+  ],
   "timeRegistrations": [
     {
       "id": 0,

@@ -1,0 +1,27 @@
+@import '~src/scss/variables/index';
+
+.brx-list-container {
+  width: 100%;
+  display: flex;
+  //align-content: left;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+
+  .brx-list-column {
+    margin-right: 1px;
+
+    &:last-child {
+      flex-grow: 1;
+      margin-right: 0;
+    }
+  }
+
+  .brx-list-header {
+    background-color: $light-grey;
+    width: auto;
+  }
+
+  .brx-list-cell {
+    padding: 5px 10px;
+  }
+}

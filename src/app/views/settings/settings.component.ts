@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BrxRoute} from '../../interfaces/brxRoute';
+import {BrxRoute} from '../../interfaces/brx-route';
 
 @Component({
   selector: 'brx-settings',

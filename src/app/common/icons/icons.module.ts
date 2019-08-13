@@ -13,11 +13,14 @@ import {IconHoursComponent} from './icon-hours/icon-hours.component';
 import {IconSettingsComponent} from './icon-settings/icon-settings.component';
 import {IconProfileComponent} from './icon-profile/icon-profile.component';
 import {IconSearchComponent} from './icon-search/icon-search.component';
+import {IconSortDefaultComponent} from './icon-sort-default/icon-sort-default.component';
+import {IconSortUpComponent} from './icon-sort-up/icon-sort-up.component';
+import {IconSortDownComponent} from './icon-sort-down/icon-sort-down.component';
 
 
 
 @NgModule({
-  declarations: [IconChevronLeftComponent, IconChevronRightComponent, IconDateComponent, IconJobComponent, IconCloseComponent, IconWarningLightComponent, IconDashboardComponent, IconProjectLightComponent, IconClientLightComponent, IconHoursComponent, IconSettingsComponent, IconProfileComponent, IconSearchComponent],
+  declarations: [IconChevronLeftComponent, IconChevronRightComponent, IconDateComponent, IconJobComponent, IconCloseComponent, IconWarningLightComponent, IconDashboardComponent, IconProjectLightComponent, IconClientLightComponent, IconHoursComponent, IconSettingsComponent, IconProfileComponent, IconSearchComponent, IconSortDefaultComponent, IconSortUpComponent, IconSortDownComponent],
   exports: [
     IconChevronLeftComponent,
     IconChevronRightComponent,
@@ -25,7 +28,10 @@ import {IconSearchComponent} from './icon-search/icon-search.component';
     IconJobComponent,
     IconCloseComponent,
     IconWarningLightComponent,
-    IconSearchComponent
+    IconSearchComponent,
+    IconSortDefaultComponent,
+    IconSortUpComponent,
+    IconSortDownComponent
   ],
   imports: [
     CommonModule

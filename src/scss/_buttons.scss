@@ -4,12 +4,14 @@
 //@import "variables/index";
 
 
-.brx-btn {
-  cursor: pointer;
-
+.btn {
   &:focus {
     box-shadow: none !important;
   }
+}
+
+.brx-btn {
+  cursor: pointer;
 }
 
 @each $key, $value in $brx-color-map {
@@ -19,10 +21,20 @@
 
   .brx-btn-#{$key} {
     @include button-variant($background, $border, $hover-background: darken($background, 7.5%), $hover-border: darken($border, 10%), $active-background: darken($background, 10%), $active-border: darken($border, 12.5%));
+    box-shadow: 0 2px 4px rgba($black, 0.2);
+
+    &:focus {
+      box-shadow: 0 2px 4px rgba($black, 0.2) !important;
+    }
   }
 
   .brx-btn-outline-#{$key} {
     @include button-outline-variant($color, $color-hover: color-yiq($color), $active-background: $color, $active-border: $color);
+    box-shadow: 0 2px 4px rgba($black, 0.2);
+
+    &:focus {
+      box-shadow: 0 2px 4px rgba($black, 0.2) !important;
+    }
   }
 }
 

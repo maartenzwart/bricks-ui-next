@@ -1,4 +1,4 @@
-import {BrxRoutes} from '../../../interfaces/brxRoute';
+import {BrxRoutes} from '../../../interfaces/brx-route';
 import {OrganisationSettingsUsersComponent} from './organisation-settings-users/organisation-settings-users.component';
 
 export const organisationChildren: BrxRoutes = [

@@ -22,6 +22,9 @@ import {AdminComponent} from './views/settings/admin/admin.component';
 import {AdminSettingsTenantsComponent} from './views/settings/admin/admin-settings-tenants/admin-settings-tenants.component';
 import {AdminSettingsUsersComponent} from './views/settings/admin/admin-settings-users/admin-settings-users.component';
 import {OrganisationSettingsUsersComponent} from './views/settings/organisation/organisation-settings-users/organisation-settings-users.component';
+import {ProjectsListComponent} from './views/projects/projects-list/projects-list.component';
+import {ListComponent} from './common/list/list.component';
+import {OrderByPipe} from './common/pipes/order-by.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import {OrganisationSettingsUsersComponent} from './views/settings/organisation/
     AdminComponent,
     AdminSettingsTenantsComponent,
     AdminSettingsUsersComponent,
-    OrganisationSettingsUsersComponent
+    OrganisationSettingsUsersComponent,
+    ProjectsListComponent,
+    ListComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

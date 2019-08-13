@@ -129,5 +129,3 @@ export const brxIconClientLight = new SvgIcon(`
         </g>
     </g>
 </svg>`);
-
-// export const brxIconClientLight = new SvgIcon();

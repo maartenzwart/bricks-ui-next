@@ -1,6 +1,6 @@
 import {AdminSettingsTenantsComponent} from './admin-settings-tenants/admin-settings-tenants.component';
 import {AdminSettingsUsersComponent} from './admin-settings-users/admin-settings-users.component';
-import {BrxRoutes} from '../../../interfaces/brxRoute';
+import {BrxRoutes} from '../../../interfaces/brx-route';
 
 export const adminChildren: BrxRoutes = [
   {

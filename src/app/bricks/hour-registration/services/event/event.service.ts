@@ -9,13 +9,14 @@ import {newEvent} from '../../utils/events';
 import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {BRX_REGISTER_API} from '../../config/api';
 import {ServerEvent} from '../../interfaces/server-event';
+import {ErrorHandlingService} from '../../../../common/services/error-handling.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private errorHandlerService: ErrorHandlingService) {
   }
 
   getEvents(): Observable<CalendarEvent[]> {
@@ -46,7 +47,8 @@ export class EventService {
 
           });
           return events;
-        })
+        }),
+        catchError(this.errorHandlerService.handleError<CalendarEvent[]>('getEvents', []))
       );
   }
 
@@ -90,18 +92,18 @@ export class EventService {
       meta: event.meta
     };
 
-    console.log('POST EVENt', event);
-
     const post = this.http.post<any>(BRX_REGISTER_API.events.all(), registration).pipe(
       tap(response => {
         console.log('POST EVENT', event, response);
-      })
+      }),
+      catchError(this.errorHandlerService.handleError<CalendarEvent>('postEvent', null))
     );
 
     const update = this.http.put<any>(BRX_REGISTER_API.events.byId(event.id), registration).pipe(
       tap(response => {
         console.log('UPDATE EVENT', event, response);
-      })
+      }),
+      catchError(this.errorHandlerService.handleError<CalendarEvent>('postEvent', null))
     );
 
     return this.http.head(BRX_REGISTER_API.events.byId(event.id), {observe: 'response'})

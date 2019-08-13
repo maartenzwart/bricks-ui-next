@@ -44,6 +44,15 @@ $circle-width: 35px;
 
   .brx-week-total {
     background: $brx-agenda-gray;
+    display: flex;
+    height: 38px;
+    justify-items: center;
+    align-items: center;
+    padding: 10px;
+
+    div:first-child {
+      margin-right: 5px;
+    }
   }
 }
 

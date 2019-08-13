@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BrxRoutes} from '../../../interfaces/brxRoute';
+import {BrxRoutes} from '../../../interfaces/brx-route';
 
 @Component({
   selector: 'brx-registration',

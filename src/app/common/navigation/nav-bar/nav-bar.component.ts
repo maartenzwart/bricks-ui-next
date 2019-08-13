@@ -5,7 +5,7 @@ import {IconClientLightComponent} from '../../icons/icon-client-light/icon-clien
 import {IconHoursComponent} from '../../icons/icon-hours/icon-hours.component';
 import {IconSettingsComponent} from '../../icons/icon-settings/icon-settings.component';
 import {IconProfileComponent} from '../../icons/icon-profile/icon-profile.component';
-import {BrxRoute} from '../../../interfaces/brxRoute';
+import {BrxRoute} from '../../../interfaces/brx-route';
 
 @Component({
   selector: 'brx-nav-bar',

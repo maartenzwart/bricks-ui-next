@@ -1,6 +1,6 @@
 import {SettingsComponent} from './settings.component';
 import {adminRoute} from './admin/routes';
-import {BrxRoute} from '../../interfaces/brxRoute';
+import {BrxRoute} from '../../interfaces/brx-route';
 import {organisationRoute} from './organisation/routes';
 
 

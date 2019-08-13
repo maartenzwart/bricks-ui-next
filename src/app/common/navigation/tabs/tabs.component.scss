@@ -12,7 +12,7 @@ $primary-border-top-height: 3px;
     border: 0;
     color: $brx-color-dark;
 
-    h4 {
+    .title {
 
       text-transform: uppercase;
     }
@@ -43,4 +43,5 @@ $primary-border-top-height: 3px;
 
 .brx-content {
   box-shadow: 0 0 4px rgba($black, 0.4);
+  background-color: $white;
 }
