@@ -3,19 +3,33 @@ import {RouterModule, Routes} from '@angular/router';
 import {AssessComponent} from './assess/assess.component';
 import {ManageComponent} from './manage/manage.component';
 import {HourRegistrationComponent} from './hour-registration.component';
-//
+import {RegistrationComponent} from './registration/registration.component';
+import {AgendaComponent} from './registration/agenda/agenda.component';
+import {TableComponent} from './registration/table/table.component';
+
+
 const routes: Routes = [
   {
     path: 'hour-registration',
     component: HourRegistrationComponent,
     children: [{
       path: '',
-      redirectTo: '/hour-registration/registration/agenda',
+      redirectTo: 'registration',
       pathMatch: 'full'
     }, {
       path: 'registration',
-      redirectTo: '/hour-registration/registration/agenda',
-      pathMatch: 'full'
+      component: RegistrationComponent,
+      children: [{
+        path: '',
+        redirectTo: 'agenda',
+        pathMatch: 'full'
+      }, {
+        path: 'agenda',
+        component: AgendaComponent
+      }, {
+        path: 'table',
+        component: TableComponent
+      }]
     }, {
       path: 'assess',
       component: AssessComponent
@@ -26,8 +40,6 @@ const routes: Routes = [
     ],
   }
 ];
-
-// const routes: Routes = [{}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

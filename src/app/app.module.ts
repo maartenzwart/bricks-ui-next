@@ -24,7 +24,6 @@ import {AdminSettingsUsersComponent} from './views/settings/admin/admin-settings
 import {OrganisationSettingsUsersComponent} from './views/settings/organisation/organisation-settings-users/organisation-settings-users.component';
 import {ProjectsListComponent} from './views/projects/projects-list/projects-list.component';
 import {ListComponent} from './common/list/list.component';
-import {DynamicComponentDirective} from './common/directives/dynamic-component.directive';
 import {OrderByPipe} from './pipes/order-by/order-by.pipe';
 
 @NgModule({
@@ -41,8 +40,7 @@ import {OrderByPipe} from './pipes/order-by/order-by.pipe';
     OrganisationSettingsUsersComponent,
     ProjectsListComponent,
     ListComponent,
-    OrderByPipe,
-    DynamicComponentDirective
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

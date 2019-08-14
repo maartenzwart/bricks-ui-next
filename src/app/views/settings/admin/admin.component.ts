@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {adminChildren} from './routes-children';
 
 @Component({
   selector: 'brx-admin',
@@ -7,7 +6,14 @@ import {adminChildren} from './routes-children';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  routes = adminChildren;
+  routes = [{
+    path: 'tenants',
+    title: 'Tenants'
+  }, {
+    path: 'users',
+    title: 'Gebruikers'
+  }
+  ];
 
   constructor() {
   }

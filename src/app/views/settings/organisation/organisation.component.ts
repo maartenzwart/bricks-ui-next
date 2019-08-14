@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {organisationChildren} from './routes-children';
+import {BrxRoutes} from '../../../interfaces/brx-route';
 
 @Component({
   selector: 'brx-organisation',
@@ -7,7 +7,10 @@ import {organisationChildren} from './routes-children';
   styleUrls: ['./organisation.component.scss']
 })
 export class OrganisationComponent implements OnInit {
-  routes = organisationChildren;
+  routes: BrxRoutes = [{
+    path: 'users',
+    title: 'Gebruikers'
+  }];
 
   constructor() {
   }

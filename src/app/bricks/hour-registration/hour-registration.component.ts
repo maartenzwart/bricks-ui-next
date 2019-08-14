@@ -8,14 +8,14 @@ import {BrxRoute} from '../../interfaces/brx-route';
 })
 export class HourRegistrationComponent implements OnInit {
   routes: BrxRoute[] = [{
-    path: '/hour-registration/registration',
+    path: 'registration',
     title: 'Mijn uren',
     firstItem: true
   }, {
-    path: '/hour-registration/assess',
+    path: 'assess',
     title: 'Goedkeuren'
   }, {
-    path: '/hour-registration/manage',
+    path: 'manage',
     title: 'Beheer'
   }];
 
