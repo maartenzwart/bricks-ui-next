@@ -125,4 +125,23 @@
   }
 }
 
+.brx-auto-fill-button {
+  margin-left: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  z-index: 10;
+}
+
+.brx-auto-fill-button-header {
+  position: sticky;
+  width: 0;
+  height: 0;
+  top: 0;
+  left: 0;
+
+  .brx-auto-fill-button {
+    width: 110px;
+  }
+}
+
 @import "event/event.component";

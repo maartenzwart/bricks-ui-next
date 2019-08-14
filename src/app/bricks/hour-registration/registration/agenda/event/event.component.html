@@ -8,6 +8,7 @@
   [tooltipPlacement]="tooltipPlacement"
   [tooltipEvent]="weekEvent.event"
   [tooltipTemplate]="tooltipTemplate"
+  [attr.event-id]="weekEvent.event.id"
   [tooltipAppendToBody]="tooltipAppendToBody"
   (mwlClick)="eventClicked.emit(weekEvent)">
   <mwl-calendar-event-title
@@ -36,7 +37,6 @@
 <ng-template
   #eventActionsTemplate
   let-event="event">
-<!--  <a class="cal-event-action cal-event-action-edit" href="javascript:;" (mwlClick)="onEdit({event: event})" [innerHTML]="brxIconEdit.asString | sanitizeHTML"></a>-->
       <span *ngIf="event.actions" class="cal-event-actions">
         <a
           class="cal-event-action pointer"

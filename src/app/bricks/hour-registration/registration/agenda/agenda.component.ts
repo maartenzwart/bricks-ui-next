@@ -1,4 +1,14 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+  ViewChild, ViewContainerRef
+} from '@angular/core';
 import {addDays, addHours, addMinutes, endOfWeek, startOfDay} from 'date-fns';
 import {CalendarEvent, CalendarEventTimesChangedEvent} from 'angular-calendar';
 import {fromEvent, Observable, Subject, timer} from 'rxjs';
@@ -6,6 +16,7 @@ import {finalize, first, takeUntil} from 'rxjs/operators';
 import {DayViewHourSegment, EventAction} from 'calendar-utils';
 import {EventService} from '../../services/event/event.service';
 import {brxIconEdit, brxIconResize} from '../../../../common/icons/svg';
+import {DurationFormatPipe} from '../../../../pipes/duration/durationFormat.pipe';
 
 function floorToNearest(amount: number, precision: number) {
   return Math.floor(amount / precision) * precision;
@@ -18,7 +29,8 @@ function ceilToNearest(amount: number, precision: number) {
 @Component({
   selector: 'brx-agenda',
   templateUrl: './agenda.component.html',
-  styleUrls: ['./agenda.component.scss']
+  styleUrls: ['./agenda.component.scss'],
+  providers: [DurationFormatPipe]
 })
 export class AgendaComponent implements OnInit, OnDestroy {
   view = 'week';
@@ -27,6 +39,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
   newEvent: CalendarEvent;
   showNotification = true;
   mouseClickListener;
+  showAutoAdd = [false, false, false, false, false, false, false];
 
   refresh: Subject<any> = new Subject();
 
@@ -56,7 +69,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
     }
   ];
 
-  constructor(private elRef: ElementRef, private cdr: ChangeDetectorRef, private eventService: EventService) {
+  constructor(private elRef: ElementRef, private cdr: ChangeDetectorRef, private eventService: EventService, private durationFormatPipe: DurationFormatPipe) {
   }
 
   ngOnInit(): void {
@@ -72,7 +85,6 @@ export class AgendaComponent implements OnInit, OnDestroy {
     this.eventService.getEvents().subscribe(events => {
       events.forEach(event => event.actions = this.actions);
       this.events$ = events;
-      console.log(events);
     });
   }
 
@@ -96,20 +108,23 @@ export class AgendaComponent implements OnInit, OnDestroy {
     }
 
     if (externalEventIndex > -1) {
-      const tempEvent: CalendarEvent = this.eventService.createNewEvent(this.events$, newStart, this.actions, newEnd);
+      const tempEvent: CalendarEvent = this.eventService.createNewEvent(newStart, this.actions, newEnd);
       event.id = this.events$.length;
       const newEvent = Object.assign(tempEvent, event);
       event = newEvent;
       this.events$.push(newEvent);
-      console.log(this.events$);
     }
+    this.saveEvent(event);
+    this.events$ = [...this.events$];
+    this.refresh.next();
+  }
+
+  saveEvent(event: CalendarEvent) {
     this.eventService.postEvent(event).subscribe(response => {
       console.log('RESPONSE', response);
     }, error => {
       console.error('ERROR', error);
     });
-    this.events$ = [...this.events$];
-    this.refresh.next();
   }
 
   handleEventClick(event) {
@@ -120,8 +135,87 @@ export class AgendaComponent implements OnInit, OnDestroy {
     console.log('HEADER CLICK', event);
   }
 
+  onDayHover(e: { index: number, target: Element, duration: number, date: string, type: string }) {
+    const {index, target, duration, type, date} = e;
+    const eventElems = target.querySelectorAll('.cal-event-container');
+    let lastElement = eventElems[eventElems.length - 1];
+    if (type === 'mousedown') {
+      const buttons = target.querySelectorAll('.brx-auto-fill-button');
+      buttons.forEach(button => button.remove());
+      return false;
+    }
+    if (type === 'mouseenter' && duration < 480 && !this.showAutoAdd[index]) {
+      this.showAutoAdd[index] = true;
+      let addToHeader = false;
+      if (!lastElement) {
+        lastElement = target;
+        addToHeader = true;
+      }
+      this.addAutoFillButton(lastElement, duration, date, addToHeader);
+    } else {
+      this.showAutoAdd[index] = false;
+      const addedToHeader = !lastElement;
+      this.removeAutoFillButton(addedToHeader);
+    }
+  }
+
+  addAutoFillButton(element: Element, duration: number, date: string, toHeader: boolean = false) {
+    const durationToAdd = 480 - duration;
+    const eventElem = element.querySelector('.brx-cal-event');
+    let eventId = '';
+    if (eventElem) {
+      eventId = eventElem.getAttribute('event-id');
+    }
+
+    let html = `<div class="btn brx-btn-primary brx-btn pointer brx-auto-fill-button"
+                              data-duration="${durationToAdd}"
+                              data-event-id="${eventId}"
+                              data-date="${date}">+${this.durationFormatPipe.transform(durationToAdd)} UUR</div>`;
+    if (toHeader) {
+      html = `<div class="brx-auto-fill-button-header">${html}</div>`;
+    }
+
+    const container = document.createElement('div');
+    container.innerHTML = html;
+    const button = container.querySelector('div');
+    if (toHeader) {
+      element.prepend(button);
+      // Listener added at this.listenForMouseDown() since it is placed in a higher DOM element
+    } else {
+      element.append(button);
+      button.addEventListener('click', this.addAutoFillEvent.bind(this));
+    }
+  }
+
+  addAutoFillEvent(e) {
+    const target = e.target;
+    const duration = target.getAttribute('data-duration');
+    const eventId = target.getAttribute('data-event-id');
+    const date = target.getAttribute('data-date');
+    const lastEvent = this.events$.find(event => event.id.toString() === eventId);
+    const newEvent = this.eventService.createAutoFillEvent(duration, lastEvent ? lastEvent.end : date, this.actions);
+    this.events$.push(newEvent);
+    this.saveEvent(newEvent);
+    this.events$ = [...this.events$];
+    target.remove();
+    this.refresh.next();
+  }
+
+  removeAutoFillButton(toHeader: boolean = false) {
+    const selector = !toHeader ? '.brx-auto-fill-button' : '.brx-auto-fill-button-header';
+    const buttons = document.querySelectorAll(selector);
+    if (buttons.length > 0) {
+      buttons.forEach(button => {
+        if (!toHeader) {
+          button.removeEventListener('click', this.addAutoFillEvent, true);
+        }
+        button.remove();
+      });
+    }
+  }
+
   startDragToCreate(segment: DayViewHourSegment, mouseDownEvent: MouseEvent, segmentElement: HTMLElement) {
-    const dragToSelectEvent: CalendarEvent = this.eventService.createDragEvent(this.events$, segment);
+    const dragToSelectEvent: CalendarEvent = this.eventService.createDragEvent(segment);
     this.events$ = [...this.events$, dragToSelectEvent];
     const segmentPosition = segmentElement.getBoundingClientRect();
 
@@ -151,6 +245,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
           );
           const keyboardEventListener = keyboardEvent.subscribe((key: KeyboardEvent) => {
             if (key.code.toLowerCase() === 'enter') {
+              this.saveEvent(this.newEvent);
               delete dragToSelectEvent.meta.tmpEvent;
               return;
             }
@@ -189,12 +284,16 @@ export class AgendaComponent implements OnInit, OnDestroy {
 
   private listenForMouseDown() {
     this.mouseClickListener = fromEvent(window, 'mousedown').subscribe((mouseEvent: MouseEvent) => {
-      console.log('Agenda', mouseEvent.target);
       // Don't remove the new event, the user is resizing it
       if (mouseEvent.target instanceof Element) {
         const classList = mouseEvent.target.classList;
         if (classList.contains('brx-resize') || classList.contains('brx-icon-resize')) {
           return;
+        }
+
+        // Add listener for auto-fill button since it is placed in a higher DOM element
+        if (classList.contains('brx-auto-fill-button')) {
+          this.addAutoFillEvent(mouseEvent);
         }
       }
 

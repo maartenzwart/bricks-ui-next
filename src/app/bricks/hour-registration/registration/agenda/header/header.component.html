@@ -51,11 +51,12 @@
     [class.cal-weekend]="day.isWeekend"
     [ngClass]="day.cssClass"
     (mwlClick)="dayHeaderClicked.emit({day: day})"
+    [attr.date]="day.date | date:'yyyyMMdd':undefined:locale"
     mwlDroppable
     dragOverClass="cal-drag-over"
     (drop)="eventDropped.emit({event: $event.dropData.event, newStart: day.date})">
     <span class="align-baseline float-left">{{ day.date | date:'EEEEEE | dd':undefined:locale }}</span>
-    <span class="align-baseline float-right small">{{dayTotals[day.day] | durationFormat}}</span>
+    <span class="align-baseline float-right small">{{dayTotals[day.day === 0 ? 6 : day.day - 1] | durationFormat}}</span>
   </div>
 </div>
 <div class="brx-jobs-container">

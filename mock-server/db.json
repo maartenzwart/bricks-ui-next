@@ -70,8 +70,8 @@
     },
     {
       "id": 1,
-      "start": 1565155800,
-      "end": 1565170200,
+      "start": 1564984800,
+      "end": 1564999200,
       "meta": {
         "activity": {
           "id": 0,
@@ -90,8 +90,8 @@
     },
     {
       "id": 3,
-      "start": 1565263800,
-      "end": 1565272800,
+      "start": 1566037800,
+      "end": 1566046800,
       "meta": {
         "activity": {
           "id": 0,
@@ -106,6 +106,101 @@
           "name": "Relation 1"
         },
         "status": "incomplete"
+      }
+    },
+    {
+      "id": "97aa226a-2d02-4dea-a159-2e510342acbf",
+      "start": 1565935200,
+      "end": 1565964000,
+      "meta": {
+        "activity": {
+          "id": 1,
+          "name": "Test Activity"
+        },
+        "project": {
+          "id": 1,
+          "name": "Test Project"
+        },
+        "relation": {
+          "id": 1,
+          "name": "Test relation"
+        }
+      }
+    },
+    {
+      "id": "97b89a10-9bbe-47c0-98ec-626b02a73e59",
+      "start": 1565762400,
+      "end": 1565782200,
+      "meta": {
+        "activity": {
+          "id": 1,
+          "name": "Test Activity"
+        },
+        "project": {
+          "id": 1,
+          "name": "Test Project"
+        },
+        "relation": {
+          "id": 1,
+          "name": "Test relation"
+        }
+      }
+    },
+    {
+      "id": "f62546f4-20c6-4f10-bb1a-51f3a1b45abd",
+      "start": 1566046800,
+      "end": 1566066600,
+      "meta": {
+        "activity": {
+          "id": 1,
+          "name": "Test Activity"
+        },
+        "project": {
+          "id": 1,
+          "name": "Test Project"
+        },
+        "relation": {
+          "id": 1,
+          "name": "Test relation"
+        }
+      }
+    },
+    {
+      "id": "6098699e-6e8c-409f-953f-dfc6438feb33",
+      "start": 1565782200,
+      "end": 1565791200,
+      "meta": {
+        "activity": {
+          "id": 1,
+          "name": "Test Activity"
+        },
+        "project": {
+          "id": 1,
+          "name": "Test Project"
+        },
+        "relation": {
+          "id": 1,
+          "name": "Test relation"
+        }
+      }
+    },
+    {
+      "id": "48c648ff-14fa-4929-a072-4f4b77d80e61",
+      "start": 1565848800,
+      "end": 1565877600,
+      "meta": {
+        "activity": {
+          "id": 1,
+          "name": "Test Activity"
+        },
+        "project": {
+          "id": 1,
+          "name": "Test Project"
+        },
+        "relation": {
+          "id": 1,
+          "name": "Test relation"
+        }
       }
     }
   ]

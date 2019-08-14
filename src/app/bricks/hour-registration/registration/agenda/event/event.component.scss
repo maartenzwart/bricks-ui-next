@@ -17,6 +17,7 @@
   line-height: normal;
   border-left-style: solid;
   border-width: 0 0 0 5px;
+  border-color: $brx-event-dark;
 
   .brx-event-action-edit {
     position:absolute;
@@ -73,6 +74,7 @@
 
   .cal-resize-handle-after-end {
     top: -11px;
+    margin-bottom: -10px;
 
     svg {
       position: absolute;

@@ -1,8 +1,9 @@
 import {CalendarEvent} from 'angular-calendar';
+import * as uuidv4 from 'uuid/v4';
 
-export function newEvent({id, title, start, end}: { id: number, title?: string, start: Date, end: Date}): CalendarEvent {
+export function newEvent({title, start, end}: { title?: string, start: Date, end: Date }): CalendarEvent {
   return {
-    id,
+    id: uuidv4(),
     title: title || 'New Event',
     start,
     end,
@@ -11,6 +12,21 @@ export function newEvent({id, title, start, end}: { id: number, title?: string, 
       afterEnd: true
     },
     draggable: true,
-    meta: {}
+
+    // TODO remove mock data
+    meta: {
+      activity: {
+        id: 1,
+        name: 'Test Activity'
+      },
+      project: {
+        id: 1,
+        name: 'Test Project'
+      },
+      relation: {
+        id: 1,
+        name: 'Test relation'
+      }
+    }
   };
 }

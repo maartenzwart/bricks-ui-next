@@ -52,35 +52,26 @@ export class EventService {
       );
   }
 
-  createDragEvent(events: CalendarEvent[], segment: DayViewHourSegment): CalendarEvent {
-    const event = newEvent({id: events.length, start: segment.date, end: moment(segment.date).add(30, 'minutes').toDate()});
+  createDragEvent(segment: DayViewHourSegment): CalendarEvent {
+    const event = newEvent({start: segment.date, end: moment(segment.date).add(30, 'minutes').toDate()});
     event.meta.createEvent = true;
     event.meta.tmpEvent = true;
     return event;
   }
 
-  createNewEvent(events: CalendarEvent[], startDate: Date, actions: EventAction[], endDate?: Date): CalendarEvent {
-    const event = newEvent({id: events.length, start: startDate, end: endDate || moment(startDate).add(30, 'minutes').toDate()});
+  createAutoFillEvent(duration: string, startDate: Date | string, actions: EventAction[]): CalendarEvent {
+    let start: Date;
+    if (typeof startDate === 'string' || startDate instanceof String) {
+      start = moment(startDate, 'YYYYMMDD').add(8, 'hours').toDate();
+    } else {
+      start = startDate;
+    }
+    return this.createNewEvent(start, actions, moment(start).add(duration, 'minutes').toDate());
+  }
+
+  createNewEvent(startDate: Date, actions: EventAction[], endDate?: Date): CalendarEvent {
+    const event = newEvent({start: startDate, end: endDate || moment(startDate).add(30, 'minutes').toDate()});
     event.actions = actions;
-
-    // TODO: Remove mock meta
-    event.meta = {
-      activity: {
-        id: 0,
-        name: event.title
-      },
-      project: {
-        id: 0,
-        name: 'Project 1'
-      },
-      relation: {
-        id: 0,
-        name: 'Relation 1'
-      },
-      status: 'incomplete'
-    };
-
-    console.log('NEW EVENT', event);
     return event;
   }
 

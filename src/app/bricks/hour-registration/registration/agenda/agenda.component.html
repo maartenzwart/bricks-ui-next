@@ -20,22 +20,6 @@
   </mwl-calendar-week-view>
 
   <ng-template
-    #headerTemplate
-    let-days="days"
-    let-locale="locale"
-    let-eventDropped="eventDropped">
-    <brx-header [(viewDate)]="viewDate"
-                [(view)]="view"
-                [days]="days"
-                [events]="events"
-                [locale]="locale"
-                (dayHeaderClicked)="headerClicked($event)"
-                (afterRender)="hoursSegmentRendered()"
-                [externalEvents]="externalEvents"
-                (eventDropped)="eventDropped"></brx-header>
-  </ng-template>
-
-  <ng-template
     #hourSegmentTemplate
     let-segment="segment"
     let-locale="locale"
@@ -54,6 +38,23 @@
         <span class="number">{{ segment.date | date:'H':undefined:locale }}</span>
       </div>
     </div>
+  </ng-template>
+
+  <ng-template
+    #headerTemplate
+    let-days="days"
+    let-locale="locale"
+    let-eventDropped="eventDropped">
+    <brx-header [(viewDate)]="viewDate"
+                [(view)]="view"
+                [days]="days"
+                [events]="events"
+                [locale]="locale"
+                (dayHeaderClicked)="headerClicked($event)"
+                (afterRender)="hoursSegmentRendered()"
+                [externalEvents]="externalEvents"
+                (dayHover)="onDayHover($event)"
+                (eventDropped)="eventDropped"></brx-header>
   </ng-template>
 
   <ng-template #eventTemplate
