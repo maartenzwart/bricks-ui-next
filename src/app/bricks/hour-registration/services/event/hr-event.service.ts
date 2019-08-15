@@ -14,7 +14,7 @@ import {ErrorHandlingService} from '../../../../common/services/error-handling.s
 @Injectable({
   providedIn: 'root'
 })
-export class EventService {
+export class HrEventService {
 
   constructor(private http: HttpClient, private errorHandlerService: ErrorHandlingService) {
   }

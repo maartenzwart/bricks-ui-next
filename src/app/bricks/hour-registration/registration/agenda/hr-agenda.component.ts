@@ -10,7 +10,7 @@ import {CalendarEvent, CalendarEventTimesChangedEvent} from 'angular-calendar';
 import {fromEvent, Subject} from 'rxjs';
 import {finalize, first, takeUntil} from 'rxjs/operators';
 import {DayViewHourSegment, EventAction} from 'calendar-utils';
-import {EventService} from '../../services/event/event.service';
+import {HrEventService} from '../../services/event/hr-event.service';
 import {brxIconEdit, brxIconResize} from '../../../../common/icons/svg';
 import {DurationFormatPipe} from '../../../../pipes/duration/durationFormat.pipe';
 import * as moment from 'moment';
@@ -66,7 +66,7 @@ export class HrAgendaComponent implements OnInit, OnDestroy {
     }
   ];
 
-  constructor(private elRef: ElementRef, private cdr: ChangeDetectorRef, private eventService: EventService, private durationFormatPipe: DurationFormatPipe) {
+  constructor(private elRef: ElementRef, private cdr: ChangeDetectorRef, private eventService: HrEventService, private durationFormatPipe: DurationFormatPipe) {
   }
 
   ngOnInit(): void {
