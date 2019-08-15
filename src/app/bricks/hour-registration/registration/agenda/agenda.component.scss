@@ -139,6 +139,15 @@
   top: 0;
   left: 0;
 
+  .brx-copy-previous-day-button {
+    margin-left: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 110px;
+    z-index: 10;
+    margin-bottom: 1em;
+  }
+
   .brx-auto-fill-button {
     width: 110px;
   }

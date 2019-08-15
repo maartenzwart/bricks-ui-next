@@ -1,13 +1,9 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ElementRef,
-  OnChanges,
   OnDestroy,
   OnInit,
-  SimpleChanges,
-  ViewChild, ViewContainerRef
 } from '@angular/core';
 import {addDays, addHours, addMinutes, endOfWeek, startOfDay} from 'date-fns';
 import {CalendarEvent, CalendarEventTimesChangedEvent} from 'angular-calendar';
@@ -17,6 +13,7 @@ import {DayViewHourSegment, EventAction} from 'calendar-utils';
 import {EventService} from '../../services/event/event.service';
 import {brxIconEdit, brxIconResize} from '../../../../common/icons/svg';
 import {DurationFormatPipe} from '../../../../pipes/duration/durationFormat.pipe';
+import * as moment from 'moment';
 
 function floorToNearest(amount: number, precision: number) {
   return Math.floor(amount / precision) * precision;
@@ -151,7 +148,7 @@ export class AgendaComponent implements OnInit, OnDestroy {
         lastElement = target;
         addToHeader = true;
       }
-      this.addAutoFillButton(lastElement, duration, date, addToHeader);
+      this.addAutoFillButton(lastElement, duration, date, index, addToHeader);
     } else {
       this.showAutoAdd[index] = false;
       const addedToHeader = !lastElement;
@@ -159,7 +156,8 @@ export class AgendaComponent implements OnInit, OnDestroy {
     }
   }
 
-  addAutoFillButton(element: Element, duration: number, date: string, toHeader: boolean = false) {
+  addAutoFillButton(element: Element, duration: number, date: string, index: number, toHeader: boolean = false) {
+    console.log('Index', index);
     const durationToAdd = 480 - duration;
     const eventElem = element.querySelector('.brx-cal-event');
     let eventId = '';
@@ -172,7 +170,11 @@ export class AgendaComponent implements OnInit, OnDestroy {
                               data-event-id="${eventId}"
                               data-date="${date}">+${this.durationFormatPipe.transform(durationToAdd)} UUR</div>`;
     if (toHeader) {
-      html = `<div class="brx-auto-fill-button-header">${html}</div>`;
+
+      const copyBtn = `<div class="btn brx-btn-primary brx-btn pointer brx-copy-previous-day-button">
+          KOPIE ${moment(date, 'YYYYMMDD').subtract(1, 'day').format('dd').toUpperCase()}
+          </div>`;
+      html = `<div class="brx-auto-fill-button-header">${index !== 0 ? copyBtn : ''}${html}</div>`;
     }
 
     const container = document.createElement('div');
@@ -294,6 +296,9 @@ export class AgendaComponent implements OnInit, OnDestroy {
         // Add listener for auto-fill button since it is placed in a higher DOM element
         if (classList.contains('brx-auto-fill-button')) {
           this.addAutoFillEvent(mouseEvent);
+        }
+        if (classList.contains('brx-copy-previous-day-button')) {
+          console.log('COPY CLICKED!');
         }
       }
 
