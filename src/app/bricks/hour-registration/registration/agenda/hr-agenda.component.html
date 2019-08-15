@@ -45,16 +45,16 @@
     let-days="days"
     let-locale="locale"
     let-eventDropped="eventDropped">
-    <brx-header [(viewDate)]="viewDate"
-                [(view)]="view"
-                [days]="days"
-                [events]="events"
-                [locale]="locale"
-                (dayHeaderClicked)="headerClicked($event)"
-                (afterRender)="hoursSegmentRendered()"
-                [externalEvents]="externalEvents"
-                (dayHover)="onDayHover($event)"
-                (eventDropped)="eventDropped"></brx-header>
+    <brx-hr-agenda-header [(viewDate)]="viewDate"
+                          [(view)]="view"
+                          [days]="days"
+                          [events]="events"
+                          [locale]="locale"
+                          (dayHeaderClicked)="headerClicked($event)"
+                          (afterRender)="hoursSegmentRendered()"
+                          [externalEvents]="externalEvents"
+                          (dayHover)="onDayHover($event)"
+                          (eventDropped)="eventDropped"></brx-hr-agenda-header>
   </ng-template>
 
   <ng-template #eventTemplate
@@ -62,7 +62,7 @@
                let-tooltipPlacement="tooltipPlacement"
                let-tooltipTemplate="tooltipTemplate"
                let-tooltipAppendToBody="tooltipAppendToBody">
-    <brx-event
+    <brx-hr-agenda-event
       [weekEvent]="weekEvent"
       [tooltipPlacement]="tooltipPlacement"
       (eventClicked)="handleEventClick($event)"
@@ -71,7 +71,7 @@
       (editClicked)="weekEvent.event.meta.actions?.editClicked($event)"
       (afterRender)="eventRendered($event)"
       [tooltipDisabled]="true">
-    </brx-event>
+    </brx-hr-agenda-event>
   </ng-template>
-  <brx-footer *ngIf="showNotification" (close)="notificationClosed()"></brx-footer>
+  <brx-hr-agenda-footer *ngIf="showNotification" (close)="notificationClosed()"></brx-hr-agenda-footer>
 </div>

@@ -15,11 +15,11 @@ import {PlacementArray} from 'positioning';
 import {brxIconEdit} from '../../../../../common/icons/svg';
 
 @Component({
-  selector: 'brx-event',
-  templateUrl: './event.component.html',
-  styleUrls: ['./event.component.scss']
+  selector: 'brx-hr-agenda-event',
+  templateUrl: './hr-agenda-event.component.html',
+  styleUrls: ['./hr-agenda-event.component.scss']
 })
-export class EventComponent implements OnInit, AfterViewInit {
+export class HrAgendaEventComponent implements OnInit, AfterViewInit {
   brxIconEdit = brxIconEdit;
 
   @ViewChild('container', {read: ViewContainerRef, static: false}) container: ViewContainerRef;

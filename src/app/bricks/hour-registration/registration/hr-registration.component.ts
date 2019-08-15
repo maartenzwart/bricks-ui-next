@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {BrxRoutes} from '../../../interfaces/brx-route';
 
 @Component({
-  selector: 'brx-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  selector: 'brx-hr-registration',
+  templateUrl: './hr-registration.component.html',
+  styleUrls: ['./hr-registration.component.scss']
 })
-export class RegistrationComponent implements OnInit {
+export class HrRegistrationComponent implements OnInit {
   tabRoutes: BrxRoutes = [
     {
       path: 'agenda',

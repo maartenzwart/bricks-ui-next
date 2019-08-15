@@ -8,7 +8,7 @@ import {DayViewHourSegment, EventAction} from 'calendar-utils';
 import {newEvent} from '../../utils/events';
 import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {BRX_REGISTER_API} from '../../config/api';
-import {ServerEvent} from '../../interfaces/server-event';
+import {HrServerEvent} from '../../interfaces/hr-server-event';
 import {ErrorHandlingService} from '../../../../common/services/error-handling.service';
 
 @Injectable({
@@ -20,12 +20,12 @@ export class EventService {
   }
 
   getEvents(): Observable<CalendarEvent[]> {
-    return this.http.get<ServerEvent[]>(BRX_REGISTER_API.events.all())
+    return this.http.get<HrServerEvent[]>(BRX_REGISTER_API.events.all())
       .pipe(
-        map((registrations: ServerEvent[]) => {
+        map((registrations: HrServerEvent[]) => {
           const events: CalendarEvent[] = [];
 
-          registrations.forEach((item: ServerEvent) => {
+          registrations.forEach((item: HrServerEvent) => {
             try {
               const event: CalendarEvent = {
                 id: item.id,
@@ -76,7 +76,7 @@ export class EventService {
   }
 
   postEvent(event: CalendarEvent): Observable<any> {
-    const registration: ServerEvent = {
+    const registration: HrServerEvent = {
       id: event.id,
       start: moment(event.start).unix(),
       end: moment(event.end).unix(),

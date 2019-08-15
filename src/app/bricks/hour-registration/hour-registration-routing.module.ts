@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AssessComponent} from './assess/assess.component';
-import {ManageComponent} from './manage/manage.component';
+import {HrAssessComponent} from './assess/hr-assess.component';
+import {HrManageComponent} from './manage/hr-manage.component';
 import {HourRegistrationComponent} from './hour-registration.component';
-import {RegistrationComponent} from './registration/registration.component';
-import {AgendaComponent} from './registration/agenda/agenda.component';
-import {TableComponent} from './registration/table/table.component';
+import {HrRegistrationComponent} from './registration/hr-registration.component';
+import {HrAgendaComponent} from './registration/agenda/hr-agenda.component';
+import {HrTableComponent} from './registration/table/hr-table.component';
 
 
 const routes: Routes = [
@@ -18,24 +18,24 @@ const routes: Routes = [
       pathMatch: 'full'
     }, {
       path: 'registration',
-      component: RegistrationComponent,
+      component: HrRegistrationComponent,
       children: [{
         path: '',
         redirectTo: 'agenda',
         pathMatch: 'full'
       }, {
         path: 'agenda',
-        component: AgendaComponent
+        component: HrAgendaComponent
       }, {
         path: 'table',
-        component: TableComponent
+        component: HrTableComponent
       }]
     }, {
       path: 'assess',
-      component: AssessComponent
+      component: HrAssessComponent
     }, {
       path: 'manage',
-      component: ManageComponent
+      component: HrManageComponent
     }
     ],
   }

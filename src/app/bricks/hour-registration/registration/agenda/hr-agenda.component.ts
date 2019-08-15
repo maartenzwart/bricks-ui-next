@@ -5,9 +5,9 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import {addDays, addHours, addMinutes, endOfWeek, startOfDay} from 'date-fns';
+import {addDays, addMinutes, endOfWeek} from 'date-fns';
 import {CalendarEvent, CalendarEventTimesChangedEvent} from 'angular-calendar';
-import {fromEvent, Observable, Subject, timer} from 'rxjs';
+import {fromEvent, Subject} from 'rxjs';
 import {finalize, first, takeUntil} from 'rxjs/operators';
 import {DayViewHourSegment, EventAction} from 'calendar-utils';
 import {EventService} from '../../services/event/event.service';
@@ -24,12 +24,12 @@ function ceilToNearest(amount: number, precision: number) {
 }
 
 @Component({
-  selector: 'brx-agenda',
-  templateUrl: './agenda.component.html',
-  styleUrls: ['./agenda.component.scss'],
+  selector: 'brx-hr-agenda',
+  templateUrl: './hr-agenda.component.html',
+  styleUrls: ['./hr-agenda.component.scss'],
   providers: [DurationFormatPipe]
 })
-export class AgendaComponent implements OnInit, OnDestroy {
+export class HrAgendaComponent implements OnInit, OnDestroy {
   view = 'week';
   viewDate: Date = new Date();
   dragToCreateActive = false;

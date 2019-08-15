@@ -1,4 +1,4 @@
-export interface ServerEvent {
+export interface HrServerEvent {
   id: string | number;
   start: number;
   end: number;

@@ -4,15 +4,15 @@ import * as moment from 'moment';
 import 'moment/locale/nl';
 import 'moment/locale/nl-be';
 import 'moment/locale/en-gb';
-import {DayTotals} from './header.interfaces';
+import {HrDayTotals} from '../../../interfaces/hr-header.interfaces';
 import {fromEvent, Observable, Subscription} from 'rxjs';
 
 @Component({
-  selector: 'brx-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: 'brx-hr-agenda-header',
+  templateUrl: './hr-agenda-header.component.html',
+  styleUrls: ['./hr-agenda-header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnChanges, AfterViewInit {
+export class HrAgendaHeaderComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() view: string;
 
   @Input() viewDate: Date;
@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit, OnChanges, AfterViewInit {
 
   @Output() dayHover: EventEmitter<{ index: number, target: Element, duration: number, date: string, type: string }> = new EventEmitter();
 
-  dayTotals = new DayTotals();
+  dayTotals = new HrDayTotals();
 
   jobsOpen = false;
 
@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   calculateTotals(): void {
-    this.dayTotals = new DayTotals();
+    this.dayTotals = new HrDayTotals();
 
     this.days.forEach(day => {
       this.events.forEach(event => {
