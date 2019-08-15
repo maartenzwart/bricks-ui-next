@@ -4,10 +4,10 @@ import {WeekDay, CalendarEvent} from 'calendar-utils';
 
 @Component({
   selector: 'brx-table',
-  templateUrl: './hr-table.component.html',
-  styleUrls: ['./hr-table.component.scss']
+  templateUrl: './hr-time-sheet.component.html',
+  styleUrls: ['./hr-time-sheet.component.scss']
 })
-export class HrTableComponent implements OnInit, OnChanges {
+export class HrTimeSheetComponent implements OnInit, OnChanges {
   viewDate: Date = new Date();
   view = 'week';
   weekStartsOn = 1;

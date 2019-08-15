@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {HrTableComponent} from './hr-table.component';
+import {HrTimeSheetComponent} from './hr-time-sheet.component';
 
 describe('TableComponent', () => {
-  let component: HrTableComponent;
-  let fixture: ComponentFixture<HrTableComponent>;
+  let component: HrTimeSheetComponent;
+  let fixture: ComponentFixture<HrTimeSheetComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HrTableComponent]
+      declarations: [HrTimeSheetComponent]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HrTableComponent);
+    fixture = TestBed.createComponent(HrTimeSheetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

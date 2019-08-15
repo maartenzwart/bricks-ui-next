@@ -5,7 +5,7 @@ import {HrManageComponent} from './manage/hr-manage.component';
 import {HourRegistrationComponent} from './hour-registration.component';
 import {HrRegistrationComponent} from './registration/hr-registration.component';
 import {HrAgendaComponent} from './registration/agenda/hr-agenda.component';
-import {HrTableComponent} from './registration/table/hr-table.component';
+import {HrTimeSheetComponent} from './registration/timeSheet/hr-time-sheet.component';
 
 
 const routes: Routes = [
@@ -28,7 +28,7 @@ const routes: Routes = [
         component: HrAgendaComponent
       }, {
         path: 'table',
-        component: HrTableComponent
+        component: HrTimeSheetComponent
       }]
     }, {
       path: 'assess',
