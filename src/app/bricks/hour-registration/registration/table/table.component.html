@@ -1,1 +1,7 @@
-<p>table works!</p>
+<brx-header [(viewDate)]="viewDate"
+            [(view)]="view"
+            [days]="days"
+            [locale]="locale"
+            [events]="events"
+            (viewDateChange)="refreshHeader()"
+></brx-header>
