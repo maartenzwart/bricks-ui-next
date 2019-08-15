@@ -16,6 +16,7 @@ import {PipesModule} from '../../pipes/pipes.module';
 import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {IconsModule} from '../../common/icons/icons.module';
+import {HrHeaderComponent} from './components/header/hr-header/hr-header.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {IconsModule} from '../../common/icons/icons.module';
     HrTableComponent,
     HrAgendaEventComponent,
     HrAgendaHeaderComponent,
-    HrAgendaFooterComponent
+    HrAgendaFooterComponent,
+    HrHeaderComponent
   ],
   imports: [
     CommonModule,

@@ -202,6 +202,25 @@
           "name": "Test relation"
         }
       }
+    },
+    {
+      "id": "73616f25-bf66-4540-a882-941246468f63",
+      "start": 1565596800,
+      "end": 1565605800,
+      "meta": {
+        "activity": {
+          "id": 1,
+          "name": "Test Activity"
+        },
+        "project": {
+          "id": 1,
+          "name": "Test Project"
+        },
+        "relation": {
+          "id": 1,
+          "name": "Test relation"
+        }
+      }
     }
   ]
 }

@@ -1,60 +1,7 @@
-@import "../scss/variables";
+@import "../../../scss/variables";
 @import "~src/scss/variables/index";
 
 $circle-width: 35px;
-
-.brx-header-controls-container {
-  padding-top: 40px;
-  padding-bottom: 25px;
-  padding-left: 25px;
-  padding-right: 25px;
-
-  .brx-btn-warning {
-    padding-left: 25px;
-    padding-right: 25px;
-    text-transform: uppercase;
-  }
-
-  .brx-btn-copy-week {
-    color: darken($brx-agenda-gray, 15%);
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  .brx-header-controls {
-    .btn {
-      margin-left: 5px;
-      margin-right: 5px;
-    }
-
-    .brx-week-title {
-      position: absolute;
-      top: -1.5em;
-      left: 0;
-    }
-
-    .brx-week-span {
-      border: 1px solid $brx-agenda-dark-gray;
-
-      brx-icon-date {
-        margin-left: 2em;
-      }
-    }
-  }
-
-  .brx-week-total {
-    background: $brx-agenda-gray;
-    display: flex;
-    height: 38px;
-    justify-items: center;
-    align-items: center;
-    padding: 10px;
-
-    div:first-child {
-      margin-right: 5px;
-    }
-  }
-}
 
 .brx-weekday-headers {
   display: flex;

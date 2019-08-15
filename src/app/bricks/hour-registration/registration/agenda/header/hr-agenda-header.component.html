@@ -1,46 +1,11 @@
-<div class="container-fluid brx-header-controls-container">
-  <div class="row">
-    <div class="col-md-4">
-      <button class="btn brx-btn brx-btn-copy-week">Kopieer van vorige week</button>
-    </div>
-    <div class="col-md-4 text-center">
-      <div class="btn-group brx-header-controls">
-        <button
-          class="btn brx-btn-default brx-btn"
-          mwlCalendarPreviousView
-          [view]="view"
-          [(viewDate)]="viewDate"
-          (viewDateChange)="viewDateChange.next(viewDate)"
-        >
-          <brx-icon-chevron-left></brx-icon-chevron-left>
-        </button>
-        <div class="btn brx-week-span">
-          <h6 class="text-center brx-week-title">Periode</h6>
-          {{days[0].date | date:'dd MMM'}} - {{days[6].date | date:'dd MMM'}}
-          <brx-icon-date></brx-icon-date>
-        </div>
-        <button
-          class="btn brx-btn-default brx-btn"
-          mwlCalendarNextView
-          [view]="view"
-          [(viewDate)]="viewDate"
-          (viewDateChange)="viewDateChange.next(viewDate)"
-        >
-          <brx-icon-chevron-right></brx-icon-chevron-right>
-        </button>
-      </div>
-    </div>
-    <div class="col-md-4 text-right">
-      <div class="btn-group">
-        <div class="brx-week-total">
-          <div class="small text-black-50">Totaal</div>
-          <div>{{dayTotals.total | durationFormat}}</div>
-        </div>
-        <button class="btn brx-btn brx-btn-warning">Verzenden</button>
-      </div>
-    </div>
-  </div>
-</div>
+<brx-hr-header
+  [view]="view"
+  [viewDate]="viewDate"
+  [days]="days"
+  (viewDateChange)="viewDateChange.next($event)"
+  [totalRegistration]="dayTotals.total"
+></brx-hr-header>
+
 <div class="brx-weekday-headers">
   <div
     class="brx-weekday-header align-bottom"
