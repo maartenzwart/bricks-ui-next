@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ErrorHandlingService} from '../common/services/error-handling.service';
+import {ErrorHandlingService} from './error-handling.service';
 import {Observable} from 'rxjs';
 import {BrxProjects} from '../interfaces/brx-project';
 import {BRX_API} from '../config/api';

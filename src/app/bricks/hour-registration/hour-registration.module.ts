@@ -4,7 +4,6 @@ import {HrManageComponent} from './manage/hr-manage.component';
 import {HrAssessComponent} from './assess/hr-assess.component';
 import {HourRegistrationComponent} from './hour-registration.component';
 import {HourRegistrationRoutingModule} from './hour-registration-routing.module';
-import {NavigationModule} from '../../common/navigation/navigation.module';
 import {HttpClientModule} from '@angular/common/http';
 import {HrRegistrationComponent} from './registration/hr-registration.component';
 import {HrAgendaComponent} from './registration/agenda/hr-agenda.component';
@@ -15,8 +14,8 @@ import {HrAgendaFooterComponent} from './registration/agenda/footer/hr-agenda-fo
 import {PipesModule} from '../../pipes/pipes.module';
 import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
-import {IconsModule} from '../../common/icons/icons.module';
 import {HrHeaderComponent} from './components/header/hr-header/hr-header.component';
+import {BrxCommonModule} from '../../common/brx-common.module';
 
 
 @NgModule({
@@ -35,14 +34,13 @@ import {HrHeaderComponent} from './components/header/hr-header/hr-header.compone
   imports: [
     CommonModule,
     HourRegistrationRoutingModule,
-    NavigationModule,
+    BrxCommonModule,
     HttpClientModule,
     PipesModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    }),
-    IconsModule
+    })
   ]
 })
 export class HourRegistrationModule {

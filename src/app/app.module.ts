@@ -8,8 +8,6 @@ import {ProjectsComponent} from './views/projects/projects.component';
 import {RelationsComponent} from './views/relations/relations.component';
 import {SettingsComponent} from './views/settings/settings.component';
 import {HourRegistrationModule} from './bricks/hour-registration/hour-registration.module';
-import {NavigationModule} from './common/navigation/navigation.module';
-import {IconsModule} from './common/icons/icons.module';
 import {IconDashboardComponent} from './common/icons/icon-dashboard/icon-dashboard.component';
 import {IconProjectLightComponent} from './common/icons/icon-project-light/icon-project-light.component';
 import {IconClientLightComponent} from './common/icons/icon-client-light/icon-client-light.component';
@@ -23,8 +21,7 @@ import {AdminSettingsTenantsComponent} from './views/settings/admin/admin-settin
 import {AdminSettingsUsersComponent} from './views/settings/admin/admin-settings-users/admin-settings-users.component';
 import {OrganisationSettingsUsersComponent} from './views/settings/organisation/organisation-settings-users/organisation-settings-users.component';
 import {ProjectsListComponent} from './views/projects/projects-list/projects-list.component';
-import {ListComponent} from './common/list/list.component';
-import {OrderByPipe} from './pipes/order-by/order-by.pipe';
+import {BrxCommonModule} from './common/brx-common.module';
 
 @NgModule({
   declarations: [
@@ -38,19 +35,15 @@ import {OrderByPipe} from './pipes/order-by/order-by.pipe';
     AdminSettingsTenantsComponent,
     AdminSettingsUsersComponent,
     OrganisationSettingsUsersComponent,
-    ProjectsListComponent,
-    ListComponent,
-    OrderByPipe
+    ProjectsListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HourRegistrationModule,
-    NavigationModule,
-    IconsModule
+    BrxCommonModule
   ],
   providers: [],
-  exports: [],
   bootstrap: [AppComponent],
   entryComponents: [
     IconDashboardComponent,
