@@ -3,7 +3,7 @@ import {CalendarUtils, DateAdapter, getWeekViewPeriod} from 'angular-calendar';
 import {WeekDay, CalendarEvent} from 'calendar-utils';
 
 @Component({
-  selector: 'brx-table',
+  selector: 'brx-hr-time-sheet',
   templateUrl: './hr-time-sheet.component.html',
   styleUrls: ['./hr-time-sheet.component.scss']
 })
