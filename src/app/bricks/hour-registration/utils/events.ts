@@ -1,5 +1,7 @@
 import {CalendarEvent} from 'angular-calendar';
 import * as uuidv4 from 'uuid/v4';
+import * as moment from 'moment';
+import StartOf = moment.unitOfTime.StartOf;
 
 export function newEvent({title, start, end}: { title?: string, start: Date, end: Date }): CalendarEvent {
   return {
@@ -29,4 +31,18 @@ export function newEvent({title, start, end}: { title?: string, start: Date, end
       }
     }
   };
+}
+
+export function calculateDuration({start, end}: CalendarEvent): number {
+  return moment.duration(moment(end).diff(moment(start))).asMinutes();
+}
+
+export function calculateTotalDuration(events: CalendarEvent[]): number {
+  let duration = 0;
+  events.forEach(event => duration = duration + calculateDuration(event));
+  return duration;
+}
+
+export function isSameDate(date1: Date, date2: Date, granularity: StartOf = 'day'): boolean {
+  return moment(date1).isSame(moment(date2), granularity);
 }

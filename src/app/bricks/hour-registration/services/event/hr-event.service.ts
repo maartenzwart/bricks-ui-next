@@ -9,7 +9,7 @@ import {newEvent} from '../../utils/events';
 import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {BRX_REGISTER_API} from '../../config/api';
 import {HrServerEvent} from '../../interfaces/hr-server-event';
-import {ErrorHandlingService} from '../../../../common/services/error-handling.service';
+import {ErrorHandlingService} from '../../../../services/error-handling.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +19,11 @@ export class HrEventService {
   constructor(private http: HttpClient, private errorHandlerService: ErrorHandlingService) {
   }
 
-  getEvents(): Observable<CalendarEvent[]> {
+  getEvents(range?: { start: Date, end: Date }): Observable<CalendarEvent[]> {
     return this.http.get<HrServerEvent[]>(BRX_REGISTER_API.events.all())
       .pipe(
         map((registrations: HrServerEvent[]) => {
-          const events: CalendarEvent[] = [];
+          let events: CalendarEvent[] = [];
 
           registrations.forEach((item: HrServerEvent) => {
             try {
@@ -46,6 +46,11 @@ export class HrEventService {
             }
 
           });
+
+          if (range && range.start && range.end) {
+            events = events.filter(event => moment(event.start).isBetween(moment(range.start), moment(range.end), 'day', '[]'));
+          }
+
           return events;
         }),
         catchError(this.errorHandlerService.handleError<CalendarEvent[]>('getEvents', []))

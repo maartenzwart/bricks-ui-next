@@ -2,6 +2,28 @@
   [(viewDate)]="viewDate"
   [(view)]="view"
   [days]="days"
-  (viewDateChange)="refreshHeader()"
+  (viewDateChange)="refresh()"
   [totalRegistration]="0"
 ></brx-hr-header>
+<div class="brx-list-container">
+  <div class="brx-list-column">
+    <div class="brx-list-header">Klussen</div>
+    <div class="brx-list-row brx-list-cell" *ngFor="let group of items | orderBy:'project.name'">
+      {{group.project.name}}
+    </div>
+  </div>
+  <ng-container *ngFor="let day of days">
+    <div class="brx-list-column">
+      <div class="brx-list-header">{{this.days[day.day].date | date: 'EEEEEE | dd'}}</div>
+      <div class="brx-list-row brx-list-cell" *ngFor="let group of items | orderBy:'project.name'">
+        <input [value]="getPresetDuration(group.registrations, day.day)"/>
+      </div>
+    </div>
+  </ng-container>
+  <div class="brx-list-column">
+    <div class="brx-list-header">Totaal</div>
+    <div class="brx-list-row brx-list-cell" *ngFor="let group of items | orderBy:'project.name'">
+      {{group.totalDuration | durationFormat}}
+    </div>
+  </div>
+</div>

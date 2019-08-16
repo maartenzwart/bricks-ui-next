@@ -3,6 +3,7 @@ export interface BrxListHeader {
   key: number | string;
   title: string;
   sortable?: boolean;
+  meta?: any;
 }
 
 export type BrxListHeaders = BrxListHeader[];

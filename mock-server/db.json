@@ -90,8 +90,8 @@
     },
     {
       "id": 3,
-      "start": 1566037800,
-      "end": 1566046800,
+      "start": 1566124200,
+      "end": 1566135000,
       "meta": {
         "activity": {
           "id": 0,
@@ -221,6 +221,78 @@
           "name": "Test relation"
         }
       }
+    },
+    {
+      "date": 1549234800000,
+      "activityDetails": {
+        "activity": {
+          "id": "",
+          "name": ""
+        },
+        "project": {
+          "id": "",
+          "name": ""
+        },
+        "relation": {
+          "id": "",
+          "name": ""
+        }
+      },
+      "timeSlot": {
+        "startTime": 1549265400000,
+        "endTime": 1549269000000
+      },
+      "history": {
+        "creation": {
+          "creationView": {},
+          "createdBy": {},
+          "createdOn": {}
+        },
+        "updates": {
+          "updateView": {},
+          "lastUpdatedBy": {},
+          "lastUpdatedOn": {}
+        }
+      },
+      "duration": 60,
+      "status": "incomplete",
+      "id": 4
+    },
+    {
+      "date": 1549321200000,
+      "activityDetails": {
+        "activity": {
+          "id": "",
+          "name": ""
+        },
+        "project": {
+          "id": "",
+          "name": ""
+        },
+        "relation": {
+          "id": "",
+          "name": ""
+        }
+      },
+      "timeSlot": {
+        "startTime": 1549351800000,
+        "endTime": 1549362600000
+      },
+      "history": {
+        "creation": {
+          "creationView": {},
+          "createdBy": {},
+          "createdOn": {}
+        },
+        "updates": {
+          "updateView": {},
+          "lastUpdatedBy": {},
+          "lastUpdatedOn": {}
+        }
+      },
+      "duration": 180,
+      "status": "incomplete",
+      "id": 5
     }
   ]
 }

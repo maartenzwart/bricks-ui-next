@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {HrManageComponent} from './manage/hr-manage.component';
 import {HrAssessComponent} from './assess/hr-assess.component';
 import {HourRegistrationComponent} from './hour-registration.component';
@@ -16,7 +16,7 @@ import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {HrHeaderComponent} from './components/header/hr-header/hr-header.component';
 import {BrxCommonModule} from '../../common/brx-common.module';
-
+import {DurationFormatPipe} from '../../pipes/duration/durationFormat.pipe';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,8 @@ import {BrxCommonModule} from '../../common/brx-common.module';
       provide: DateAdapter,
       useFactory: adapterFactory
     })
-  ]
+  ],
+  providers: [DatePipe, DurationFormatPipe]
 })
 export class HourRegistrationModule {
 }
