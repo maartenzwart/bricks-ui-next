@@ -1,14 +1,14 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {DashboardComponent} from './views/dashboard/dashboard.component';
-import {ProjectsComponent} from './views/projects/projects.component';
-import {RelationsComponent} from './views/relations/relations.component';
-import {SettingsComponent} from './views/settings/settings.component';
-import {OrganisationComponent} from './views/settings/organisation/organisation.component';
-import {OrganisationSettingsUsersComponent} from './views/settings/organisation/organisation-settings-users/organisation-settings-users.component';
-import {AdminComponent} from './views/settings/admin/admin.component';
-import {AdminSettingsTenantsComponent} from './views/settings/admin/admin-settings-tenants/admin-settings-tenants.component';
-import {AdminSettingsUsersComponent} from './views/settings/admin/admin-settings-users/admin-settings-users.component';
+import {DashboardComponent} from './main/dashboard/dashboard.component';
+import {ProjectsComponent} from './main/projects/projects.component';
+import {RelationsComponent} from './main/relations/relations.component';
+import {SettingsComponent} from './main/settings/settings.component';
+import {OrganisationComponent} from './main/settings/organisation/organisation.component';
+import {OrganisationSettingsUsersComponent} from './main/settings/organisation/organisation-settings-users/organisation-settings-users.component';
+import {AdminComponent} from './main/settings/admin/admin.component';
+import {AdminSettingsTenantsComponent} from './main/settings/admin/admin-settings-tenants/admin-settings-tenants.component';
+import {AdminSettingsUsersComponent} from './main/settings/admin/admin-settings-users/admin-settings-users.component';
 
 const routes: Routes = [
   {
