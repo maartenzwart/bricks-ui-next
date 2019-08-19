@@ -26,10 +26,8 @@ import {LoginComponent} from './main/login/login.component';
 import {HttpClientModule} from '@angular/common/http';
 import {JwtModule} from '@auth0/angular-jwt';
 import {FormsModule} from '@angular/forms';
+import {JwtUtils} from './utils';
 
-export function tokenGetter() {
-  return localStorage.getItem('access_token');
-}
 
 @NgModule({
   declarations: [
@@ -54,7 +52,8 @@ export function tokenGetter() {
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter
+        tokenGetter: JwtUtils.getJwtToken,
+        whitelistedDomains: ['localhost:3000']
       }
     }),
     FormsModule

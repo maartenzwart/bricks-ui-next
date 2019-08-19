@@ -12,14 +12,16 @@ export class AuthenticationService {
   constructor(private jwtHelper: JwtHelperService, private router: Router) {
   }
 
-  public isAuthenticated(): boolean {
-    const token = localStorage.getItem(BrxConfig.jwt.key);
-    // Check whether the token is expired and return
-    // true or false
+  isAuthenticated(): boolean {
+    const token = this.getJwtToken();
     return !this.jwtHelper.isTokenExpired(token);
   }
 
-  public login(user: AuthUser): any {
+  getJwtToken(): string {
+    return localStorage.getItem(BrxConfig.jwt.key);
+  }
+
+  login(user: AuthUser): any {
     const tmpJWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
     if (user.email && user.password) {
       localStorage.setItem(BrxConfig.jwt.key, tmpJWT);
@@ -27,7 +29,7 @@ export class AuthenticationService {
     }
   }
 
-  public logout(): void {
+  logout(): void {
     localStorage.removeItem(BrxConfig.jwt.key);
     this.router.navigate([BrxConfig.jwt.logoutPath]);
   }
