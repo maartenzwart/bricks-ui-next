@@ -1,4 +1,4 @@
-export interface AuthUser {
+export interface BrxAuthUser {
   email: string;
   password: string;
 }

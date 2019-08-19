@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {AuthenticationService} from '../../services/authentication.service';
 import {Router} from '@angular/router';
-import {AuthUser} from '../../interfaces/auth-user';
+import {BrxAuthUser} from '../../interfaces/brx-auth-user';
 
 @Component({
   selector: 'brx-login',
@@ -11,7 +11,7 @@ import {AuthUser} from '../../interfaces/auth-user';
 })
 export class LoginComponent implements OnInit {
 
-  user: AuthUser = {email: '', password: ''};
+  user: BrxAuthUser = {email: '', password: ''};
 
   constructor(private authService: AuthenticationService, private router: Router) {
   }

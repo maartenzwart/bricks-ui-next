@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {BrxConfig} from '../config/app';
 import {Router} from '@angular/router';
-import {AuthUser} from '../interfaces/auth-user';
+import {BrxAuthUser} from '../interfaces/brx-auth-user';
+import {JwtUtils} from '../utils';
 
 @Injectable({
   providedIn: 'root'
@@ -13,24 +14,20 @@ export class AuthenticationService {
   }
 
   isAuthenticated(): boolean {
-    const token = this.getJwtToken();
+    const token = JwtUtils.getJwtToken();
     return !this.jwtHelper.isTokenExpired(token);
   }
 
-  getJwtToken(): string {
-    return localStorage.getItem(BrxConfig.jwt.key);
-  }
-
-  login(user: AuthUser): any {
-    const tmpJWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+  login(user: BrxAuthUser): any {
+    const tmpJWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZmlyc3ROYW1lIjoiTWF4IiwiaW5zZXJ0aW9uIjoidmFuIGRlIiwibGFzdE5hbWUiOiJMYWFyIiwiaWQiOiJhMTEwOWI5ZS00Mjg5LTRlMWMtYjVjZC1mMWJkZTIxNTMxOWMiLCJlbWFpbCI6Im1heC52YW5kZWxhYXJAbHVtaW5pcy5ldSIsImlhdCI6MTUxNjIzOTAyMn0.Wi4vpsmDkMXaCZmkz4DnvClmd1YwoIOsIFSP_0sM4O0';
     if (user.email && user.password) {
-      localStorage.setItem(BrxConfig.jwt.key, tmpJWT);
+      JwtUtils.setJwtToken(tmpJWT);
       this.router.navigate(['/']);
     }
   }
 
   logout(): void {
-    localStorage.removeItem(BrxConfig.jwt.key);
+    JwtUtils.removeJwtToken();
     this.router.navigate([BrxConfig.jwt.logoutPath]);
   }
 }

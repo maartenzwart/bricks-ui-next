@@ -27,6 +27,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {JwtModule} from '@auth0/angular-jwt';
 import {FormsModule} from '@angular/forms';
 import {JwtUtils} from './utils';
+import {FullNamePipe} from './pipes/full-name/full-name.pipe';
 
 
 @NgModule({
@@ -58,7 +59,7 @@ import {JwtUtils} from './utils';
     }),
     FormsModule
   ],
-  providers: [],
+  providers: [FullNamePipe],
   bootstrap: [AppComponent],
   entryComponents: [
     IconDashboardComponent,

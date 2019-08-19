@@ -6,9 +6,9 @@ import {IconHoursComponent} from '../../icons/icon-hours/icon-hours.component';
 import {IconSettingsComponent} from '../../icons/icon-settings/icon-settings.component';
 import {IconProfileComponent} from '../../icons/icon-profile/icon-profile.component';
 import {BrxRoute} from '../../../interfaces/brx-route';
-import {Router} from '@angular/router';
-import {BrxConfig} from '../../../config/app';
 import {AuthenticationService} from '../../../services/authentication.service';
+import {UserProfileService} from '../../../services/user-profile.service';
+import {FullNamePipe} from '../../../pipes/full-name/full-name.pipe';
 
 @Component({
   selector: 'brx-nav-bar',
@@ -16,6 +16,11 @@ import {AuthenticationService} from '../../../services/authentication.service';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
+  profileRoute = {
+    title: '',
+    icon: IconProfileComponent
+  };
+
   routesLeft: BrxRoute[] = [
     {
       path: 'dashboard',
@@ -40,15 +45,15 @@ export class NavBarComponent implements OnInit {
     }
   ];
 
-  routesRight: BrxRoute[] = [
-    {
-      path: 'profile',
-      icon: IconProfileComponent,
-      title: 'Max van de Laar'
-    }
-  ];
+  // routesRight: BrxRoute[] = [
+  //   {
+  //     path: 'profile',
+  //     icon: IconProfileComponent,
+  //     title: this.userFullName
+  //   }
+  // ];
 
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService, private userProfileService: UserProfileService, private fullNamePipe: FullNamePipe) {
   }
 
   logOut() {
@@ -56,6 +61,10 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit() {
+    const userProfile = this.userProfileService.getCurrentProfile();
+    if (userProfile) {
+      this.profileRoute.title = this.fullNamePipe.transform(userProfile.name);
+    }
   }
 
 }
