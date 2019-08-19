@@ -25,13 +25,13 @@ $circle-width: 35px;
 
 .brx-jobs-container {
   position: absolute;
-  right: 25px;
+  right: 50px;
   top: 350px;
   z-index: 10;
-  //background: green;
 
   .brx-jobs-header {
     border: 1px solid $brx-agenda-gray;
+    border-right: none;
     padding: 5px 10px 5px 5px;
     box-shadow: -2px 2px 4px 0 rgba($black, 0.3);
     background-color: $white;
