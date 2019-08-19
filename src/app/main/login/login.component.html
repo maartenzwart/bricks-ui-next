@@ -1,0 +1,36 @@
+<div class="container h-100">
+  <div class="row h-100 align-items-center justify-content-center">
+    <div class="brx-login-container col-lg-4 col-md-6 col-sm-8 col-10">
+      <img src="assets/images/Bricks-logo-login.png" class="brx-login-logo w-100"/>
+      <div class="brx-login-form-container">
+        <form class="form clearfix" #form ngForm (ngSubmit)="login(email, pwd, form)">
+          <h1>Login</h1>
+          <div class="form-group">
+            <label for="email" class="small">Email</label>
+            <input type="email" required id="email" class="form-control" [(ngModel)]="user.email" name="email" #email="ngModel" [email]="true"/>
+            <div *ngIf="(email.invalid && (email.dirty || email.touched)) || (form.submitted && email.untouched && !email.value)"
+                 class="brx-alert brx-bg-warning small">
+              <div *ngIf="email.errors.required">
+                Dit veld is verplicht
+              </div>
+              <div *ngIf="email.errors.email">
+                Dit is geen geldig e-mailadres
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password" class="small">Password</label>
+            <input type="password" required id="password" class="form-control" [(ngModel)]="user.password" name="password" #pwd="ngModel"/>
+            <div *ngIf="(pwd.invalid && (pwd.dirty || pwd.touched)) || (form.submitted && pwd.untouched && !pwd.value)"
+                 class="brx-alert brx-bg-warning small">
+              <div *ngIf="pwd.errors.required">
+                Dit veld is verplicht
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn brx-btn-primary float-right">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

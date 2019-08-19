@@ -9,53 +9,71 @@ import {OrganisationSettingsUsersComponent} from './main/settings/organisation/o
 import {AdminComponent} from './main/settings/admin/admin.component';
 import {AdminSettingsTenantsComponent} from './main/settings/admin/admin-settings-tenants/admin-settings-tenants.component';
 import {AdminSettingsUsersComponent} from './main/settings/admin/admin-settings-users/admin-settings-users.component';
+import {LoginComponent} from './main/login/login.component';
+import {AuthenticationGuard} from './services/authentication.guard';
 
 const routes: Routes = [
   {
+    path: 'login',
+    component: LoginComponent
+  }, {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full',
+    canActivate: [AuthenticationGuard]
   }, {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [AuthenticationGuard]
   }, {
     path: 'projects',
     component: ProjectsComponent,
+    canActivate: [AuthenticationGuard]
   }, {
     path: 'relations',
     component: RelationsComponent,
+    canActivate: [AuthenticationGuard]
   }, {
     path: 'settings',
     component: SettingsComponent,
+    canActivate: [AuthenticationGuard],
     children: [
       {
         path: '',
         redirectTo: 'organisation',
-        pathMatch: 'full'
+        pathMatch: 'full',
+        canActivate: [AuthenticationGuard]
       }, {
         path: 'organisation',
         component: OrganisationComponent,
+        canActivate: [AuthenticationGuard],
         children: [{
           path: '',
           redirectTo: 'users',
-          pathMatch: 'full'
+          pathMatch: 'full',
+          canActivate: [AuthenticationGuard]
         }, {
           path: 'users',
           component: OrganisationSettingsUsersComponent,
+          canActivate: [AuthenticationGuard]
         }]
       }, {
         path: 'admin',
         component: AdminComponent,
+        canActivate: [AuthenticationGuard],
         children: [{
           path: '',
           redirectTo: 'tenants',
-          pathMatch: 'full'
+          pathMatch: 'full',
+          canActivate: [AuthenticationGuard]
         }, {
           path: 'tenants',
-          component: AdminSettingsTenantsComponent
+          component: AdminSettingsTenantsComponent,
+          canActivate: [AuthenticationGuard]
         }, {
           path: 'users',
-          component: AdminSettingsUsersComponent
+          component: AdminSettingsUsersComponent,
+          canActivate: [AuthenticationGuard]
         }]
       }
     ]

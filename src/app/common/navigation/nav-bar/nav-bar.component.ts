@@ -6,6 +6,9 @@ import {IconHoursComponent} from '../../icons/icon-hours/icon-hours.component';
 import {IconSettingsComponent} from '../../icons/icon-settings/icon-settings.component';
 import {IconProfileComponent} from '../../icons/icon-profile/icon-profile.component';
 import {BrxRoute} from '../../../interfaces/brx-route';
+import {Router} from '@angular/router';
+import {BrxConfig} from '../../../config/app';
+import {AuthenticationService} from '../../../services/authentication.service';
 
 @Component({
   selector: 'brx-nav-bar',
@@ -42,13 +45,14 @@ export class NavBarComponent implements OnInit {
       path: 'profile',
       icon: IconProfileComponent,
       title: 'Max van de Laar'
-    }, {
-      path: 'logout',
-      title: 'Uitloggen'
     }
   ];
 
-  constructor() {
+  constructor(private authenticationService: AuthenticationService) {
+  }
+
+  logOut() {
+    this.authenticationService.logout();
   }
 
   ngOnInit() {

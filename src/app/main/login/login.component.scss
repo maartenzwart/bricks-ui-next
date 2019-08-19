@@ -1,0 +1,21 @@
+@import "~src/scss/variables/index";
+
+.brx-login-container {
+  padding: 0;
+
+  .brx-login-form-container {
+    background-color: #E3E3E3;
+    padding: 25px;
+
+    .brx-alert {
+      color: $white;
+      padding: 5px 10px;
+      border: 1px solid #CFD4D9;
+      border-top: none;
+    }
+  }
+}
+
+body {
+  height: 100vh;
+}

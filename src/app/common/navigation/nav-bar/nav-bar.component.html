@@ -21,7 +21,9 @@
       </div>
     </div>
     <ul class="navbar-nav">
-      <brx-nav-item *ngFor="let route of routesRight" [path]="route.path" [icon]="route.icon" [title]="route.title" cssClass="no-border"></brx-nav-item>
+      <brx-nav-item *ngFor="let route of routesRight" [path]="route.path" [icon]="route.icon" [title]="route.title"
+                    cssClass="no-border"></brx-nav-item>
+      <brx-nav-item [path]="null" [title]="'Uitloggen'" (itemClick)="logOut()" [active]="false" cssClass="no-border"></brx-nav-item>
     </ul>
   </div>
 </nav>

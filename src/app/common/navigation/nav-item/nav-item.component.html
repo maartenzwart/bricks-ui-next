@@ -1,8 +1,8 @@
-<li class="nav-item" routerLinkActive="active" [class.first]="firstItem">
+<li class="nav-item" routerLinkActive="active" [class.first]="firstItem" (click)="itemClicked($event)">
   <svg height="40" width="20" class="nav-arrow" *ngIf="firstItem">
     <polygon points="0,0 0,40 15,20" class="triangle" />
     <polyline points="0,0 15,20 0,40" style="fill:none;stroke:gray;stroke-width:1" class="arrow-highlight"/></svg>
-  <a [routerLink]="path" [class]="'nav-link ' + cssClass" [class.first]="firstItem" routerLinkActive="active">
+  <a [routerLink]="path" [class]="'nav-link ' + cssClass" [class.first]="firstItem" [routerLinkActive]="active ? 'active' : ''">
     <ng-template #brxDynamicComponent></ng-template>
     {{title}}
   </a>

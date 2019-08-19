@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthenticationService} from './services/authentication.service';
 
 @Component({
   selector: 'brx-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bricks-ui-angular';
+
+  constructor(private authService: AuthenticationService) {
+  }
+
+  loggedIn() {
+    return this.authService.isAuthenticated();
+  }
 }

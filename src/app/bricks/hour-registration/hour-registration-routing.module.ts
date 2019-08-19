@@ -6,36 +6,45 @@ import {HourRegistrationComponent} from './hour-registration.component';
 import {HrRegistrationComponent} from './registration/hr-registration.component';
 import {HrAgendaComponent} from './registration/agenda/hr-agenda.component';
 import {HrTimeSheetComponent} from './registration/timeSheet/hr-time-sheet.component';
+import {AuthenticationGuard} from '../../services/authentication.guard';
 
 
 const routes: Routes = [
   {
     path: 'hour-registration',
     component: HourRegistrationComponent,
+    canActivate: [AuthenticationGuard],
     children: [{
       path: '',
       redirectTo: 'registration',
-      pathMatch: 'full'
+      pathMatch: 'full',
+      canActivate: [AuthenticationGuard]
     }, {
       path: 'registration',
       component: HrRegistrationComponent,
+      canActivate: [AuthenticationGuard],
       children: [{
         path: '',
         redirectTo: 'agenda',
-        pathMatch: 'full'
+        pathMatch: 'full',
+        canActivate: [AuthenticationGuard]
       }, {
         path: 'agenda',
-        component: HrAgendaComponent
+        component: HrAgendaComponent,
+        canActivate: [AuthenticationGuard]
       }, {
         path: 'table',
-        component: HrTimeSheetComponent
+        component: HrTimeSheetComponent,
+        canActivate: [AuthenticationGuard]
       }]
     }, {
       path: 'assess',
-      component: HrAssessComponent
+      component: HrAssessComponent,
+      canActivate: [AuthenticationGuard]
     }, {
       path: 'manage',
-      component: HrManageComponent
+      component: HrManageComponent,
+      canActivate: [AuthenticationGuard]
     }
     ],
   }

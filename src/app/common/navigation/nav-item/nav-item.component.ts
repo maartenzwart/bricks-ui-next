@@ -1,8 +1,8 @@
 import {
   AfterViewInit,
-  Component, ComponentFactoryResolver,
+  Component, ComponentFactoryResolver, EventEmitter,
   Input,
-  OnInit, ViewChild, ViewContainerRef,
+  OnInit, Output, ViewChild, ViewContainerRef,
 } from '@angular/core';
 
 @Component({
@@ -15,13 +15,20 @@ export class NavItemComponent implements OnInit, AfterViewInit {
   @Input() title = 'Home';
   @Input() icon: any;
   @Input() firstItem = false;
+  @Input() active = true;
   @Input() cssClass = '';
+  @Output() itemClick: EventEmitter<any> = new EventEmitter();
+
   @ViewChild('brxDynamicComponent', {read: ViewContainerRef, static: false}) dynamicHost;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   ngOnInit() {
+  }
+
+  itemClicked(event) {
+    this.itemClick.emit(event);
   }
 
   ngAfterViewInit(): void {

@@ -22,6 +22,14 @@ import {AdminSettingsUsersComponent} from './main/settings/admin/admin-settings-
 import {OrganisationSettingsUsersComponent} from './main/settings/organisation/organisation-settings-users/organisation-settings-users.component';
 import {ProjectsListComponent} from './main/projects/projects-list/projects-list.component';
 import {BrxCommonModule} from './common/brx-common.module';
+import {LoginComponent} from './main/login/login.component';
+import {HttpClientModule} from '@angular/common/http';
+import {JwtModule} from '@auth0/angular-jwt';
+import {FormsModule} from '@angular/forms';
+
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -35,13 +43,21 @@ import {BrxCommonModule} from './common/brx-common.module';
     AdminSettingsTenantsComponent,
     AdminSettingsUsersComponent,
     OrganisationSettingsUsersComponent,
-    ProjectsListComponent
+    ProjectsListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HourRegistrationModule,
-    BrxCommonModule
+    BrxCommonModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter
+      }
+    }),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
