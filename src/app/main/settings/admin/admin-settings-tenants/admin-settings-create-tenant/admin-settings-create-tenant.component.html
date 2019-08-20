@@ -1,0 +1,36 @@
+<p>
+  Form Status: {{ tenantForm.status }}
+</p>
+<form class="form" [formGroup]="tenantForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="row">
+    <brx-input-text label="Naam" name="name" formControlName="name" [errorMessages]="errorMessages.name" sizeClasses="col-lg-3 col-md-5 col-sm-7 col-12"></brx-input-text>
+  </div>
+  <h2>Adres
+    <brx-button-create (click)="addAddress()">Adres</brx-button-create>
+  </h2>
+  <div formArrayName="addresses" *ngFor="let address of tenantForm.get('addresses').controls; let i = index">
+    <div [formGroupName]="i">
+      <div class="row">
+        <div class="col-md-2 col-sm-7 col-12 col-lg-1 order-last order-lg-first btn-delete" *ngIf="tenantForm.get('addresses').controls.length > 1">
+          <div class="form-group">
+            <label class="d-lg-inline-block d-none">&nbsp;</label>
+            <button type="button" class="btn brx-btn-warning brx-btn form-control" (click)="removeAddress(i)">
+              <brx-icon-delete color="#ffffff"></brx-icon-delete>
+            </button>
+          </div>
+        </div>
+        <brx-input-text label="Postcode" name="postalCode" (change)="getAddressByApi(i)" formControlName="postalCode"
+                        sizeClasses="col-lg-2 col-md-2 col-sm-3 col-4"></brx-input-text>
+        <brx-input-text label="Huisnummer" name="houseNumber" (change)="getAddressByApi(i)" formControlName="houseNumber"
+                        sizeClasses="col-lg-1 col-md-2 col-sm-2 col-3"></brx-input-text>
+        <brx-input-text label="Toevoeging" formControlName="suffix" sizeClasses="col-lg-1 col-md-2 col-sm-2 col-4"></brx-input-text>
+        <brx-input-text label="Straat" name="street" formControlName="street" [errorMessages]="errorMessages.address"
+                        sizeClasses="col-lg-3 col-md-6 col-sm-7 col-12"></brx-input-text>
+        <brx-input-text label="Stad" name="city" formControlName="city" sizeClasses="col-lg-2 col-md-6 col-sm-7 col-12"></brx-input-text>
+        <brx-input-text label="Land" name="country" formControlName="country" sizeClasses="col-lg-2 col-md-5 col-sm-6 col-12"></brx-input-text>
+      </div>
+      <hr/>
+    </div>
+  </div>
+  <button type="submit" [disabled]="!tenantForm.valid">Submit</button>
+</form>

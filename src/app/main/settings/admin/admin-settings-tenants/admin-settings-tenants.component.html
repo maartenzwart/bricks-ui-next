@@ -1,1 +1,14 @@
-<p>admin-settings-tenants works!</p>
+<div class="brx-content">
+  <div class="row clearfix">
+    <div class="col-12">
+      <a [routerLink]="'create'">
+        <brx-button-create class="float-right">Nieuwe Tenant</brx-button-create>
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,8 @@ import {AdminSettingsTenantsComponent} from './main/settings/admin/admin-setting
 import {AdminSettingsUsersComponent} from './main/settings/admin/admin-settings-users/admin-settings-users.component';
 import {LoginComponent} from './main/login/login.component';
 import {AuthenticationGuard} from './services/authentication.guard';
+import {AdminSettingsCreateTenantComponent} from './main/settings/admin/admin-settings-tenants/admin-settings-create-tenant/admin-settings-create-tenant.component';
+import {AdminSettingsTenantListComponent} from './main/settings/admin/admin-settings-tenants/admin-settings-tenant-list/admin-settings-tenant-list.component';
 
 const routes: Routes = [
   {
@@ -69,7 +71,21 @@ const routes: Routes = [
         }, {
           path: 'tenants',
           component: AdminSettingsTenantsComponent,
-          canActivate: [AuthenticationGuard]
+          canActivate: [AuthenticationGuard],
+          children: [{
+            path: '',
+            redirectTo: 'list',
+            pathMatch: 'full',
+            canActivate: [AuthenticationGuard]
+          }, {
+            path: 'list',
+            component: AdminSettingsTenantListComponent,
+            canActivate: [AuthenticationGuard]
+          }, {
+            path: 'create',
+            component: AdminSettingsCreateTenantComponent,
+            canActivate: [AuthenticationGuard]
+          }]
         }, {
           path: 'users',
           component: AdminSettingsUsersComponent,

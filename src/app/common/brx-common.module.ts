@@ -23,6 +23,11 @@ import {IconSortDefaultComponent} from './icons/icon-sort-default/icon-sort-defa
 import {IconSortUpComponent} from './icons/icon-sort-up/icon-sort-up.component';
 import {IconSortDownComponent} from './icons/icon-sort-down/icon-sort-down.component';
 import {ListComponent} from './list/list.component';
+import {ButtonCreateComponent} from './buttons/button-create/button-create.component';
+import {IconPlusLightComponent} from './icons/icon-plus-light/icon-plus-light.component';
+import {InputTextComponent} from './inputs/input-text/input-text.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {IconDeleteComponent} from './icons/icon-delete/icon-delete.component';
 
 
 @NgModule({
@@ -47,12 +52,18 @@ import {ListComponent} from './list/list.component';
     IconSearchComponent,
     IconSortDefaultComponent,
     IconSortUpComponent,
-    IconSortDownComponent
+    IconSortDownComponent,
+    ButtonCreateComponent,
+    IconPlusLightComponent,
+    InputTextComponent,
+    IconDeleteComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    PipesModule
+    PipesModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     NavItemComponent,
@@ -75,7 +86,10 @@ import {ListComponent} from './list/list.component';
     IconSearchComponent,
     IconSortDefaultComponent,
     IconSortUpComponent,
-    IconSortDownComponent
+    IconSortDownComponent,
+    ButtonCreateComponent,
+    InputTextComponent,
+    IconDeleteComponent
   ]
 })
 export class BrxCommonModule {

@@ -24,6 +24,7 @@
     box-shadow: 0 2px 4px rgba($black, 0.2);
 
     &:focus {
+      @include button-variant($background, $border, $hover-background: darken($background, 7.5%), $hover-border: darken($border, 10%), $active-background: darken($background, 10%), $active-border: darken($border, 12.5%));
       box-shadow: 0 2px 4px rgba($black, 0.2) !important;
     }
   }
@@ -47,7 +48,6 @@
   $border: #CED4DE;
   @include button-variant($background, $border, $background, $border, $background, $border);
   border-left: 0;
-
 }
 
 .brx-btn-default {
