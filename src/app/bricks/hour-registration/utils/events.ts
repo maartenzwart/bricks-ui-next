@@ -1,6 +1,6 @@
 import {CalendarEvent} from 'angular-calendar';
 import * as uuidv4 from 'uuid/v4';
-import * as moment from 'moment';
+import moment from 'moment';
 import StartOf = moment.unitOfTime.StartOf;
 
 export function newEvent({title, start, end}: { title?: string, start: Date, end: Date }): CalendarEvent {

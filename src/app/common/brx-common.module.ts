@@ -28,6 +28,8 @@ import {IconPlusLightComponent} from './icons/icon-plus-light/icon-plus-light.co
 import {InputTextComponent} from './inputs/input-text/input-text.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {IconDeleteComponent} from './icons/icon-delete/icon-delete.component';
+import {InputSelectCountryComponent} from './inputs/input-select-country/input-select-country.component';
+import {NgbTypeaheadModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -56,7 +58,8 @@ import {IconDeleteComponent} from './icons/icon-delete/icon-delete.component';
     ButtonCreateComponent,
     IconPlusLightComponent,
     InputTextComponent,
-    IconDeleteComponent
+    IconDeleteComponent,
+    InputSelectCountryComponent
   ],
   imports: [
     CommonModule,
@@ -64,6 +67,7 @@ import {IconDeleteComponent} from './icons/icon-delete/icon-delete.component';
     PipesModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbTypeaheadModule
   ],
   exports: [
     NavItemComponent,
@@ -89,7 +93,8 @@ import {IconDeleteComponent} from './icons/icon-delete/icon-delete.component';
     IconSortDownComponent,
     ButtonCreateComponent,
     InputTextComponent,
-    IconDeleteComponent
+    IconDeleteComponent,
+    InputSelectCountryComponent
   ]
 })
 export class BrxCommonModule {

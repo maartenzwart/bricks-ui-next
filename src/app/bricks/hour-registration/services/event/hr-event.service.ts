@@ -3,7 +3,7 @@ import {events as mockEvents} from './mock';
 import {EMPTY, Observable} from 'rxjs';
 import {CalendarEvent} from 'angular-calendar';
 import {catchError, delay, flatMap, map, mergeMap, tap} from 'rxjs/operators';
-import * as moment from 'moment';
+import moment from 'moment';
 import {DayViewHourSegment, EventAction} from 'calendar-utils';
 import {newEvent} from '../../utils/events';
 import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';

@@ -4,7 +4,7 @@ import {WeekDay, CalendarEvent} from 'calendar-utils';
 import {BrxListHeader, BrxListHeaders} from '../../../../interfaces/brx-list-header';
 import {DatePipe} from '@angular/common';
 import {HrEventService} from '../../services/event/hr-event.service';
-import * as moment from 'moment';
+import moment from 'moment';
 import {calculateDuration, calculateTotalDuration, isSameDate} from '../../utils/events';
 import {DurationFormatPipe} from '../../../../pipes/duration/durationFormat.pipe';
 

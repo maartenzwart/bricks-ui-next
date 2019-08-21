@@ -1,0 +1,15 @@
+label {
+  font-weight: bold;
+}
+
+
+.invalid {
+  border-color: red;
+}
+
+::ng-deep {
+  .dropdown-menu {
+    max-height: 300px !important;
+    overflow-y: scroll;
+  }
+}

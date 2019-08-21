@@ -1,15 +1,13 @@
-<p>
-  Form Status: {{ tenantForm.status }}
-</p>
 <form class="form" [formGroup]="tenantForm" (ngSubmit)="onSubmit()" novalidate>
   <div class="row">
-    <brx-input-text label="Naam" name="name" formControlName="name" [errorMessages]="errorMessages.name" sizeClasses="col-lg-3 col-md-5 col-sm-7 col-12"></brx-input-text>
+    <brx-input-text label="Organisatie naam" name="name" formControlName="name" [errorMessages]="errorMessages.name"
+                    sizeClasses="col-lg-3 col-md-5 col-sm-7 col-12"></brx-input-text>
   </div>
   <h2>Adres
     <brx-button-create (click)="addAddress()">Adres</brx-button-create>
   </h2>
   <div formArrayName="addresses" *ngFor="let address of tenantForm.get('addresses').controls; let i = index">
-    <div [formGroupName]="i">
+    <div [formGroupName]="i.toString()">
       <div class="row">
         <div class="col-md-2 col-sm-7 col-12 col-lg-1 order-last order-lg-first btn-delete" *ngIf="tenantForm.get('addresses').controls.length > 1">
           <div class="form-group">
@@ -27,10 +25,13 @@
         <brx-input-text label="Straat" name="street" formControlName="street" [errorMessages]="errorMessages.address"
                         sizeClasses="col-lg-3 col-md-6 col-sm-7 col-12"></brx-input-text>
         <brx-input-text label="Stad" name="city" formControlName="city" sizeClasses="col-lg-2 col-md-6 col-sm-7 col-12"></brx-input-text>
-        <brx-input-text label="Land" name="country" formControlName="country" sizeClasses="col-lg-2 col-md-5 col-sm-6 col-12"></brx-input-text>
+        <!--        <brx-input-text label="Land" name="country" formControlName="country" sizeClasses="col-lg-2 col-md-5 col-sm-6 col-12"></brx-input-text>-->
+        <brx-input-select-country label="Land" name="country" sizeClasses="col-lg-2 col-md-5 col-sm-6 col-12" [errorMessages]="errorMessages.address"
+                                  formControlName="country"></brx-input-select-country>
       </div>
       <hr/>
     </div>
   </div>
+  <!--  <brx-input-select-country [(model)]="testCountry"></brx-input-select-country>-->
   <button type="submit" [disabled]="!tenantForm.valid">Submit</button>
 </form>

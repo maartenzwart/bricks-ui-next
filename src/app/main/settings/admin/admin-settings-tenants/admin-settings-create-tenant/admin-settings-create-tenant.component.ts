@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, OnChanges, OnInit} from '@angular/core';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {BrxAddress} from '../../../../../interfaces/brx-address';
 import {AddressService} from '../../../../../services/address.service';
 
@@ -33,7 +33,7 @@ export class AdminSettingsCreateTenantComponent implements OnInit {
       suffix: [''],
       postalCode: [''],
       city: [''],
-      country: [''],
+      country: ['', Validators.required],
       isPrimary: [false]
     });
   }
@@ -71,6 +71,7 @@ export class AdminSettingsCreateTenantComponent implements OnInit {
 
   onSubmit() {
     console.log(this.tenantForm.value);
+    // console.log('Country', this.testCountry);
   }
 
 }

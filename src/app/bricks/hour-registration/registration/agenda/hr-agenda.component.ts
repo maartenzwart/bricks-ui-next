@@ -13,7 +13,7 @@ import {DayViewHourSegment, EventAction} from 'calendar-utils';
 import {HrEventService} from '../../services/event/hr-event.service';
 import {brxIconEdit, brxIconResize} from '../../../../common/icons/svg';
 import {DurationFormatPipe} from '../../../../pipes/duration/durationFormat.pipe';
-import * as moment from 'moment';
+import moment from 'moment';
 
 function floorToNearest(amount: number, precision: number) {
   return Math.floor(amount / precision) * precision;

@@ -1,0 +1,32 @@
+<div class="form-group">
+  <label [for]="name">{{label}}</label>
+  <label for="" style="display: none;">hidden label to mislead chrome autocomplete</label>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <ng-content select="[pre-input]"></ng-content>
+    </div>
+    <input [name]="name" type="text" [editable]="false" [class.invalid]="errors" class="form-control" [(ngModel)]="value" [ngbTypeahead]="search"
+           [resultFormatter]="formatter"
+           [inputFormatter]="inputFormatter"
+           (change)="value=$event.target.value"
+           [value]="inputFormatter"
+           [resultTemplate]="rt"
+           autocomplete="off"/>
+    <div class="input-group-append">
+      <ng-content select="[pre-input]"></ng-content>
+    </div>
+  </div>
+  <ng-container *ngIf="errors">
+    <div *ngFor="let key of objectKeys(errors)" class="text-danger small">
+      {{getErrorMessage(key)}}
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #rt let-r="result" let-t="term">
+  <ngb-highlight [result]="r.native" [term]="t"></ngb-highlight>
+  <br/>
+  <small>
+    <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+  </small>
+</ng-template>

@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {CalendarEvent, WeekDay} from 'calendar-utils';
-import * as moment from 'moment';
+import moment from 'moment';
 import 'moment/locale/nl';
 import 'moment/locale/nl-be';
 import 'moment/locale/en-gb';
