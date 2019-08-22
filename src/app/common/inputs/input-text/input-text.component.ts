@@ -29,6 +29,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() name: string;
   @Input() errorMessages: InputErrorMessages;
   @Input() autocomplete: string;
+  @Input() brxType;
   private objectKeys = Object.keys;
   private inputValue = '';
   private errors: ValidationErrors;

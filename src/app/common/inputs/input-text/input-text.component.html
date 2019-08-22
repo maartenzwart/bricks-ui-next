@@ -7,7 +7,7 @@
     </div>
     <input [type]="type" class="form-control" [id]="name" [name]="name" [autocomplete]="autocomplete" [(ngModel)]="value" [class.invalid]="errors"
            (change)="value=$event.target.value"
-           [value]="value"/>
+           [value]="value" [attr.brx-type]="brxType"/>
     <div class="input-group-append">
       <ng-content select="[pre-input]"></ng-content>
     </div>

@@ -7,3 +7,6 @@ label {
   border-color: red;
 }
 
+input[brx-type='number'], input[type='number'] {
+  text-align: right;
+}

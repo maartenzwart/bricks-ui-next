@@ -22,7 +22,7 @@
                             formControlName="isPrimary"></brx-input-checkbox>
         <brx-input-text label="Postcode" name="postalCode-{{i}}" (change)="getAddressByApi(i)" formControlName="postalCode"
                         sizeClasses="col-lg-2 col-md-2 col-sm-3 col-4"></brx-input-text>
-        <brx-input-text label="Huisnummer" name="houseNumber-{{i}}" (change)="getAddressByApi(i)" formControlName="houseNumber"
+        <brx-input-text label="Huisnummer" brxType="number" name="houseNumber-{{i}}" (change)="getAddressByApi(i)" formControlName="houseNumber"
                         sizeClasses="col-lg-1 col-md-2 col-sm-2 col-3"></brx-input-text>
         <brx-input-text label="Toevoeging" name="suffix-{{i}}" formControlName="suffix" sizeClasses="col-lg-1 col-md-2 col-sm-2 col-4"></brx-input-text>
         <brx-input-text label="Straat" name="street-{{i}}" formControlName="street"
