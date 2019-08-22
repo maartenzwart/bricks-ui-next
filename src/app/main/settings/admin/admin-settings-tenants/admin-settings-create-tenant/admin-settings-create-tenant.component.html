@@ -17,21 +17,22 @@
             </button>
           </div>
         </div>
-        <brx-input-text label="Postcode" name="postalCode" (change)="getAddressByApi(i)" formControlName="postalCode"
+        <brx-input-checkbox (inputClick)="addressChangePrimary(i, $event)" sizeClasses="col-md-2 col-sm-7 col-12 col-lg-1" checkboxLabel="Ja/Nee" label="Primair adres"
+                            name="is-primary-{{i}}"
+                            formControlName="isPrimary"></brx-input-checkbox>
+        <brx-input-text label="Postcode" name="postalCode-{{i}}" (change)="getAddressByApi(i)" formControlName="postalCode"
                         sizeClasses="col-lg-2 col-md-2 col-sm-3 col-4"></brx-input-text>
-        <brx-input-text label="Huisnummer" name="houseNumber" (change)="getAddressByApi(i)" formControlName="houseNumber"
+        <brx-input-text label="Huisnummer" name="houseNumber-{{i}}" (change)="getAddressByApi(i)" formControlName="houseNumber"
                         sizeClasses="col-lg-1 col-md-2 col-sm-2 col-3"></brx-input-text>
-        <brx-input-text label="Toevoeging" formControlName="suffix" sizeClasses="col-lg-1 col-md-2 col-sm-2 col-4"></brx-input-text>
-        <brx-input-text label="Straat" name="street" formControlName="street" [errorMessages]="errorMessages.address"
+        <brx-input-text label="Toevoeging" name="suffix-{{i}}" formControlName="suffix" sizeClasses="col-lg-1 col-md-2 col-sm-2 col-4"></brx-input-text>
+        <brx-input-text label="Straat" name="street-{{i}}" formControlName="street"
                         sizeClasses="col-lg-3 col-md-6 col-sm-7 col-12"></brx-input-text>
-        <brx-input-text label="Stad" name="city" formControlName="city" sizeClasses="col-lg-2 col-md-6 col-sm-7 col-12"></brx-input-text>
-        <!--        <brx-input-text label="Land" name="country" formControlName="country" sizeClasses="col-lg-2 col-md-5 col-sm-6 col-12"></brx-input-text>-->
-        <brx-input-select-country label="Land" name="country" sizeClasses="col-lg-2 col-md-5 col-sm-6 col-12" [errorMessages]="errorMessages.address"
+        <brx-input-text label="Stad" name="city-{{i}}" formControlName="city" sizeClasses="col-lg-2 col-md-6 col-sm-7 col-12"></brx-input-text>
+        <brx-input-select-country label="Land" name="country-{{i}}" sizeClasses="col-lg-2 col-md-5 col-sm-6 col-12"
                                   formControlName="country"></brx-input-select-country>
       </div>
       <hr/>
     </div>
   </div>
-  <!--  <brx-input-select-country [(model)]="testCountry"></brx-input-select-country>-->
   <button type="submit" [disabled]="!tenantForm.valid">Submit</button>
 </form>

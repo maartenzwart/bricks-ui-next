@@ -1,0 +1,80 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+@import "~src/scss/variables/index";
+
+.top-label {
+  font-weight: bold;
+}
+
+
+.invalid {
+  border-color: red;
+}
+
+.custom-checkbox {
+  height: 38px;
+  padding-top: 7px;
+}
+
+.brx-custom-label {
+  &::before {
+    border: 2px solid $brx-color-primary !important;
+    height: 20px;
+    width: 20px;
+  }
+
+  span {
+    margin-left: 0.5em;
+  }
+
+}
+
+.brx-custom-checkbox {
+
+  &:checked ~ .custom-control-label {
+
+    &::before {
+      color: $brx-color-primary;
+      border-color: $brx-color-primary;
+      @include gradient-bg($brx-color-primary);
+      @include box-shadow($custom-control-indicator-checked-box-shadow);
+    }
+
+    &::after {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &:focus ~ .custom-control-label::before {
+    // the mixin is not used here to make sure there is feedback
+    //@if $enable-shadows {
+    //  box-shadow: $input-box-shadow, $input-focus-box-shadow;
+    //} @else {
+    //  box-shadow: $custom-control-indicator-focus-box-shadow;
+    //}
+  }
+
+  &:focus:not(:checked) ~ .custom-control-label::before {
+    border: none;
+    //border-color: $brx-color-primary;
+  }
+
+  &:not(:disabled):active ~ .custom-control-label::before {
+    color: $brx-color-primary;
+    background-color: $custom-control-indicator-active-bg;
+    border-color: $brx-color-primary;
+    @include box-shadow($custom-control-indicator-active-box-shadow);
+  }
+
+  &:disabled {
+    ~ .custom-control-label {
+      color: $custom-control-label-disabled-color;
+
+      &::before {
+        background-color: $custom-control-indicator-disabled-bg;
+      }
+    }
+  }
+}
