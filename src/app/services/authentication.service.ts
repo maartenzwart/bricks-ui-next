@@ -19,7 +19,8 @@ export class AuthenticationService {
   }
 
   login(user: BrxAuthUser): any {
-    const tmpJWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZmlyc3ROYW1lIjoiTWF4IiwiaW5zZXJ0aW9uIjoidmFuIGRlIiwibGFzdE5hbWUiOiJMYWFyIiwiaWQiOiJhMTEwOWI5ZS00Mjg5LTRlMWMtYjVjZC1mMWJkZTIxNTMxOWMiLCJlbWFpbCI6Im1heC52YW5kZWxhYXJAbHVtaW5pcy5ldSIsImlhdCI6MTUxNjIzOTAyMn0.Wi4vpsmDkMXaCZmkz4DnvClmd1YwoIOsIFSP_0sM4O0';
+    // TODO: REMOVE TMP TOKEN
+    const tmpJWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZ2l2ZW5OYW1lIjoiTWF4IiwiaW5zZXJ0aW9uIjoidmFuIGRlIiwiZmFtaWx5TmFtZSI6IkxhYXIiLCJpZCI6ImExMTA5YjllLTQyODktNGUxYy1iNWNkLWYxYmRlMjE1MzE5YyIsImVtYWlsIjoibWF4LnZhbmRlbGFhckBsdW1pbmlzLmV1IiwiaWF0IjoxNTE2MjM5MDIyfQ.TqylLlmLAROT3QOdEOfMFp0Hoc5BlB5JcYPVLgQtUFc';
     if (user.email && user.password) {
       JwtUtils.setJwtToken(tmpJWT);
       this.router.navigate(['/']);

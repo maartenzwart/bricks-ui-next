@@ -5,10 +5,10 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class FullNamePipe implements PipeTransform {
 
-  transform({firstName, insertion, lastName}: { firstName: string, insertion?: string, lastName: string }): string {
-    let fullName = firstName;
+  transform({givenName, insertion, familyName}: { givenName: string, insertion?: string, familyName: string }): string {
+    let fullName = givenName;
     fullName += insertion ? ` ${insertion} ` : ' ';
-    fullName += lastName;
+    fullName += familyName;
     return fullName;
   }
 

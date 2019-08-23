@@ -9,6 +9,7 @@ import {BrxRoute} from '../../../interfaces/brx-route';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {UserProfileService} from '../../../services/user-profile.service';
 import {FullNamePipe} from '../../../pipes/full-name/full-name.pipe';
+import {BrxUserProfile} from '../../../interfaces/brx-user-profile';
 
 @Component({
   selector: 'brx-nav-bar',
@@ -61,9 +62,10 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit() {
-    const userProfile = this.userProfileService.getCurrentProfile();
+    const userProfile: BrxUserProfile = this.userProfileService.getCurrentProfile();
     if (userProfile) {
-      this.profileRoute.title = this.fullNamePipe.transform(userProfile.name);
+      const {givenName, insertion, familyName} = userProfile;
+      this.profileRoute.title = this.fullNamePipe.transform({givenName, insertion, familyName});
     }
   }
 
