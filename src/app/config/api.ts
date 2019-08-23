@@ -39,4 +39,3 @@ export const BRX_API = {
   tenants,
   addresses
 };
-

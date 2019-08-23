@@ -8,7 +8,7 @@ export interface BrxAddress {
   city: string;
   postalCode: string;
   country: string;
-  isPrimary: boolean;
+  isPrimary?: boolean;
   type?: BrxAddressType;
   emailAddresses?: BrxEmailAddresses;
   phoneNumbers?: BrxPhoneNumbers;

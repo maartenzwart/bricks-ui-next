@@ -7,6 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class IconDeleteComponent implements OnInit {
   @Input() color = '#757575';
+  @Input() transform = '';
 
   constructor() {
   }

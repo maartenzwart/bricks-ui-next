@@ -56,6 +56,10 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   }
 
   getErrorMessage(key: string) {
+    console.log(this.errorMessages);
+    if (!this.errorMessages) {
+      return;
+    }
     const errorMsg = this.errorMessages.find(err => err.key.toLowerCase() === key.toLowerCase());
     if (!errorMsg) {
       return JSON.stringify(this.errors[key]);
@@ -63,7 +67,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
     return errorMsg.message;
   }
 
-  public validate(c: FormControl) {
+  validate(c: FormControl) {
     if (c.errors && c.dirty) {
       this.errors = c.errors;
     } else {

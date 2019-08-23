@@ -1,9 +1,5 @@
 button {
   text-transform: uppercase;
-
-  .content-wrapper:not(:empty) {
-    padding-left: 5px;
-  }
 }
 
 :host ::ng-deep {

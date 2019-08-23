@@ -33,8 +33,7 @@ export class AddressService {
           houseNumber: apiAddress.huisnummer,
           postalCode: apiAddress.postcode,
           city: apiAddress.woonplaatsnaam,
-          country: 'NL',
-          isPrimary: false,
+          country: 'NL'
         };
         return address;
       }),

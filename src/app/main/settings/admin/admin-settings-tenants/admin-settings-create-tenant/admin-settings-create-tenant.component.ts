@@ -23,6 +23,12 @@ export class AdminSettingsCreateTenantComponent implements OnInit {
     address: [{
       key: 'required',
       message: 'Dit veld is verplicht'
+    }, {
+      key: 'pattern',
+      message: 'Alleen cijfers zijn toegestaan'
+    }, {
+      key: 'email',
+      message: 'Dit is geen geldig e-mailadres'
     }]
   };
 
@@ -34,7 +40,24 @@ export class AdminSettingsCreateTenantComponent implements OnInit {
       postalCode: [''],
       city: [''],
       country: [''],
-      isPrimary: [numberOfAddresses === 0]
+      isPrimary: [numberOfAddresses === 0],
+      phoneNumbers: this.fb.array([this.createPhoneNumber(0)]),
+      emailAddresses: this.fb.array([this.createEmailAddress(0)]),
+    });
+  }
+
+  createPhoneNumber(amount: number): FormGroup {
+    return this.fb.group({
+      phoneNumber: ['', Validators.pattern('\\d*')],
+      isPrimary: [amount === 0],
+      country: ['+31', Validators.minLength(1)]
+    });
+  }
+
+  createEmailAddress(amount: number): FormGroup {
+    return this.fb.group({
+      email: ['', Validators.email],
+      isPrimary: [amount === 0],
     });
   }
 
@@ -51,6 +74,14 @@ export class AdminSettingsCreateTenantComponent implements OnInit {
   addAddress(): void {
     const addresses = this.getAddressArray();
     addresses.controls.unshift(this.createAddress(addresses.length));
+  }
+
+  addAddressPhoneNumber(addressPhoneNumbers: FormArray): void {
+    addressPhoneNumbers.controls.unshift(this.createPhoneNumber(addressPhoneNumbers.length));
+  }
+
+  addAddressEmail(addressEmails: FormArray): void {
+    addressEmails.controls.unshift(this.createEmailAddress(addressEmails.length));
   }
 
   getAddressByApi(index: number) {
@@ -75,6 +106,14 @@ export class AdminSettingsCreateTenantComponent implements OnInit {
   removeAddress(index: number) {
     const addressesArray = this.getAddressArray();
     addressesArray.removeAt(index);
+  }
+
+  removeAddressPhoneNumber(index: number, phoneNumbers: FormArray): void {
+    phoneNumbers.removeAt(index);
+  }
+
+  removeAddressEmail(index: number, emailAddresses: FormArray): void {
+    emailAddresses.removeAt(index);
   }
 
   constructor(private fb: FormBuilder, private addressService: AddressService) {

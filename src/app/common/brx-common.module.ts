@@ -31,6 +31,8 @@ import {IconDeleteComponent} from './icons/icon-delete/icon-delete.component';
 import {InputSelectCountryComponent} from './inputs/input-select-country/input-select-country.component';
 import {NgbTypeaheadModule} from '@ng-bootstrap/ng-bootstrap';
 import {InputCheckboxComponent} from './inputs/input-checkbox/input-checkbox.component';
+import {InputPhoneNumberCountryCodeComponent} from './inputs/input-phone-number-country-code/input-phone-number-country-code.component';
+import {ButtonWarningComponent} from './buttons/button-warning/button-warning.component';
 
 
 @NgModule({
@@ -61,7 +63,9 @@ import {InputCheckboxComponent} from './inputs/input-checkbox/input-checkbox.com
     InputTextComponent,
     IconDeleteComponent,
     InputSelectCountryComponent,
-    InputCheckboxComponent
+    InputCheckboxComponent,
+    InputPhoneNumberCountryCodeComponent,
+    ButtonWarningComponent
   ],
   imports: [
     CommonModule,
@@ -97,7 +101,9 @@ import {InputCheckboxComponent} from './inputs/input-checkbox/input-checkbox.com
     InputTextComponent,
     IconDeleteComponent,
     InputSelectCountryComponent,
-    InputCheckboxComponent
+    InputCheckboxComponent,
+    InputPhoneNumberCountryCodeComponent,
+    ButtonWarningComponent
   ]
 })
 export class BrxCommonModule {

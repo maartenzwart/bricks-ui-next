@@ -1,0 +1,23 @@
+<input [name]="name" type="text" [editable]="false" [class.invalid]="errors" [(ngModel)]="value" [ngbTypeahead]="search"
+       [inputFormatter]="inputFormatter"
+       (change)="setValue($event.target.value, $event)"
+       [value]="inputFormatter"
+       [resultTemplate]="rt"
+       (focus)="focus$.next($event.target.value)"
+       (click)="click$.next($event.target.value)"
+       (selectItem)="selectItem($event)"
+       #countryCode
+       class="form-control"
+       #instance="ngbTypeahead"
+       autocomplete="off"/>
+<brx-icon-sort-down (click)="countryCode.focus()"></brx-icon-sort-down>
+
+<ng-template #rt let-r="result" let-t="term">
+  <ngb-highlight [result]="'+'+r.phone" [term]="[t, StringUtils.normalize(t)]"></ngb-highlight>
+  <br/>
+  <small>
+    <ngb-highlight [result]="r.native" [term]="[t, StringUtils.normalize(t)]"></ngb-highlight>
+    <br/>
+    <ngb-highlight [result]="r.name" [term]="[t, StringUtils.normalize(t)]"></ngb-highlight>
+  </small>
+</ng-template>
