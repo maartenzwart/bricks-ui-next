@@ -46,13 +46,6 @@ export class NavBarComponent implements OnInit {
     }
   ];
 
-  // routesRight: BrxRoute[] = [
-  //   {
-  //     path: 'profile',
-  //     icon: IconProfileComponent,
-  //     title: this.userFullName
-  //   }
-  // ];
 
   constructor(private authenticationService: AuthenticationService, private userProfileService: UserProfileService, private fullNamePipe: FullNamePipe) {
   }

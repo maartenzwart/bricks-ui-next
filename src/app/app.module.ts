@@ -31,6 +31,7 @@ import {FullNamePipe} from './pipes/full-name/full-name.pipe';
 import {AdminSettingsCreateTenantComponent} from './main/settings/admin/admin-settings-tenants/admin-settings-create-tenant/admin-settings-create-tenant.component';
 import {AdminSettingsTenantListComponent} from './main/settings/admin/admin-settings-tenants/admin-settings-tenant-list/admin-settings-tenant-list.component';
 import {RxReactiveFormsModule} from '@rxweb/reactive-form-validators';
+import {CookieService} from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -58,7 +59,6 @@ import {RxReactiveFormsModule} from '@rxweb/reactive-form-validators';
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: JwtUtils.getJwtToken,
         whitelistedDomains: ['localhost:3000']
       }
     }),
@@ -66,7 +66,7 @@ import {RxReactiveFormsModule} from '@rxweb/reactive-form-validators';
     ReactiveFormsModule,
     RxReactiveFormsModule
   ],
-  providers: [FullNamePipe],
+  providers: [FullNamePipe, CookieService],
   bootstrap: [AppComponent],
   entryComponents: [
     IconDashboardComponent,
