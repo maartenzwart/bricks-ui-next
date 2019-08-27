@@ -24,7 +24,7 @@ import {ProjectsListComponent} from './main/projects/projects-list/projects-list
 import {BrxCommonModule} from './common/brx-common.module';
 import {LoginComponent} from './main/login/login.component';
 import {HttpClientModule} from '@angular/common/http';
-import {JwtModule} from '@auth0/angular-jwt';
+import {JWT_OPTIONS, JwtModule} from '@auth0/angular-jwt';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {JwtUtils} from './utils';
 import {FullNamePipe} from './pipes/full-name/full-name.pipe';
@@ -33,6 +33,13 @@ import {AdminSettingsTenantListComponent} from './main/settings/admin/admin-sett
 import {RxReactiveFormsModule} from '@rxweb/reactive-form-validators';
 import {CookieService} from 'ngx-cookie-service';
 
+export function jwtOptionsFactory(cookieService: CookieService) {
+  return {
+    tokenGetter: () => {
+      return new JwtUtils(cookieService).getJwtToken();
+    }
+  };
+}
 
 @NgModule({
   declarations: [
@@ -60,13 +67,21 @@ import {CookieService} from 'ngx-cookie-service';
     JwtModule.forRoot({
       config: {
         whitelistedDomains: ['localhost:3000']
+      },
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [CookieService]
       }
     }),
     FormsModule,
     ReactiveFormsModule,
     RxReactiveFormsModule
   ],
-  providers: [FullNamePipe, CookieService],
+  providers: [
+    FullNamePipe,
+    CookieService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     IconDashboardComponent,
