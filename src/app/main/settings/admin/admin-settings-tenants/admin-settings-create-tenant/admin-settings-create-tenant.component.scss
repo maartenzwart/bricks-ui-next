@@ -9,6 +9,16 @@ h2 {
 
 .form {
   padding-bottom: 15px;
+  margin: 25px;
+
+  .button-row {
+    margin-top: 2em;
+
+    brx-button-warning {
+      margin-left: 1em;
+    }
+  }
+
 }
 
 .btn-delete {

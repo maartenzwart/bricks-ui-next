@@ -1,5 +1,5 @@
-<h2>Nieuwe tenant</h2>
 <form class="form" [formGroup]="tenantForm" (ngSubmit)="onSubmit()" novalidate>
+  <h2>Nieuwe tenant</h2>
   <div class="row">
     <brx-input-text label="Organisatie naam" name="name" formControlName="name" [errorMessages]="errorMessages.name"
                     sizeClasses="col-lg-3 col-md-5 col-sm-7 col-12"></brx-input-text>
@@ -160,9 +160,12 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row button-row">
     <div class="col-12">
       <brx-button-primary type="submit" [disabled]="!tenantForm.valid">Tenant aanmaken</brx-button-primary>
+      <a [routerLink]="'..'" (click)="adminTenantService.announceCreatingNewTenant(false)">
+        <brx-button-warning outline="true">Annuleer</brx-button-warning>
+      </a>
     </div>
   </div>
 </form>

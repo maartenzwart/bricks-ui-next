@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {BrxAddress} from '../../../../../interfaces/brx-address';
 import {AddressService} from '../../../../../services/address.service';
@@ -12,6 +12,7 @@ import {BrxValidators} from '../../../../../common/forms/validators';
   styleUrls: ['./admin-settings-create-tenant.component.scss']
 })
 export class AdminSettingsCreateTenantComponent implements OnInit {
+  @Output() cancelled: EventEmitter<boolean> = new EventEmitter<boolean>();
   createNewEmployee = false;
 
   tenantForm = this.fb.group({
@@ -169,12 +170,14 @@ export class AdminSettingsCreateTenantComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder, private addressService: AddressService, private adminTenantService: AdminTenantService) {
+    adminTenantService.announceCreatingNewTenant(true);
   }
 
   ngOnInit() {
   }
 
   onSubmit() {
+    this.adminTenantService.announceCreatingNewTenant(false);
     const formUser = this.tenantForm.get('user').value;
     if (formUser.id) {
       formUser.givenName = null;

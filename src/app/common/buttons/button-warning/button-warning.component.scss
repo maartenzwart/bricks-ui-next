@@ -1,5 +1,11 @@
+@import "~src/scss/variables/index";
+
 button {
   text-transform: uppercase;
+
+  &:hover {
+    color: $white;
+  }
 }
 
 :host ::ng-deep {

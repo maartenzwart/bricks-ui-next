@@ -7,6 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ButtonWarningComponent implements OnInit {
   @Input() type = 'button';
+  @Input() outline = false;
 
   constructor() {
   }

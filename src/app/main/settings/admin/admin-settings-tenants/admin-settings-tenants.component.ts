@@ -1,23 +1,27 @@
-import {Component, OnInit} from '@angular/core';
-import {BrxTenants} from '../../../../interfaces/brx-tenant';
-import {TenantService} from '../../../../services/tenant.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AdminTenantService} from '../../../../services/settings/admin/admin-tenant.service';
+import {Subscription} from 'rxjs';
+
 
 @Component({
   selector: 'brx-admin-settings-tenants',
   templateUrl: './admin-settings-tenants.component.html',
   styleUrls: ['./admin-settings-tenants.component.scss']
 })
-export class AdminSettingsTenantsComponent implements OnInit {
-  tenants: BrxTenants = [];
+export class AdminSettingsTenantsComponent implements OnInit, OnDestroy {
+  createTenant = false;
+  createTenantCancelled: Subscription;
 
-  constructor(private tenantService: TenantService) {
-  }
-
-  ngOnInit() {
-    this.tenantService.getTenants().subscribe(result => {
-      console.log('getTenants', result);
-      this.tenants = result;
+  constructor(private adminTenantService: AdminTenantService) {
+    this.createTenantCancelled = adminTenantService.creatingNewTenantSource$.subscribe(result => {
+      this.createTenant = result;
     });
   }
 
+  ngOnInit() {
+  }
+
+  ngOnDestroy(): void {
+    this.createTenantCancelled.unsubscribe();
+  }
 }
