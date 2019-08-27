@@ -3,93 +3,166 @@
   <div class="row">
     <brx-input-text label="Organisatie naam" name="name" formControlName="name" [errorMessages]="errorMessages.name"
                     sizeClasses="col-lg-3 col-md-5 col-sm-7 col-12"></brx-input-text>
+    <brx-input-text label="Medewerker" name="user" [errorMessages]="errorMessages.name" [formControl]="tenantForm.get('user').get('id')"
+                    sizeClasses="col-lg-3 col-md-5 col-sm-7 col-12">
+      <brx-button-create input-append (click)="createNewEmployee=true"></brx-button-create>
+    </brx-input-text>
   </div>
-  <h2 class="clearfix">Adres
-    <div class="float-right">
-      <brx-button-create (click)="addAddress()">Adres</brx-button-create>
+  <ng-template [ngIf]="createNewEmployee">
+    <div class="row row-create-employee">
+      <div class="col-12">
+        <h2>Nieuwe medewerker
+          <brx-icon-close class="float-right pointer" (click)="createNewEmployee=false"></brx-icon-close>
+        </h2>
+        <div class="row">
+          <brx-input-text label="E-mail" [errorMessages]="errorMessages.name" [formControl]="tenantForm.get('user').get('email')" name="employee-email"
+                          sizeClasses="col-12 col-sm-8 col-md-5 col-lg-5 col-xl-3"></brx-input-text>
+        </div>
+        <div class="row">
+          <brx-input-text label="Voornaam" [errorMessages]="errorMessages.name" [formControl]="tenantForm.get('user').get('givenName')" name="first-name"
+                          sizeClasses="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2"></brx-input-text>
+          <brx-input-text label="Tussenvoegsels" [errorMessages]="errorMessages.name" [formControl]="tenantForm.get('user').get('insertion')"
+                          name="insertion" sizeClasses="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-1"></brx-input-text>
+          <brx-input-text label="Achternaam" [errorMessages]="errorMessages.name" [formControl]="tenantForm.get('user').get('familyName')" name="last-name"
+                          sizeClasses="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2"></brx-input-text>
+        </div>
+      </div>
     </div>
-  </h2>
+  </ng-template>
+  <hr/>
+  <h2>Adres</h2>
   <div formArrayName="addresses" *ngFor="let address of tenantForm.get('addresses').controls; let i = index">
     <div [formGroupName]="i.toString()">
       <div class="row">
-        <div class="col-11">
+        <div class="col-10 col-sm-8 col-md-9 col-lg-10">
           <div class="row">
-            <brx-input-checkbox (inputClick)="addressChangePrimary(i, $event)" sizeClasses="col-md-2 col-sm-7 col-12 col-lg-1" checkboxLabel="Ja/Nee" label="Primair"
-                                name="is-primary-{{i}}"
-                                formControlName="isPrimary"></brx-input-checkbox>
             <brx-input-text label="Postcode" name="postalCode-{{i}}" (change)="getAddressByApi(i)" formControlName="postalCode"
-                            sizeClasses="col-lg-2 col-md-2 col-sm-3 col-4"></brx-input-text>
-            <brx-input-text label="Huisnummer" brxType="number" name="houseNumber-{{i}}" (change)="getAddressByApi(i)" formControlName="houseNumber"
-                            sizeClasses="col-lg-1 col-md-2 col-sm-2 col-3"></brx-input-text>
-            <brx-input-text label="Toevoeging" name="suffix-{{i}}" formControlName="suffix" sizeClasses="col-lg-1 col-md-2 col-sm-2 col-4"></brx-input-text>
+                            sizeClasses="col-lg-2 col-md-3 col-sm-4 col-5"></brx-input-text>
+            <brx-input-text label="Nummer" brxType="number" name="houseNumber-{{i}}" (change)="getAddressByApi(i)" formControlName="houseNumber"
+                            sizeClasses="col-lg-1 col-m d-2 col-sm-3 col-3"></brx-input-text>
+            <brx-input-text label="Toevoeging" name="suffix-{{i}}" formControlName="suffix"
+                            sizeClasses="col-lg-1 col-md-2 col-sm-3 col-3"></brx-input-text>
             <brx-input-text label="Straat" name="street-{{i}}" formControlName="street"
-                            sizeClasses="col-lg-2 col-md-6 col-sm-7 col-12"></brx-input-text>
-            <brx-input-text label="Stad" name="city-{{i}}" formControlName="city" sizeClasses="col-lg-2 col-md-6 col-sm-7 col-12"></brx-input-text>
-            <brx-input-select-country label="Land" name="country-{{i}}" sizeClasses="col-lg-2 col-md-5 col-sm-6 col-12"
+                            sizeClasses="col-lg-3 col-md-5 col-sm-10 col-11"></brx-input-text>
+            <brx-input-text label="Plaats" name="city-{{i}}" formControlName="city"
+                            sizeClasses="col-lg-3 col-md-6 col-sm-10 co-11"></brx-input-text>
+            <brx-input-select-country label="Land" name="country-{{i}}"
+                                      sizeClasses="col-lg-2 col-md-6 col-sm-10 col-11"
                                       formControlName="country"></brx-input-select-country>
           </div>
+          <div class="row">
+            <!--        ADDRESS PHONE NUMBERS START -->
+            <div class="col-12 col-sm-10 col-md-6">
+              <div formArrayName="phoneNumbers" *ngFor="let phoneNumber of address.get('phoneNumbers').controls; let x = index">
+                <div [formGroupName]="x.toString()">
+                  <div class="row">
+                    <brx-input-text label="Telefoonnummer" type="phone" name="address-phoneNumber-{{x}}" formControlName="phoneNumber"
+                                    sizeClasses="col-lg-8 col-sm-12 col-11" [errorMessages]="errorMessages.address">
+                      <brx-input-phone-number-country-code formControlName="country" [default]="address.get('country').value" input-prepend></brx-input-phone-number-country-code>
+                      <div class="d-flex" input-append>
+                        <brx-button-primary (click)="addAddressPhoneNumber(x, address.get('phoneNumbers'))">
+                          <brx-icon-plus-light></brx-icon-plus-light>
+                        </brx-button-primary>
+                        <brx-button-dark *ngIf="address.get('phoneNumbers').length > 1" (click)="removeAddressPhoneNumber(x, address.get('phoneNumbers'))">
+                          <brx-icon-delete color="#ffffff" transform="scale(1.2)"></brx-icon-delete>
+                        </brx-button-dark>
+                      </div>
+                    </brx-input-text>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--        ADDRESS PHONE NUMBERS END -->
+            <!--       ADDRESS EMAIL ADDRESSES START -->
+            <div class="col-12 col-sm-10 col-md-6">
+              <div formArrayName="emailAddresses" *ngFor="let emailAddres of address.get('emailAddresses').controls; let z = index">
+                <div [formGroupName]="z.toString()">
+                  <div class="row">
+                    <brx-input-text label="Email" type="email" name="address-email-{{z}}" formControlName="email"
+                                    sizeClasses="col-lg-8 col-md-10 col-sm-12 col-11" [errorMessages]="errorMessages.address">
+                      <div class="d-flex" input-append>
+                        <brx-button-primary (click)="addAddressEmail(z, address.get('emailAddresses'))">
+                          <brx-icon-plus-light></brx-icon-plus-light>
+                        </brx-button-primary>
+                        <brx-button-dark *ngIf="address.get('emailAddresses').length > 1" (click)="removeAddressEmail(z, address.get('emailAddresses'))">
+                          <brx-icon-delete color="#ffffff" transform="scale(1.2)"></brx-icon-delete>
+                        </brx-button-dark>
+                      </div>
+                    </brx-input-text>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--       ADDRESS EMAIL ADDRESSES END -->
+          </div>
         </div>
-        <div class="col-lg-1 col-md-2 col-sm-7 col-12 btn-delete align-items-end" *ngIf="tenantForm.get('addresses').controls.length > 1">
+        <div class="col-2 col-sm-4 col-md-3 col-lg-2 btn-delete">
           <div class="form-group">
-            <label class="d-lg-inline-block d-none">&nbsp;</label>
-            <brx-button-warning (click)="removeAddress(i)">
-              <brx-icon-delete color="#ffffff" transform="scale(1.2)"></brx-icon-delete>
-            </brx-button-warning>
-          </div>
-        </div>
-
-        <!--        ADDRESS PHONE NUMBERS START -->
-        <div class="col-12 col-lg-6 col-address-phone-numbers">
-          <div formArrayName="phoneNumbers" *ngFor="let phoneNumber of address.get('phoneNumbers').controls; let x = index">
-            <div [formGroupName]="x.toString()">
-              <div class="row">
-                <brx-input-text label="Telefoonnummer" type="phone" name="address-phoneNumber-{{x}}" formControlName="phoneNumber"
-                                sizeClasses="col-lg-6 col-md-4 col-sm-6 col-8" [errorMessages]="errorMessages.address">
-                  <brx-input-phone-number-country-code formControlName="country" [default]="address.get('country').value" input-prepend></brx-input-phone-number-country-code>
-                </brx-input-text>
-                <brx-input-checkbox checkboxLabel="Ja/Nee" label="Primair" formControlName="isPrimary" name="address-phone-is-primary-{{x}}"
-                                    sizeClasses="col-lg-2 col-md-2 col-sm-7 col-12"></brx-input-checkbox>
-                <div class="form-group col-lg-2">
-                  <label class="d-lg-inline-block d-none">&nbsp;</label>
-                  <div class="d-flex">
-                    <brx-button-create *ngIf="x === 0" (click)="addAddressPhoneNumber(address.get('phoneNumbers'))"></brx-button-create>
-                    <brx-button-warning *ngIf="address.get('phoneNumbers').length > 1" (click)="removeAddressPhoneNumber(x, address.get('phoneNumbers'))">
-                      <brx-icon-delete color="#ffffff" transform="scale(1.2)"></brx-icon-delete>
-                    </brx-button-warning>
-                  </div>
-                </div>
+            <label class="d-block">&nbsp;</label>
+            <div class="d-flex justify-content-end">
+              <div>
+                <brx-button-primary (click)="addAddress()">
+                  <brx-icon-plus-light></brx-icon-plus-light>
+                  Adres
+                </brx-button-primary>
+              </div>
+              <div>
+                <brx-button-dark (click)="removeAddress(i)" *ngIf="tenantForm.get('addresses').controls.length > 1">
+                  <brx-icon-delete color="#ffffff" transform="scale(1.2)"></brx-icon-delete>
+                </brx-button-dark>
               </div>
             </div>
           </div>
         </div>
-        <!--        ADDRESS PHONE NUMBERS END -->
-        <!--       ADDRESS EMAIL ADDRESSES START -->
-        <div class="col-12 col-md-6">
-          <div formArrayName="emailAddresses" *ngFor="let emailAddres of address.get('emailAddresses').controls; let z = index">
-            <div [formGroupName]="z.toString()">
-              <div class="row">
-                <brx-input-text label="Email" type="email" name="address-email-{{z}}" formControlName="email"
-                                sizeClasses="col-lg-3 col-md-6 col-sm-7 col-12" [errorMessages]="errorMessages.address">
-                </brx-input-text>
-                <brx-input-checkbox checkboxLabel="Ja/Nee" label="Primair" formControlName="isPrimary" name="address-email-is-primary-{{z}}"
-                                    sizeClasses="col-md-2 col-sm-7 col-12 col-lg-2"></brx-input-checkbox>
-                <div class="form-group">
-                  <label class="d-lg-inline-block d-none">&nbsp;</label>
-                  <div class="d-flex col-lg-2">
-                    <brx-button-create *ngIf="z === 0" (click)="addAddressEmail(address.get('emailAddresses'))"></brx-button-create>
-                    <brx-button-warning *ngIf="address.get('emailAddresses').length > 1" (click)="removeAddressEmail(z, address.get('emailAddresses'))">
-                      <brx-icon-delete color="#ffffff" transform="scale(1.2)"></brx-icon-delete>
-                    </brx-button-warning>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--       ADDRESS EMAIL ADDRESSES END -->
       </div>
       <hr/>
     </div>
   </div>
-  <button type="submit" [disabled]="!tenantForm.valid">Submit</button>
+  <h2>Algemene contactgegevens</h2>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-11 col-lg-12">
+      <div class="row">
+        <div class="col-10 col-sm-7 col-md-5 col-lg-5">
+          <ng-container formArrayName="phoneNumbers" *ngFor="let phoneNumber of tenantForm.get('phoneNumbers').controls; let i = index">
+            <div class="row" [formGroupName]="i.toString()">
+              <brx-input-text label="Telefoonnummer" type="phone" name="phoneNumber-{{i}}" formControlName="phoneNumber"
+                              sizeClasses="col-lg-8 col-md-12 col-sm-12 col-12" [errorMessages]="errorMessages.address">
+                <brx-input-phone-number-country-code formControlName="country" input-prepend></brx-input-phone-number-country-code>
+                <div class="d-flex" input-append>
+                  <brx-button-primary (click)="addPhoneNumber(i)">
+                    <brx-icon-plus-light></brx-icon-plus-light>
+                  </brx-button-primary>
+                  <brx-button-dark *ngIf="tenantForm.get('phoneNumbers').length > 1" (click)="removePhoneNumber(i)">
+                    <brx-icon-delete color="#ffffff" transform="scale(1.2)"></brx-icon-delete>
+                  </brx-button-dark>
+                </div>
+              </brx-input-text>
+            </div>
+          </ng-container>
+        </div>
+        <div class="col-10 col-sm-7 col-md-5 col-lg-5">
+          <ng-container formArrayName="emailAddresses" *ngFor="let email of tenantForm.get('emailAddresses').controls; let i = index">
+            <div class="row" [formGroupName]="i.toString()">
+              <brx-input-text label="Email" type="email" name="email-{{i}}" formControlName="email"
+                              sizeClasses="col-lg-8 col-md-10 col-sm-12 col-12" [errorMessages]="errorMessages.address">
+                <div class="d-flex" input-append>
+                  <brx-button-primary (click)="addEmail(i)">
+                    <brx-icon-plus-light></brx-icon-plus-light>
+                  </brx-button-primary>
+                  <brx-button-dark *ngIf="tenantForm.get('emailAddresses').length > 1" (click)="removeEmail(i)">
+                    <brx-icon-delete color="#ffffff" transform="scale(1.2)"></brx-icon-delete>
+                  </brx-button-dark>
+                </div>
+              </brx-input-text>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <brx-button-primary type="submit" [disabled]="!tenantForm.valid">Tenant aanmaken</brx-button-primary>
+    </div>
+  </div>
 </form>

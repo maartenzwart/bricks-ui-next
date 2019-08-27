@@ -2,6 +2,7 @@ const BASE = 'http://localhost:3000';
 const PROJECTS = '/projects';
 const RELATIONS = '/relations';
 const TENANTS = '/tenants';
+const USERS = '/users';
 
 const projects = {
   all: () => {
@@ -27,9 +28,23 @@ const tenants = {
   }
 };
 
+const users = {
+  all: () => {
+    return BASE + USERS;
+  }
+};
+
 const addresses = {
   findByPostalCodeAndHouseNumber: (postalCode: string, houseNumber: number | string) => {
     return `http://geodata.nationaalgeoregister.nl/locatieserver/free?fq=postcode:${postalCode}&fq=huisnummer:${houseNumber}`;
+  }
+};
+
+const adminSettings = {
+  tenants: {
+    all: () => {
+      return `${BASE}${TENANTS}`;
+    }
   }
 };
 
@@ -37,5 +52,7 @@ export const BRX_API = {
   projects,
   relations,
   tenants,
-  addresses
+  addresses,
+  users,
+  adminSettings
 };

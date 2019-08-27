@@ -33,6 +33,10 @@ import {NgbTypeaheadModule} from '@ng-bootstrap/ng-bootstrap';
 import {InputCheckboxComponent} from './inputs/input-checkbox/input-checkbox.component';
 import {InputPhoneNumberCountryCodeComponent} from './inputs/input-phone-number-country-code/input-phone-number-country-code.component';
 import {ButtonWarningComponent} from './buttons/button-warning/button-warning.component';
+import {ButtonPrimaryComponent} from './buttons/button-primary/button-primary.component';
+import {ButtonDangerComponent} from './buttons/button-danger/button-danger.component';
+import {ButtonDarkComponent} from './buttons/button-dark/button-dark.component';
+import {FormAddressComponent} from './forms/form-address/form-address.component';
 
 
 @NgModule({
@@ -65,7 +69,11 @@ import {ButtonWarningComponent} from './buttons/button-warning/button-warning.co
     InputSelectCountryComponent,
     InputCheckboxComponent,
     InputPhoneNumberCountryCodeComponent,
-    ButtonWarningComponent
+    ButtonWarningComponent,
+    ButtonPrimaryComponent,
+    ButtonDangerComponent,
+    ButtonDarkComponent,
+    FormAddressComponent
   ],
   imports: [
     CommonModule,
@@ -103,7 +111,11 @@ import {ButtonWarningComponent} from './buttons/button-warning/button-warning.co
     InputSelectCountryComponent,
     InputCheckboxComponent,
     InputPhoneNumberCountryCodeComponent,
-    ButtonWarningComponent
+    ButtonWarningComponent,
+    ButtonPrimaryComponent,
+    ButtonDangerComponent,
+    ButtonDarkComponent,
+    IconPlusLightComponent
   ]
 })
 export class BrxCommonModule {

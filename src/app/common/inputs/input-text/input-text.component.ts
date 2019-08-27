@@ -56,7 +56,6 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   }
 
   getErrorMessage(key: string) {
-    console.log(this.errorMessages);
     if (!this.errorMessages) {
       return;
     }

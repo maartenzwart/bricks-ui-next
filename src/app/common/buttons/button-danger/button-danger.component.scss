@@ -1,0 +1,9 @@
+button {
+  text-transform: uppercase;
+}
+
+:host ::ng-deep {
+  svg {
+    vertical-align: baseline;
+  }
+}

@@ -1,4 +1,73 @@
 {
+  "tenants": [
+    {
+      "id": 1,
+      "name": "Tenant1",
+      "addresses": [
+        {
+          "street": "Aan de Bogen",
+          "houseNumber": 14,
+          "suffix": "",
+          "postalCode": "6118AS",
+          "city": "Nieuwstadt",
+          "country": {
+            "name": "Netherlands",
+            "native": "Nederland",
+            "phone": "31",
+            "continent": "EU",
+            "capital": "Amsterdam",
+            "currency": "EUR",
+            "languages": [
+              "nl"
+            ],
+            "emoji": "🇳🇱",
+            "emojiU": "U+1F1F3 U+1F1F1",
+            "abbreviation": "NL"
+          },
+          "type": "",
+          "phoneNumbers": [
+            {
+              "phoneNumber": "6123123123",
+              "type": "",
+              "country": "+31"
+            }
+          ],
+          "emailAddresses": [
+            {
+              "email": "adress@email.com",
+              "type": ""
+            }
+          ]
+        }
+      ],
+      "phoneNumbers": [
+        {
+          "phoneNumber": "6000000000",
+          "type": "",
+          "country": "+31"
+        }
+      ],
+      "emailAddresses": [
+        {
+          "email": "general@email.com",
+          "type": ""
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": "iefsf8234-sdfk3",
+      "email": "max.vandelaar@luminis.eu",
+      "givenName": "Max",
+      "insertion": "van de",
+      "familyName": "Laar",
+      "tenant": {
+        "id": 1,
+        "name": "Tenant1"
+      }
+    }
+  ],
   "relations": [
     {
       "id": "1",

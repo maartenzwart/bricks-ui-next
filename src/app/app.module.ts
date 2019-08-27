@@ -30,6 +30,7 @@ import {JwtUtils} from './utils';
 import {FullNamePipe} from './pipes/full-name/full-name.pipe';
 import {AdminSettingsCreateTenantComponent} from './main/settings/admin/admin-settings-tenants/admin-settings-create-tenant/admin-settings-create-tenant.component';
 import {AdminSettingsTenantListComponent} from './main/settings/admin/admin-settings-tenants/admin-settings-tenant-list/admin-settings-tenant-list.component';
+import {RxReactiveFormsModule} from '@rxweb/reactive-form-validators';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import {AdminSettingsTenantListComponent} from './main/settings/admin/admin-sett
       }
     }),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RxReactiveFormsModule
   ],
   providers: [FullNamePipe],
   bootstrap: [AppComponent],

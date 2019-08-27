@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'brx-button-create',
@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./button-create.component.scss']
 })
 export class ButtonCreateComponent implements OnInit {
+  @Input() type = 'button';
 
   constructor() {
   }

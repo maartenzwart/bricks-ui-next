@@ -3,13 +3,43 @@
 @import "~bootstrap/scss/variables";
 @import "~src/scss/variables/index";
 
+h2 {
+  color: $grey;
+}
+
+.form {
+  padding-bottom: 15px;
+}
+
 .btn-delete {
-  @include media-breakpoint-up(lg) {
-    // Styles
-    max-width: 100px;
+  @include media-breakpoint-down(xs) {
+
+    ::ng-deep {
+      .brx-btn-primary {
+        max-width: 38px;
+        //width:auto;
+        .content-wrapper {
+          white-space: nowrap;
+          writing-mode: vertical-rl;
+          text-orientation: mixed;
+        }
+      }
+    }
   }
 }
 
-.col-address-phone-numbers {
-  border-right: 1px solid $light-grey;
+.row-create-employee {
+  border-top: 1px solid $grey;
+  border-bottom: 1px solid $grey;
+  background-color: lighten($light-grey, 3%);
+  margin-left: -25px;
+  margin-right: -25px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  div {
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+  }
 }
