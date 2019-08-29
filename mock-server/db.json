@@ -381,6 +381,25 @@
       "duration": 180,
       "status": "incomplete",
       "id": 5
+    },
+    {
+      "id": "6a9f98bc-0057-4f94-b917-fb4da2853857",
+      "start": 1566972000,
+      "end": 1567000800,
+      "meta": {
+        "activity": {
+          "id": 1,
+          "name": "Test Activity"
+        },
+        "project": {
+          "id": 1,
+          "name": "Test Project"
+        },
+        "relation": {
+          "id": 1,
+          "name": "Test relation"
+        }
+      }
     }
   ]
 }

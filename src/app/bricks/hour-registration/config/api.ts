@@ -1,4 +1,4 @@
-const BASE = 'http://localhost:3000';
+const BASE = 'http://localhost:4000';
 const REGISTRATION = '/timeRegistrations';
 
 const events = {
