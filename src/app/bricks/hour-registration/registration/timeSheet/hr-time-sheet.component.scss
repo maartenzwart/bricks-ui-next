@@ -12,7 +12,7 @@
 
     &:first-child {
       .brx-list-cell {
-        height: 40px
+        //height: 40px
       }
     }
 
@@ -30,5 +30,8 @@
 
   .brx-list-cell {
     padding: 5px 10px;
+    height: 48px;
+    display: flex;
+    align-items: center;
   }
 }

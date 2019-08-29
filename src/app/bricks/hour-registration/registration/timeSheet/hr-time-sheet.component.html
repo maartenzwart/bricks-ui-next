@@ -8,7 +8,7 @@
 <div class="brx-list-container">
   <div class="brx-list-column">
     <div class="brx-list-header">Klussen</div>
-    <div class="brx-list-row brx-list-cell" *ngFor="let group of items | orderBy:'project.name'">
+    <div class="brx-list-row brx-list-cell align-middle" *ngFor="let group of items | orderBy:'project.name'">
       {{group.project.name}}
     </div>
   </div>
@@ -16,7 +16,7 @@
     <div class="brx-list-column">
       <div class="brx-list-header">{{this.days[day.day].date | date: 'EEEEEE | dd'}}</div>
       <div class="brx-list-row brx-list-cell" *ngFor="let group of items | orderBy:'project.name'">
-        <input [value]="getPresetDuration(group.registrations, day.day)"/>
+        <input class="form-control" [value]="getPresetDuration(group.registrations, day.day)"/>
       </div>
     </div>
   </ng-container>
