@@ -31,7 +31,7 @@ export class AdminSettingsUsersComponent implements OnInit, OnDestroy {
     }, {
       index: 0,
       key: 'avatar',
-      title: 'Avatar',
+      title: '',
       type: BrxListType.IMAGE
     }, {
       index: 4,
@@ -48,7 +48,6 @@ export class AdminSettingsUsersComponent implements OnInit, OnDestroy {
   handleSort(sort: { reversed: boolean, key: string }): void {
     this.sortKey = sort.key;
     this.sortReversed = sort.reversed;
-    console.log('Change sort!!');
   }
 
 

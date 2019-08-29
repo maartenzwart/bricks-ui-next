@@ -80,7 +80,7 @@
       "isActive": true,
       "lastLogin": null,
       "bricks": [],
-      "avatar": "https://loremflickr.com/320/240/man",
+      "avatar": "https://loremflickr.com/320/240/man?random=2",
       "tenant": {
         "id": 1,
         "name": "Tenant1"
