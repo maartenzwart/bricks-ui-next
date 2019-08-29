@@ -62,6 +62,25 @@
       "givenName": "Max",
       "insertion": "van de",
       "familyName": "Laar",
+      "isActive": true,
+      "lastLogin": null,
+      "bricks": [],
+      "avatar": "https://loremflickr.com/320/240/man",
+      "tenant": {
+        "id": 1,
+        "name": "Tenant1"
+      }
+    },
+    {
+      "id": "iefsf8234-3rfefsdf",
+      "email": "test@test.nl",
+      "givenName": "Test",
+      "insertion": "",
+      "familyName": "Achternaam",
+      "isActive": true,
+      "lastLogin": null,
+      "bricks": [],
+      "avatar": "https://loremflickr.com/320/240/man",
       "tenant": {
         "id": 1,
         "name": "Tenant1"

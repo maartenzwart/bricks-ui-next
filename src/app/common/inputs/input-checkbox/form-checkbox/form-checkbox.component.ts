@@ -1,24 +1,29 @@
 import {Component, EventEmitter, forwardRef, HostBinding, Input, OnInit, Output} from '@angular/core';
-import {InputErrorMessages} from '../../../interfaces/input-error-message';
-import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors} from '@angular/forms';
+import {FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors} from '@angular/forms';
+import {InputErrorMessages} from '../../../../interfaces/input-error-message';
 
 @Component({
-  selector: 'brx-input-checkbox',
-  templateUrl: './input-checkbox.component.html',
-  styleUrls: ['./input-checkbox.component.scss'],
+  selector: 'brx-form-checkbox',
+  templateUrl: './form-checkbox.component.html',
+  styleUrls: ['./form-checkbox.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputCheckboxComponent),
+      useExisting: forwardRef(() => FormCheckboxComponent),
       multi: true
     },
     {
       provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => InputCheckboxComponent),
+      useExisting: forwardRef(() => FormCheckboxComponent),
       multi: true,
     }]
 })
-export class InputCheckboxComponent implements OnInit, ControlValueAccessor {
+export class FormCheckboxComponent implements OnInit {
+
+  @HostBinding('class')
+  @Input()
+  sizeClasses = 'col-lg-6 col-md-8 col-sm-10 col-12';
+
   @Input() type = 'text';
   @Input() placeholder = '';
   @Input() label = '';
@@ -27,7 +32,6 @@ export class InputCheckboxComponent implements OnInit, ControlValueAccessor {
   @Input() errorMessages: InputErrorMessages;
   @Input() autocomplete: string;
   @Output() inputClick: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Input() disabled: string;
   private objectKeys = Object.keys;
   private inputValue = false;
   private errors: ValidationErrors;
@@ -55,7 +59,7 @@ export class InputCheckboxComponent implements OnInit, ControlValueAccessor {
     return errorMsg.message;
   }
 
-  public validate(c: FormControl) {
+  validate(c: FormControl) {
     if (c.errors && c.dirty) {
       this.errors = c.errors;
     } else {

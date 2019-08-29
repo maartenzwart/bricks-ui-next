@@ -32,6 +32,7 @@ import {AdminSettingsCreateTenantComponent} from './main/settings/admin/admin-se
 import {AdminSettingsTenantListComponent} from './main/settings/admin/admin-settings-tenants/admin-settings-tenant-list/admin-settings-tenant-list.component';
 import {RxReactiveFormsModule} from '@rxweb/reactive-form-validators';
 import {CookieService} from 'ngx-cookie-service';
+import {PipesModule} from './pipes/pipes.module';
 
 export function jwtOptionsFactory(cookieService: CookieService) {
   return {
@@ -76,7 +77,8 @@ export function jwtOptionsFactory(cookieService: CookieService) {
     }),
     FormsModule,
     ReactiveFormsModule,
-    RxReactiveFormsModule
+    RxReactiveFormsModule,
+    PipesModule
   ],
   providers: [
     FullNamePipe,

@@ -1,1 +1,11 @@
-<p>admin-settings-users works!</p>
+<div class="brx-container">
+  <brx-list [headers]="listHeaders" [items]="users" (sorting)="handleSort($event)">
+    <ng-container after>
+      <div brxListColumn>
+        <div brxListHeader>Acties</div>
+        <div brxListCell
+             *ngFor="let user of users | orderBy:sortKey:sortReversed:true; index as index"><span class="brx-primary pointer" (click)="editUser(user.id)">Wijzig</span></div>
+      </div>
+    </ng-container>
+  </brx-list>
+</div>

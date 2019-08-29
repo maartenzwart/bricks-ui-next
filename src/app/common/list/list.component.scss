@@ -1,27 +1,43 @@
 @import '~src/scss/variables/index';
 
-.brx-list-container {
-  width: 100%;
-  display: flex;
-  //align-content: left;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
 
-  .brx-list-column {
-    margin-right: 1px;
+::ng-deep {
+  .brx-list-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
 
-    &:last-child {
-      flex-grow: 1;
-      margin-right: 0;
+    .sortable-container {
+      margin-left: 0.5em;
+    }
+
+    .brx-list-column {
+      margin-right: 1px;
+
+      &:last-child {
+        flex-grow: 1;
+        margin-right: 0;
+      }
+    }
+
+    .brx-list-header {
+      background-color: $light-grey;
+      width: auto;
+    }
+
+    .brx-list-cell {
+      display: flex;
+      align-items: center;
+      padding: 5px 10px;
+      height: 60px;
     }
   }
 
-  .brx-list-header {
-    background-color: $light-grey;
-    width: auto;
-  }
-
-  .brx-list-cell {
-    padding: 5px 10px;
+  img {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
   }
 }
+

@@ -37,6 +37,10 @@ import {ButtonPrimaryComponent} from './buttons/button-primary/button-primary.co
 import {ButtonDangerComponent} from './buttons/button-danger/button-danger.component';
 import {ButtonDarkComponent} from './buttons/button-dark/button-dark.component';
 import {FormAddressComponent} from './forms/form-address/form-address.component';
+import {FormCheckboxComponent} from './inputs/input-checkbox/form-checkbox/form-checkbox.component';
+import {ListHeaderDirective} from './list/list-header.directive';
+import {ListColumnDirective} from './list/list-column.directive';
+import {ListCellDirective} from './list/list-cell.directive';
 
 
 @NgModule({
@@ -73,7 +77,11 @@ import {FormAddressComponent} from './forms/form-address/form-address.component'
     ButtonPrimaryComponent,
     ButtonDangerComponent,
     ButtonDarkComponent,
-    FormAddressComponent
+    FormAddressComponent,
+    FormCheckboxComponent,
+    ListHeaderDirective,
+    ListColumnDirective,
+    ListCellDirective
   ],
   imports: [
     CommonModule,
@@ -115,7 +123,10 @@ import {FormAddressComponent} from './forms/form-address/form-address.component'
     ButtonPrimaryComponent,
     ButtonDangerComponent,
     ButtonDarkComponent,
-    IconPlusLightComponent
+    IconPlusLightComponent,
+    ListHeaderDirective,
+    ListColumnDirective,
+    ListCellDirective
   ]
 })
 export class BrxCommonModule {

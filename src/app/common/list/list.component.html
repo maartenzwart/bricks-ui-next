@@ -1,13 +1,25 @@
 <div class="brx-list-container">
-  <div class="brx-list-column" *ngFor="let header of headers | orderBy:'index'">
-    <div class="brx-list-header brx-list-cell">{{header.title}}
-      <span *ngIf="header.sortable" (click)="handleSort(header.key)" class="pointer">
+  <ng-content select="[before]"></ng-content>
+  <div brxListColumn *ngFor="let header of headers | orderBy:'index'">
+    <div brxListHeader (click)="handleSort(header.key, header.sortable)" [class.pointer]="header.sortable">{{header.title}}
+      <span *ngIf="header.sortable" (click)="handleSort(header.key, header.sortable)" class="pointer sortable-container">
         <brx-icon-sort-default *ngIf="orderByKey !== header.key"></brx-icon-sort-default>
         <brx-icon-sort-up *ngIf="orderByKey === header.key && orderByReversed"></brx-icon-sort-up>
         <brx-icon-sort-down *ngIf="orderByKey === header.key && !orderByReversed"></brx-icon-sort-down>
       </span></div>
-    <div class="brx-list-row brx-list-cell" *ngFor="let item of items | orderBy:orderByKey:orderByReversed:true">
-      <span>{{item[header.key]}}</span>
+    <div brxListCell *ngFor="let item of items | orderBy:orderByKey:orderByReversed:true">
+      <ng-container *ngIf="header.type === brxListType.IMAGE; else boolean">
+        <img [src]="item[header.key]"/>
+      </ng-container>
+      <ng-template #boolean>
+        <ng-container *ngIf="header.type === brxListType.BOOLEAN; else defaultField">
+          <brx-input-checkbox [ngModel]="item[header.key]" disabled="disabled"></brx-input-checkbox>
+        </ng-container>
+      </ng-template>
+      <ng-template #defaultField>
+        <span>{{item[header.key]}}</span>
+      </ng-template>
     </div>
   </div>
+  <ng-content select="[after]"></ng-content>
 </div>

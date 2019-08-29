@@ -3,11 +3,19 @@
 @import "~bootstrap/scss/variables";
 @import "~src/scss/variables/index";
 
+.top-label {
+  //font-weight: bold;
+}
 
-//.custom-checkbox {
-//  height: 38px;
-//  padding-top: 7px;
-//}
+
+.invalid {
+  border-color: red;
+}
+
+.custom-checkbox {
+  height: 38px;
+  padding-top: 7px;
+}
 
 .brx-custom-label {
   &::before {
@@ -22,10 +30,10 @@
 
 }
 
-
 .brx-custom-checkbox {
 
   &:checked ~ .custom-control-label {
+
     &::before {
       color: $brx-color-primary;
       border-color: $brx-color-primary;
@@ -61,22 +69,11 @@
   }
 
   &:disabled {
-    border-color: $grey;
-
-    &:checked {
-      ~ .custom-control-label {
-        &::before {
-          background-color: $grey;
-        }
-      }
-    }
-
     ~ .custom-control-label {
-      //color: $custom-control-label-disabled-color;
+      color: $custom-control-label-disabled-color;
 
       &::before {
-        background-color: $white;
-        border-color: $grey !important;
+        background-color: $custom-control-indicator-disabled-bg;
       }
     }
   }
