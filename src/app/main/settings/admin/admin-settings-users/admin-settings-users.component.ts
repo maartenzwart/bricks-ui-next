@@ -5,7 +5,6 @@ import {Subscription} from 'rxjs';
 import {BrxListHeaders, BrxListType} from '../../../../interfaces/brx-list-header';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AdminSettingsUsersCreateComponent} from './admin-settings-users-create/admin-settings-users-create.component';
-import {BrxRoutes} from '../../../../interfaces/brx-route';
 
 @Component({
   selector: 'brx-admin-settings-users',
@@ -44,6 +43,7 @@ export class AdminSettingsUsersComponent implements OnInit, OnDestroy {
       index: 5,
       key: 'isActive',
       title: 'Actief',
+      sortable: true,
       type: BrxListType.BOOLEAN
     }
   ];

@@ -34,6 +34,7 @@ import {RxReactiveFormsModule} from '@rxweb/reactive-form-validators';
 import {CookieService} from 'ngx-cookie-service';
 import {PipesModule} from './pipes/pipes.module';
 import {AdminSettingsUsersCreateComponent} from './main/settings/admin/admin-settings-users/admin-settings-users-create/admin-settings-users-create.component';
+import {OrganisationSettingsUserCreateComponent} from './main/settings/organisation/organisation-settings-users/organisation-settings-user-create/organisation-settings-user-create.component';
 
 export function jwtOptionsFactory(cookieService: CookieService) {
   return {
@@ -59,7 +60,8 @@ export function jwtOptionsFactory(cookieService: CookieService) {
     LoginComponent,
     AdminSettingsCreateTenantComponent,
     AdminSettingsTenantListComponent,
-    AdminSettingsUsersCreateComponent
+    AdminSettingsUsersCreateComponent,
+    OrganisationSettingsUserCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +97,8 @@ export function jwtOptionsFactory(cookieService: CookieService) {
     IconSettingsComponent,
     IconSearchComponent,
     IconProfileComponent,
-    AdminSettingsUsersCreateComponent
+    AdminSettingsUsersCreateComponent,
+    OrganisationSettingsUserCreateComponent
   ]
 })
 export class AppModule {
