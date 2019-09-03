@@ -67,6 +67,12 @@ export class InputCheckboxComponent implements OnInit, ControlValueAccessor {
     this.inputClick.emit(this.value);
   }
 
+  clicked() {
+    if (!this.disabled) {
+      this.value = !this.value;
+    }
+  }
+
   propagateChange(_: any) {
   }
 

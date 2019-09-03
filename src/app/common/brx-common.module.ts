@@ -29,7 +29,7 @@ import {InputTextComponent} from './inputs/input-text/input-text.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {IconDeleteComponent} from './icons/icon-delete/icon-delete.component';
 import {InputSelectCountryComponent} from './inputs/input-select-country/input-select-country.component';
-import {NgbTypeaheadModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModalModule, NgbModalRef, NgbTypeaheadModule} from '@ng-bootstrap/ng-bootstrap';
 import {InputCheckboxComponent} from './inputs/input-checkbox/input-checkbox.component';
 import {InputPhoneNumberCountryCodeComponent} from './inputs/input-phone-number-country-code/input-phone-number-country-code.component';
 import {ButtonWarningComponent} from './buttons/button-warning/button-warning.component';
@@ -41,6 +41,9 @@ import {FormCheckboxComponent} from './inputs/input-checkbox/form-checkbox/form-
 import {ListHeaderDirective} from './list/list-header.directive';
 import {ListColumnDirective} from './list/list-column.directive';
 import {ListCellDirective} from './list/list-cell.directive';
+import {FormPhoneNumberComponent} from './forms/form-phone-number/form-phone-number.component';
+import {FormEmailComponent} from './forms/form-email/form-email.component';
+import {ButtonPlainComponent} from './buttons/button-plain/button-plain.component';
 
 
 @NgModule({
@@ -81,7 +84,10 @@ import {ListCellDirective} from './list/list-cell.directive';
     FormCheckboxComponent,
     ListHeaderDirective,
     ListColumnDirective,
-    ListCellDirective
+    ListCellDirective,
+    FormPhoneNumberComponent,
+    FormEmailComponent,
+    ButtonPlainComponent
   ],
   imports: [
     CommonModule,
@@ -89,7 +95,8 @@ import {ListCellDirective} from './list/list-cell.directive';
     PipesModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbTypeaheadModule
+    NgbTypeaheadModule,
+    NgbModalModule
   ],
   exports: [
     NavItemComponent,
@@ -126,7 +133,11 @@ import {ListCellDirective} from './list/list-cell.directive';
     IconPlusLightComponent,
     ListHeaderDirective,
     ListColumnDirective,
-    ListCellDirective
+    ListCellDirective,
+    FormAddressComponent,
+    FormEmailComponent,
+    FormCheckboxComponent,
+    ButtonPlainComponent
   ]
 })
 export class BrxCommonModule {

@@ -1,8 +1,9 @@
 <div class="form-group">
   <label class="top-label">{{label}}</label>
   <div class="custom-control custom-checkbox">
-    <input class="custom-control-input brx-custom-checkbox" (change)="checkboxChanged()" type="checkbox" [class.invalid]="errors" [id]="name" [(ngModel)]="value"/>
-    <label class="custom-control-label brx-custom-label" [for]="name">
+    <input class="custom-control-input brx-custom-checkbox" (change)="checkboxChanged()" type="checkbox" [disabled]="disabled" [class.invalid]="errors" [id]="name"
+           [(ngModel)]="value"/>
+    <label class="custom-control-label brx-custom-label" [class.pointer]="disabled ? false : true" (click)="clicked()" [for]="name" [attr.disabled]="disabled">
       <span>{{checkboxLabel}}</span>
     </label>
   </div>

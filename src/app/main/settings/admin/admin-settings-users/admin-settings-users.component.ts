@@ -3,6 +3,9 @@ import {BrxUsers} from '../../../../interfaces/brx-user';
 import {AdminUsersService} from '../../../../services/settings/admin/admin-users.service';
 import {Subscription} from 'rxjs';
 import {BrxListHeaders, BrxListType} from '../../../../interfaces/brx-list-header';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AdminSettingsUsersCreateComponent} from './admin-settings-users-create/admin-settings-users-create.component';
+import {BrxRoutes} from '../../../../interfaces/brx-route';
 
 @Component({
   selector: 'brx-admin-settings-users',
@@ -50,12 +53,19 @@ export class AdminSettingsUsersComponent implements OnInit, OnDestroy {
     this.sortReversed = sort.reversed;
   }
 
-
-  constructor(private adminUsersService: AdminUsersService) {
+  constructor(private adminUsersService: AdminUsersService, private modalService: NgbModal) {
   }
 
   editUser(userId: string) {
-    console.log('EDIT USER', this.users.find(user => user.id === userId));
+    const userToEdit = this.users.find(user => user.id === userId);
+    if (userToEdit) {
+      const modalRef = this.modalService.open(AdminSettingsUsersCreateComponent, {
+        size: 'xl',
+        windowClass: 'modal-full',
+        container: '.brx-modal-container'
+      });
+      modalRef.componentInstance.user = userToEdit;
+    }
   }
 
   ngOnInit() {

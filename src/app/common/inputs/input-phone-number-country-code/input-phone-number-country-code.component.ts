@@ -54,6 +54,9 @@ export class InputPhoneNumberCountryCodeComponent implements OnInit, OnChanges, 
   }
 
   ngOnInit() {
+    if (this.default) {
+      this.value = this.default;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -69,7 +72,11 @@ export class InputPhoneNumberCountryCodeComponent implements OnInit, OnChanges, 
 
   set value(val: BrxExtendsCountry | string) {
     if (val === null || val === undefined || val === '') {
-      this.countryValue = this.getCountryByString('31');
+      if (this.default) {
+        this.value = this.default;
+      } else {
+        this.countryValue = this.getCountryByString('31');
+      }
     } else if (typeof val === 'string' || val instanceof String) {
       this.countryValue = this.getCountryByString(val.toString()) || this.countryValue;
     } else {
@@ -119,13 +126,10 @@ export class InputPhoneNumberCountryCodeComponent implements OnInit, OnChanges, 
   }
 
   writeValue(val: string): void {
-    const country = this.getCountryByString(val);
-    if (country !== null && country !== undefined) {
-      this.value = country;
-      this.propagateChange(this.value);
+    if (val !== null && val !== undefined) {
+      this.value = val;
     } else {
       this.value = null;
-      this.propagateChange(this.value);
     }
   }
 

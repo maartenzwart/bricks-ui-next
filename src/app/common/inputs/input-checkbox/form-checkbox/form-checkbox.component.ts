@@ -31,6 +31,7 @@ export class FormCheckboxComponent implements OnInit {
   @Input() name: string;
   @Input() errorMessages: InputErrorMessages;
   @Input() autocomplete: string;
+  @Input() disabled: string;
   @Output() inputClick: EventEmitter<boolean> = new EventEmitter<boolean>();
   private objectKeys = Object.keys;
   private inputValue = false;
@@ -69,6 +70,10 @@ export class FormCheckboxComponent implements OnInit {
 
   checkboxChanged() {
     this.inputClick.emit(this.value);
+  }
+
+  clicked() {
+    this.value = !this.value;
   }
 
   propagateChange(_: any) {

@@ -1,0 +1,13 @@
+<ng-container [formGroup]="brxFormGroup">
+  <brx-input-text label="Email" type="email" name="email-{{brxFormGroup.toString}}" formControlName="email"
+                  sizeClasses="col-12" [errorMessages]="errorMessages">
+    <div class="d-flex" input-append>
+      <brx-button-primary (click)="addEmail.emit()">
+        <brx-icon-plus-light></brx-icon-plus-light>
+      </brx-button-primary>
+      <brx-button-dark *ngIf="showRemoveButton" (click)="removeEmail.emit()">
+        <brx-icon-delete color="#ffffff" transform="scale(1.2)"></brx-icon-delete>
+      </brx-button-dark>
+    </div>
+  </brx-input-text>
+</ng-container>

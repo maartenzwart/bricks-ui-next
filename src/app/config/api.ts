@@ -5,16 +5,16 @@ const TENANTS = '/tenants';
 const USERS = '/users';
 
 const projects = {
-  all: () => {
+  all: (): string => {
     return BASE + PROJECTS;
   },
-  byId: (id: string | number) => {
+  byId: (id: string | number): string => {
     return `${BASE}${PROJECTS}/${id}`;
   }
 };
 
 const relations = {
-  all: () => {
+  all: (): string => {
     return BASE + RELATIONS;
   },
   byId: (id: string | number) => {
@@ -23,14 +23,17 @@ const relations = {
 };
 
 const tenants = {
-  all: () => {
+  all: (): string => {
     return BASE + TENANTS;
   }
 };
 
 const users = {
-  all: () => {
+  all: (): string => {
     return BASE + USERS;
+  },
+  byId: (id: string): string => {
+    return `${BASE}${USERS}/${id}`;
   }
 };
 

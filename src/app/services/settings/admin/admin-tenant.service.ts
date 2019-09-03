@@ -40,6 +40,4 @@ export class AdminTenantService {
       catchError(this.errorHandlerService.handleError<BrxTenants>('getTenants', []))
     );
   }
-
-
 }

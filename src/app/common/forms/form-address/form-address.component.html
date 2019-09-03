@@ -1,1 +1,35 @@
-<p>form-address works!</p>
+<div class="col-10 col-sm-8 col-md-9 col-lg-10" [formGroup]="brxFormGroup">
+  <div class="row">
+    <brx-input-text label="Postcode" name="postalCode-{{brxFormGroup}}" (change)="getAddressByApi()" formControlName="postalCode"
+                    sizeClasses="col-lg-2 col-md-3 col-sm-4 col-5"></brx-input-text>
+    <brx-input-text label="Nummer" brxType="number" name="houseNumber-{{brxFormGroup}}" (change)="getAddressByApi()" formControlName="houseNumber"
+                    sizeClasses="col-lg-1 col-m d-2 col-sm-3 col-3"></brx-input-text>
+    <brx-input-text label="Toevoeging" name="suffix-{{brxFormGroup}}" formControlName="suffix"
+                    sizeClasses="col-lg-1 col-md-2 col-sm-3 col-3"></brx-input-text>
+    <brx-input-text label="Straat" name="street-{{brxFormGroup}}" formControlName="street"
+                    sizeClasses="col-lg-3 col-md-5 col-sm-10 col-11"></brx-input-text>
+    <brx-input-text label="Plaats" name="city-{{brxFormGroup}}" formControlName="city"
+                    sizeClasses="col-lg-3 col-md-6 col-sm-10 co-11"></brx-input-text>
+    <brx-input-select-country label="Land" name="country-{{brxFormGroup}}"
+                              sizeClasses="col-lg-2 col-md-6 col-sm-10 col-11"
+                              formControlName="country"></brx-input-select-country>
+  </div>
+  <!--  <div class="row">-->
+  <!--        ADDRESS PHONE NUMBERS START -->
+  <div class="col-12 col-sm-10 col-md-6">
+    <div class="row" formArrayName="phoneNumbers" *ngFor="let phoneNumber of brxFormGroup.get('phoneNumbers').controls; let i = index">
+      <brx-form-phone-number [errorMessages]="errorMessages.phone" [(brxFormGroup)]="phoneNumber" (addPhoneNumber)="addPhoneNumber(i)" (removePhoneNumber)="removePhoneNumber(i)"
+                             [numberOfPhoneNumbers]="brxFormGroup.get('phoneNumbers').length" [country]="brxFormGroup.get('country').value"></brx-form-phone-number>
+    </div>
+  </div>
+  <!--        ADDRESS PHONE NUMBERS END -->
+
+  <!--       ADDRESS EMAIL ADDRESSES START -->
+  <div class="col-12 col-sm-10 col-md-6">
+    <div class="row" formArrayName="emailAddresses" *ngFor="let emailAddres of brxFormGroup.get('emailAddresses').controls; let i = index">
+      <brx-form-email [(brxFormGroup)]="emailAddres" [errorMessages]="errorMessages.email" (addEmail)="addEmail(i)" (removeEmail)="removeEmail(i)"
+                      [showRemoveButton]="brxFormGroup.get('emailAddresses').length > 1"></brx-form-email>
+    </div>
+  </div>
+  <!--       ADDRESS EMAIL ADDRESSES END -->
+</div>

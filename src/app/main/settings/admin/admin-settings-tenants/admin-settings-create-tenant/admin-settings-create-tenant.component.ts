@@ -189,6 +189,7 @@ export class AdminSettingsCreateTenantComponent implements OnInit {
     delete formTenant.user;
     console.log('user', formUser);
     console.log('tenant', formTenant);
+    return;
     const {tenant, user} = this.adminTenantService.postTenant(formTenant, formUser);
     tenant.subscribe(result => {
       console.log('TENANT RESULT', result);
