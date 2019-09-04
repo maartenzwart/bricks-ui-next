@@ -1,17 +1,17 @@
 export interface BrxUser {
-  id: string;
+  id?: string;
   givenName: string;
-  insertion: string;
+  insertion?: string;
   familyName: string;
-  avatar: string;
-  tenant: {
+  avatar?: string;
+  tenant?: {
     id: string;
     name: string;
   };
   email: string;
-  isActive: boolean;
-  lastLogin: number;
-  bricks: {
+  isActive?: boolean;
+  lastLogin?: number;
+  bricks?: {
     id: string;
     roles: { id: string; name: string; }[];
     name: string;

@@ -1,0 +1,23 @@
+<div class="form-group">
+  <label [for]="name">{{label}}</label>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <ng-content select="[input-prepend]"></ng-content>
+    </div>
+    <input [name]="name" type="text" [editable]="false" [class.invalid]="errors" class="form-control" [(ngModel)]="value" [ngbTypeahead]="search"
+           (change)="change()"
+           [value]="formatter"
+           [resultFormatter]="formatter"
+           [inputFormatter]="inputFormatter"
+           #searchInput
+           autocomplete="off"/>
+    <div class="input-group-append">
+      <ng-content select="[input-append]"></ng-content>
+    </div>
+  </div>
+  <ng-container *ngIf="errors">
+    <div *ngFor="let key of objectKeys(errors)" class="text-danger small">
+      {{getErrorMessage(key)}}
+    </div>
+  </ng-container>
+</div>

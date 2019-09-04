@@ -3,7 +3,7 @@ import {countries as Countries} from 'countries-list/dist';
 import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
-import {InputErrorMessages} from '../../../interfaces/input-error-message';
+import {BrxInputErrorMessages} from '../../../interfaces/brx-input-error-message';
 import {BrxExtendsCountries, BrxExtendsCountry} from '../../../interfaces/brx-extends-country';
 
 @Component({
@@ -28,7 +28,7 @@ export class InputSelectCountryComponent implements OnInit, ControlValueAccessor
   sizeClasses = 'col-lg-6 col-md-8 col-sm-10 col-12';
   @Input() label = '';
   @Input() name: string;
-  @Input() errorMessages: InputErrorMessages;
+  @Input() errorMessages: BrxInputErrorMessages;
 
   private inputValue: BrxExtendsCountry | string;
   private countries: BrxExtendsCountries = [];

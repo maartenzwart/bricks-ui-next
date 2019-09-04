@@ -1,6 +1,6 @@
 import {Component, EventEmitter, forwardRef, HostBinding, Input, OnInit, Output} from '@angular/core';
 import {FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors} from '@angular/forms';
-import {InputErrorMessages} from '../../../../interfaces/input-error-message';
+import {BrxInputErrorMessages} from '../../../../interfaces/brx-input-error-message';
 
 @Component({
   selector: 'brx-form-checkbox',
@@ -29,7 +29,7 @@ export class FormCheckboxComponent implements OnInit {
   @Input() label = '';
   @Input() checkboxLabel = '';
   @Input() name: string;
-  @Input() errorMessages: InputErrorMessages;
+  @Input() errorMessages: BrxInputErrorMessages;
   @Input() autocomplete: string;
   @Input() disabled: string;
   @Output() inputClick: EventEmitter<boolean> = new EventEmitter<boolean>();

@@ -5,6 +5,9 @@ import {AddressService} from '../../../../../services/address.service';
 import {RxFormBuilder, RxwebValidators} from '@rxweb/reactive-form-validators';
 import {AdminTenantService} from '../../../../../services/settings/admin/admin-tenant.service';
 import {BrxValidators} from '../../../../../common/forms/validators';
+import {BrxUser, BrxUsers} from '../../../../../interfaces/brx-user';
+import {AdminUserService} from '../../../../../services/settings/admin/admin-user.service';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'brx-admin-settings-create-tenant',
@@ -14,6 +17,7 @@ import {BrxValidators} from '../../../../../common/forms/validators';
 export class AdminSettingsCreateTenantComponent implements OnInit {
   @Output() cancelled: EventEmitter<boolean> = new EventEmitter<boolean>();
   createNewEmployee = false;
+  allUsers: BrxUsers;
 
   tenantForm = this.fb.group({
     id: [null],
@@ -22,7 +26,7 @@ export class AdminSettingsCreateTenantComponent implements OnInit {
     phoneNumbers: this.fb.array([this.createPhoneNumber(0)]),
     emailAddresses: this.fb.array([this.createEmailAddress(0)]),
     user: this.fb.group({
-      id: ['', this.newUserRequired(false)],
+      existing: [null, this.newUserRequired(false)],
       email: ['', [this.newUserRequired(true), Validators.email]],
       givenName: ['', this.newUserRequired(true)],
       insertion: [''],
@@ -50,17 +54,26 @@ export class AdminSettingsCreateTenantComponent implements OnInit {
     }]
   };
 
+  constructor(private fb: FormBuilder, private addressService: AddressService, private adminTenantService: AdminTenantService, private adminUserService: AdminUserService) {
+    adminTenantService.announceCreatingNewTenant(true);
+    adminUserService.getUsersWithoutTenant().pipe(first()).subscribe(result => this.allUsers = result);
+  }
+
+  ngOnInit() {
+  }
+
   newUserRequired(newUser: boolean): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       if (this.createNewEmployee) {
         if ((control.value === null || control.value === undefined || control.value === '') && newUser) {
           return {required: true};
-        } else {
-          return null;
         }
+        return null;
       } else {
         if (!newUser) {
-          return control.value === null || control.value === undefined || control.value === '' ? {required: true} : null;
+          console.log('EXISTING USER!');
+          console.log('VALUE', control.value === null || control.value === undefined ? {required: true} : null, control.value);
+          return control.value === null || control.value === undefined ? {required: true} : null;
         }
         return null;
       }
@@ -96,17 +109,14 @@ export class AdminSettingsCreateTenantComponent implements OnInit {
     });
   }
 
+  setCreateNewEmployee(bool: boolean): void {
+    this.createNewEmployee = bool;
+    this.tenantForm.get('user').reset();
+  }
+
   addAddress(): void {
     const addresses = this.getAddressArray();
     addresses.controls.unshift(this.createAddress(addresses.length));
-  }
-
-  addAddressPhoneNumber(index: number, addressPhoneNumbers: FormArray): void {
-    addressPhoneNumbers.insert(index, this.createPhoneNumber(addressPhoneNumbers.length));
-  }
-
-  addAddressEmail(index: number, addressEmails: FormArray): void {
-    addressEmails.insert(index, this.createEmailAddress(addressEmails.length));
   }
 
   addEmail(index: number): void {
@@ -119,23 +129,8 @@ export class AdminSettingsCreateTenantComponent implements OnInit {
     phones.insert(index, this.createPhoneNumber(phones.length));
   }
 
-  getAddressByApi(index: number) {
-    const addressGroup = this.getAddressGroup(index);
-    const address: BrxAddress = addressGroup.value;
-    if (address.postalCode && address.houseNumber) {
-      this.addressService.getAddressByPostalCodeAndHouseNumber(address.postalCode, address.houseNumber).subscribe(result => {
-        addressGroup.patchValue(result);
-      });
-    }
-  }
-
   getAddressArray(): FormArray {
     return this.tenantForm.get('addresses') as FormArray;
-  }
-
-  getAddressGroup(index: number): FormGroup {
-    const addressArray = this.getAddressArray();
-    return addressArray.at(index) as FormGroup;
   }
 
   getEmailArray(): FormArray {
@@ -151,14 +146,6 @@ export class AdminSettingsCreateTenantComponent implements OnInit {
     addressesArray.removeAt(index);
   }
 
-  removeAddressPhoneNumber(index: number, phoneNumbers: FormArray): void {
-    phoneNumbers.removeAt(index);
-  }
-
-  removeAddressEmail(index: number, emailAddresses: FormArray): void {
-    emailAddresses.removeAt(index);
-  }
-
   removeEmail(index: number): void {
     const emails = this.getEmailArray();
     emails.removeAt(index);
@@ -169,28 +156,20 @@ export class AdminSettingsCreateTenantComponent implements OnInit {
     phones.removeAt(index);
   }
 
-  constructor(private fb: FormBuilder, private addressService: AddressService, private adminTenantService: AdminTenantService) {
-    adminTenantService.announceCreatingNewTenant(true);
-  }
-
-  ngOnInit() {
-  }
-
   onSubmit() {
     this.adminTenantService.announceCreatingNewTenant(false);
     const formUser = this.tenantForm.get('user').value;
-    if (formUser.id) {
-      formUser.givenName = null;
-      formUser.insertion = null;
-      formUser.familyName = null;
+    let tenantUser: BrxUser;
+    if (formUser.existing === null || formUser.existing === undefined) {
+      delete formUser.existing;
+      tenantUser = formUser;
+    } else {
+      tenantUser = formUser.existing;
     }
 
     const formTenant = this.tenantForm.value;
     delete formTenant.user;
-    console.log('user', formUser);
-    console.log('tenant', formTenant);
-    return;
-    const {tenant, user} = this.adminTenantService.postTenant(formTenant, formUser);
+    const {tenant, user} = this.adminTenantService.postTenant(formTenant, tenantUser);
     tenant.subscribe(result => {
       console.log('TENANT RESULT', result);
     });

@@ -9,7 +9,7 @@ import {BrxUser, BrxUsers} from '../../../interfaces/brx-user';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminUsersService {
+export class AdminUserService {
 
   constructor(private http: HttpClient, private errorHandlerService: ErrorHandlingService) {
   }
@@ -17,6 +17,12 @@ export class AdminUsersService {
   getUsers(): Observable<BrxUsers> {
     return this.http.get<BrxUsers>(BRX_API.users.all()).pipe(
       catchError(this.errorHandlerService.handleError<BrxUsers>('getUsers', []))
+    );
+  }
+
+  getUsersWithoutTenant(): Observable<BrxUsers> {
+    return this.http.get<BrxUsers>(BRX_API.users.all()).pipe(
+      catchError(this.errorHandlerService.handleError<BrxUsers>('getUsersWithoutTenant', []))
     );
   }
 

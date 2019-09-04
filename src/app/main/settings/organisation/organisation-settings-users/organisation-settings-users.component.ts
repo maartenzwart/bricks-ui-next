@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BrxUsers} from '../../../../interfaces/brx-user';
 import {Subscription} from 'rxjs';
 import {BrxListHeaders, BrxListType} from '../../../../interfaces/brx-list-header';
-import {AdminUsersService} from '../../../../services/settings/admin/admin-users.service';
+import {AdminUserService} from '../../../../services/settings/admin/admin-user.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {UserService} from 'src/app/services/user.service';
 import {AdminSettingsUsersCreateComponent} from '../../admin/admin-settings-users/admin-settings-users-create/admin-settings-users-create.component';

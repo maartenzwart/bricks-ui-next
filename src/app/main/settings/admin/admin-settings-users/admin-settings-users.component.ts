@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BrxUsers} from '../../../../interfaces/brx-user';
-import {AdminUsersService} from '../../../../services/settings/admin/admin-users.service';
+import {AdminUserService} from '../../../../services/settings/admin/admin-user.service';
 import {Subscription} from 'rxjs';
 import {BrxListHeaders, BrxListType} from '../../../../interfaces/brx-list-header';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -53,7 +53,7 @@ export class AdminSettingsUsersComponent implements OnInit, OnDestroy {
     this.sortReversed = sort.reversed;
   }
 
-  constructor(private adminUsersService: AdminUsersService, private modalService: NgbModal) {
+  constructor(private adminUserService: AdminUserService, private modalService: NgbModal) {
   }
 
   editUser(userId: string) {
@@ -69,7 +69,7 @@ export class AdminSettingsUsersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.userSubscription = this.adminUsersService.getUsers().subscribe(result => this.users = result);
+    this.userSubscription = this.adminUserService.getUsers().subscribe(result => this.users = result);
   }
 
   ngOnDestroy() {

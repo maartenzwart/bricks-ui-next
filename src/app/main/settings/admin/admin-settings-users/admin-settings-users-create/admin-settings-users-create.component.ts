@@ -3,9 +3,10 @@ import {BrxUser} from '../../../../../interfaces/brx-user';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BrxValidators} from '../../../../../common/forms/validators';
-import {AdminUsersService} from '../../../../../services/settings/admin/admin-users.service';
+import {AdminUserService} from '../../../../../services/settings/admin/admin-user.service';
 import {BrxRoutes} from '../../../../../interfaces/brx-route';
 import {Subscription} from 'rxjs';
+import {BrxInputErrorMessages} from '../../../../../interfaces/brx-input-error-message';
 
 @Component({
   selector: 'brx-admin-settings-users-create',
@@ -22,12 +23,20 @@ export class AdminSettingsUsersCreateComponent implements OnInit {
     givenName: ['', Validators.required],
     insertion: [''],
     familyName: ['', Validators.required],
-    email: ['', Validators.email],
+    email: ['', [Validators.required, Validators.email]],
     isActive: [false]
   });
 
+  errorMessages: BrxInputErrorMessages = [{
+    key: 'required',
+    message: 'Dit veld is verplicht'
+  }, {
+    key: 'email',
+    message: 'Dit is geen geldig e-mailadres'
+  }];
 
-  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private adminUsersService: AdminUsersService) {
+
+  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private adminUserService: AdminUserService) {
   }
 
   ngOnInit() {
@@ -43,11 +52,13 @@ export class AdminSettingsUsersCreateComponent implements OnInit {
   }
 
   submit() {
-    const mergedUser = Object.assign(this.user, this.userForm.value);
-    let sub: Subscription;
-    sub = this.adminUsersService.updateUser(mergedUser).subscribe(result => {
-      sub.unsubscribe();
-      this.activeModal.close(result);
-    });
+    if (this.userForm.valid) {
+      const mergedUser = Object.assign(this.user, this.userForm.value);
+      let sub: Subscription;
+      sub = this.adminUserService.updateUser(mergedUser).subscribe(result => {
+        sub.unsubscribe();
+        this.activeModal.close(result);
+      });
+    }
   }
 }

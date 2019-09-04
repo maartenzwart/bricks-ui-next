@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {UserService} from '../../../../../services/user.service';
 import {Subscription} from 'rxjs';
+import {BrxInputErrorMessages} from '../../../../../interfaces/brx-input-error-message';
 
 @Component({
   selector: 'brx-organisation-settings-user-create',
@@ -26,6 +27,14 @@ export class OrganisationSettingsUserCreateComponent implements OnInit {
     isActive: [false]
   });
 
+  errorMessages: BrxInputErrorMessages = [{
+    key: 'required',
+    message: 'Dit veld is verplicht'
+  }, {
+    key: 'email',
+    message: 'Dit is geen geldig e-mailadres'
+  }];
+
 
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private userService: UserService) {
   }
@@ -43,11 +52,13 @@ export class OrganisationSettingsUserCreateComponent implements OnInit {
   }
 
   submit() {
-    const mergedUser = Object.assign(this.user, this.userForm.value);
-    let sub: Subscription;
-    sub = this.userService.updateUser(mergedUser).subscribe(result => {
-      sub.unsubscribe();
-      this.activeModal.close(result);
-    });
+    if (this.userForm.valid) {
+      const mergedUser = Object.assign(this.user, this.userForm.value);
+      let sub: Subscription;
+      sub = this.userService.updateUser(mergedUser).subscribe(result => {
+        sub.unsubscribe();
+        this.activeModal.close(result);
+      });
+    }
   }
 }

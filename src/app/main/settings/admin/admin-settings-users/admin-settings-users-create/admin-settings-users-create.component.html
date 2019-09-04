@@ -2,19 +2,22 @@
   <div class="container-fluid brx-container">
     <form class="form" [formGroup]="userForm" (ngSubmit)="submit()">
       <div class="row">
-        <brx-input-text sizeClasses="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-12" ngbAutofocus label="Voornaam" formControlName="givenName"></brx-input-text>
-        <brx-input-text sizeClasses="col-xl-1 col-lg-2 col-md-2 col-sm-4 col-12" label="Tussenvoegsels" formControlName="insertion"></brx-input-text>
-        <brx-input-text sizeClasses="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-12" label="Achternaam" formControlName="familyName"></brx-input-text>
+        <brx-input-text sizeClasses="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-12" [errorMessages]="errorMessages" ngbAutofocus label="Voornaam"
+                        formControlName="givenName"></brx-input-text>
+        <brx-input-text sizeClasses="col-xl-1 col-lg-2 col-md-2 col-sm-4 col-12" [errorMessages]="errorMessages" label="Tussenvoegsels"
+                        formControlName="insertion"></brx-input-text>
+        <brx-input-text sizeClasses="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-12" [errorMessages]="errorMessages" label="Achternaam" formControlName="familyName"></brx-input-text>
       </div>
       <div class="row">
-        <brx-input-text label="Email" sizeClasses="col-xl-3 col-lg-5 col-md-5 col-sm-8 col-12" type="email" formControlName="email"></brx-input-text>
+        <brx-input-text label="Email" sizeClasses="col-xl-3 col-lg-5 col-md-5 col-sm-8 col-12" [errorMessages]="errorMessages" type="email"
+                        formControlName="email"></brx-input-text>
       </div>
       <div class="row">
         <brx-form-checkbox label="Status van de gebruiker" checkboxLabel="Actief" formControlName="isActive"></brx-form-checkbox>
       </div>
       <hr/>
       <div class="row">
-        <brx-button-primary type="submit">Opslaan</brx-button-primary>
+        <brx-button-primary type="submit" [disabled]="!userForm.valid">Opslaan</brx-button-primary>
         <brx-button-plain (click)="cancel()"><span class="brx-primary form-button">Annuleer</span></brx-button-plain>
       </div>
     </form>

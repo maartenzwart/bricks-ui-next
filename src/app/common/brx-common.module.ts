@@ -44,6 +44,7 @@ import {ListCellDirective} from './list/list-cell.directive';
 import {FormPhoneNumberComponent} from './forms/form-phone-number/form-phone-number.component';
 import {FormEmailComponent} from './forms/form-email/form-email.component';
 import {ButtonPlainComponent} from './buttons/button-plain/button-plain.component';
+import {InputSelectUserComponent} from './inputs/input-select-user/input-select-user.component';
 
 
 @NgModule({
@@ -87,7 +88,8 @@ import {ButtonPlainComponent} from './buttons/button-plain/button-plain.componen
     ListCellDirective,
     FormPhoneNumberComponent,
     FormEmailComponent,
-    ButtonPlainComponent
+    ButtonPlainComponent,
+    InputSelectUserComponent
   ],
   imports: [
     CommonModule,
@@ -137,7 +139,8 @@ import {ButtonPlainComponent} from './buttons/button-plain/button-plain.componen
     FormAddressComponent,
     FormEmailComponent,
     FormCheckboxComponent,
-    ButtonPlainComponent
+    ButtonPlainComponent,
+    InputSelectUserComponent
   ]
 })
 export class BrxCommonModule {

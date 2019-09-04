@@ -1,5 +1,5 @@
 import {Component, forwardRef, HostBinding, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {InputErrorMessages} from '../../../interfaces/input-error-message';
+import {BrxInputErrorMessages} from '../../../interfaces/brx-input-error-message';
 import {NgbTypeahead, NgbTypeaheadSelectItemEvent} from '@ng-bootstrap/ng-bootstrap';
 import {merge, Observable, Subject} from 'rxjs';
 import {BrxExtendsCountries, BrxExtendsCountry} from '../../../interfaces/brx-extends-country';
@@ -31,7 +31,7 @@ export class InputPhoneNumberCountryCodeComponent implements OnInit, OnChanges, 
 
   @Input() label = '';
   @Input() name: string;
-  @Input() errorMessages: InputErrorMessages;
+  @Input() errorMessages: BrxInputErrorMessages;
   @Input() default;
   @ViewChild('countryCode', {static: true}) countryCode: HTMLElement;
   @ViewChild('instance', {static: true}) instance: NgbTypeahead;

@@ -1,16 +1,16 @@
 import {BrxAuthorizationBricks} from './brx-authorization-bricks';
 
 export interface BrxJWT {
-  id: string;
+  id?: string;
   email: string;
   givenName: string;
-  insertion: string;
+  insertion?: string;
   familyName: string;
-  bricks: BrxAuthorizationBricks[];
-  tenant: {
+  bricks?: BrxAuthorizationBricks[];
+  tenant?: {
     id: string;
     name: string
   };
-  avatar: string;
+  avatar?: string;
 }
 
