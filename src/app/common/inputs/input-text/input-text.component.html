@@ -5,7 +5,7 @@
     <div class="input-group-prepend">
       <ng-content select="[input-prepend]"></ng-content>
     </div>
-    <input [type]="type" class="form-control" [id]="name" [name]="name" [autocomplete]="autocomplete" [(ngModel)]="value" [class.invalid]="errors"
+    <input [type]="type" class="form-control" [id]="name" [name]="name" [placeholder]="placeholder" [autocomplete]="autocomplete" [(ngModel)]="value" [class.invalid]="errors"
            (change)="value=$event.target.value"
            [value]="value" [attr.brx-type]="brxType"/>
     <div class="input-group-append">
