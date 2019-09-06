@@ -17,6 +17,10 @@ import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {HrHeaderComponent} from './components/header/hr-header/hr-header.component';
 import {BrxCommonModule} from '../../common/brx-common.module';
 import {DurationFormatPipe} from '../../pipes/duration/durationFormat.pipe';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HrManageActivitiesComponent} from './manage/hr-manage-activities/hr-manage-activities.component';
+import {HrManageJobsComponent} from './manage/hr-manage-jobs/hr-manage-jobs.component';
+import {HrManageJobsFormComponent} from './manage/hr-manage-jobs/hr-manage-jobs-form/hr-manage-jobs-form.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,10 @@ import {DurationFormatPipe} from '../../pipes/duration/durationFormat.pipe';
     HrAgendaEventComponent,
     HrAgendaHeaderComponent,
     HrAgendaFooterComponent,
-    HrHeaderComponent
+    HrHeaderComponent,
+    HrManageJobsFormComponent,
+    HrManageActivitiesComponent,
+    HrManageJobsComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +47,8 @@ import {DurationFormatPipe} from '../../pipes/duration/durationFormat.pipe';
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    ReactiveFormsModule
   ],
   providers: [DatePipe, DurationFormatPipe]
 })

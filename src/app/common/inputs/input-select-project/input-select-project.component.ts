@@ -1,28 +1,28 @@
 import {Component, ElementRef, forwardRef, HostBinding, Input, OnInit, ViewChild} from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors} from '@angular/forms';
 import {BrxInputErrorMessages} from '../../../interfaces/brx-input-error-message';
-import {BrxUser, BrxUsers} from '../../../interfaces/brx-user';
-import {Observable} from 'rxjs';
+import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors} from '@angular/forms';
 import {debounceTime, distinctUntilChanged, first, map} from 'rxjs/operators';
-import {UserService} from '../../../services/user.service';
+import {Observable} from 'rxjs';
+import {ProjectService} from '../../../services/project.service';
+import {BrxProject, BrxProjects} from '../../../interfaces/brx-project';
 
 @Component({
-  selector: 'brx-input-select-user',
-  templateUrl: './input-select-user.component.html',
-  styleUrls: ['./input-select-user.component.scss'],
+  selector: 'brx-input-select-project',
+  templateUrl: './input-select-project.component.html',
+  styleUrls: ['./input-select-project.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputSelectUserComponent),
+      useExisting: forwardRef(() => InputSelectProjectComponent),
       multi: true
     },
     {
       provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => InputSelectUserComponent),
+      useExisting: forwardRef(() => InputSelectProjectComponent),
       multi: true,
     }]
 })
-export class InputSelectUserComponent implements OnInit, ControlValueAccessor {
+export class InputSelectProjectComponent implements OnInit, ControlValueAccessor {
   @HostBinding('class')
   @Input()
   sizeClasses = 'col-lg-6 col-md-8 col-sm-10 col-12';
@@ -30,35 +30,25 @@ export class InputSelectUserComponent implements OnInit, ControlValueAccessor {
   @Input() name: string;
   @Input() placeholder = '';
   @Input() errorMessages: BrxInputErrorMessages;
-  @Input() users: BrxUsers;
+  @Input() data: BrxProjects;
   @ViewChild('searchInput', {static: true}) searchInput: ElementRef;
 
-  private inputValue: BrxUser;
+  private inputValue: BrxProject;
   private errors: ValidationErrors;
   private objectKeys = Object.keys;
 
-  static formatSearch(user: BrxUser): string {
-    const {givenName, insertion, familyName} = user;
-    let fullName = givenName;
-    fullName += insertion ? ` ${insertion} ` : ' ';
-    fullName += familyName;
-    return fullName;
-  }
-
-  constructor(private userService: UserService) {
+  constructor(private projectService: ProjectService) {
   }
 
   ngOnInit() {
-    if (this.users === null || this.users === undefined) {
-      this.userService.getUsers().pipe(first()).subscribe(result => this.users = result);
-    }
+    this.projectService.getProjects().pipe(first()).subscribe(result => this.data = result);
   }
 
-  get value(): BrxUser {
+  get value(): BrxProject {
     return this.inputValue;
   }
 
-  set value(val: BrxUser) {
+  set value(val: BrxProject) {
     this.inputValue = val;
     this.propagateChange(this.inputValue);
   }
@@ -84,13 +74,12 @@ export class InputSelectUserComponent implements OnInit, ControlValueAccessor {
   setDisabledState(isDisabled: boolean): void {
   }
 
-  writeValue(val: BrxUser): void {
+  writeValue(val: BrxProject): void {
     this.value = val;
     this.propagateChange(this.value);
   }
 
   validate(c: FormControl) {
-    console.log('ERRORS?', c.errors, c.value);
     if (c.errors && c.dirty) {
       this.errors = c.errors;
     } else {
@@ -98,12 +87,12 @@ export class InputSelectUserComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  formatter(user: BrxUser): string {
-    return InputSelectUserComponent.formatSearch(user);
+  formatter(project: BrxProject): string {
+    return project.name;
   }
 
-  inputFormatter(user: BrxUser): string {
-    return InputSelectUserComponent.formatSearch(user);
+  inputFormatter(project: BrxProject): string {
+    return project.name || '';
   }
 
   change() {
@@ -118,13 +107,11 @@ export class InputSelectUserComponent implements OnInit, ControlValueAccessor {
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
-      map(term => term.length < 1 ? [] : this.users.filter((user: BrxUser) => {
+      map(term => term.length < 1 ? [] : this.data.filter((item: BrxProject) => {
           const sTerm = term.toLowerCase().trim();
-          return user.givenName.toLowerCase().indexOf(sTerm) > -1 ||
-            user.insertion.toLowerCase().indexOf(sTerm) > -1 ||
-            user.familyName.toLowerCase().indexOf(sTerm) > -1 ||
-            user.email.toLowerCase().indexOf(sTerm) > -1;
+          return item.name.toLowerCase().indexOf(sTerm) > -1 ||
+            item.id.toLowerCase().indexOf(sTerm) > -1;
         })
       )
-    )
+    );
 }

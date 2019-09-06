@@ -7,6 +7,8 @@ import {HrRegistrationComponent} from './registration/hr-registration.component'
 import {HrAgendaComponent} from './registration/agenda/hr-agenda.component';
 import {HrTimeSheetComponent} from './registration/timeSheet/hr-time-sheet.component';
 import {AuthenticationGuard} from '../../services/authentication.guard';
+import {HrManageJobsComponent} from './manage/hr-manage-jobs/hr-manage-jobs.component';
+import {HrManageActivitiesComponent} from './manage/hr-manage-activities/hr-manage-activities.component';
 
 
 const routes: Routes = [
@@ -44,7 +46,21 @@ const routes: Routes = [
     }, {
       path: 'manage',
       component: HrManageComponent,
-      canActivate: [AuthenticationGuard]
+      canActivate: [AuthenticationGuard],
+      children: [{
+        path: '',
+        redirectTo: 'jobs',
+        pathMatch: 'full',
+        canActivate: [AuthenticationGuard]
+      }, {
+        path: 'jobs',
+        component: HrManageJobsComponent,
+        canActivate: [AuthenticationGuard]
+      }, {
+        path: 'activities',
+        component: HrManageActivitiesComponent,
+        canActivate: [AuthenticationGuard]
+      }]
     }
     ],
   }

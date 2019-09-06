@@ -1,0 +1,11 @@
+@import "~src/scss/variables/index";
+
+.search-field {
+  border-right: none;
+  //margin-right: -1px;
+}
+
+.brx-search-icon {
+  border-left: none;
+  background-color: $white;
+}

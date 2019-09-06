@@ -1,0 +1,29 @@
+@import "~src/scss/variables/index";
+
+.brx-header-controls-container {
+  padding-bottom: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+
+::ng-deep {
+
+  .brx-modal-backdrop {
+    background-color: $white !important;
+    opacity: 0.99 !important;
+  }
+
+  .modal-full {
+    .modal-dialog {
+      max-width: none;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+
+      .modal-content {
+        background-color: transparent;
+      }
+    }
+  }
+}

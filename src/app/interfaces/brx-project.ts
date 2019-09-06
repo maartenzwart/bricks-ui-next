@@ -1,5 +1,5 @@
 export interface BrxProject {
-  id: number | string;
+  id: string;
   name: string;
 }
 

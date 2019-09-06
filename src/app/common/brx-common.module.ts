@@ -45,6 +45,9 @@ import {FormPhoneNumberComponent} from './forms/form-phone-number/form-phone-num
 import {FormEmailComponent} from './forms/form-email/form-email.component';
 import {ButtonPlainComponent} from './buttons/button-plain/button-plain.component';
 import {InputSelectUserComponent} from './inputs/input-select-user/input-select-user.component';
+import {InputSelectProjectComponent} from './inputs/input-select-project/input-select-project.component';
+import {InputDateComponent} from './inputs/input-date/input-date.component';
+import {InputSelectCustomerComponent} from './inputs/input-select-customer/input-select-customer.component';
 
 
 @NgModule({
@@ -89,7 +92,10 @@ import {InputSelectUserComponent} from './inputs/input-select-user/input-select-
     FormPhoneNumberComponent,
     FormEmailComponent,
     ButtonPlainComponent,
-    InputSelectUserComponent
+    InputSelectUserComponent,
+    InputSelectProjectComponent,
+    InputDateComponent,
+    InputSelectCustomerComponent
   ],
   imports: [
     CommonModule,
@@ -140,7 +146,9 @@ import {InputSelectUserComponent} from './inputs/input-select-user/input-select-
     FormEmailComponent,
     FormCheckboxComponent,
     ButtonPlainComponent,
-    InputSelectUserComponent
+    InputSelectUserComponent,
+    InputDateComponent,
+    InputSelectProjectComponent
   ]
 })
 export class BrxCommonModule {

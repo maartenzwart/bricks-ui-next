@@ -4,15 +4,13 @@
     <div class="input-group-prepend">
       <ng-content select="[input-prepend]"></ng-content>
     </div>
-    <input [name]="name" type="text" [editable]="false" [class.invalid]="errors" class="form-control" [(ngModel)]="value" [ngbTypeahead]="search"
-           (change)="change()"
-           [value]="formatter"
-           [resultFormatter]="formatter"
-           [inputFormatter]="inputFormatter"
-           [placeholder]="placeholder"
-           #searchInput
-           autocomplete="off"/>
+    <input type="date" class="form-control" [id]="name" [name]="name" [(ngModel)]="value" [class.invalid]="errors"
+           (change)="value=$event.target.value"
+           [value]="value"/>
     <div class="input-group-append">
+      <span class="input-group-text">
+      <brx-icon-date></brx-icon-date>
+      </span>
       <ng-content select="[input-append]"></ng-content>
     </div>
   </div>

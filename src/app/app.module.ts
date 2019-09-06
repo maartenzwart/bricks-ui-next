@@ -35,6 +35,7 @@ import {CookieService} from 'ngx-cookie-service';
 import {PipesModule} from './pipes/pipes.module';
 import {AdminSettingsUsersCreateComponent} from './main/settings/admin/admin-settings-users/admin-settings-users-create/admin-settings-users-create.component';
 import {OrganisationSettingsUserCreateComponent} from './main/settings/organisation/organisation-settings-users/organisation-settings-user-create/organisation-settings-user-create.component';
+import {HrManageJobsFormComponent} from './bricks/hour-registration/manage/hr-manage-jobs/hr-manage-jobs-form/hr-manage-jobs-form.component';
 
 export function jwtOptionsFactory(cookieService: CookieService) {
   return {
@@ -98,7 +99,8 @@ export function jwtOptionsFactory(cookieService: CookieService) {
     IconSearchComponent,
     IconProfileComponent,
     AdminSettingsUsersCreateComponent,
-    OrganisationSettingsUserCreateComponent
+    OrganisationSettingsUserCreateComponent,
+    HrManageJobsFormComponent
   ]
 })
 export class AppModule {
