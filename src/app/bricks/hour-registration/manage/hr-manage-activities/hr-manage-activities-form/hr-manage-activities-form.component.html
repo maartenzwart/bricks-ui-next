@@ -1,0 +1,14 @@
+<brx-tabs [routes]="routes">
+  <form class="form container-fluid brx-modal-container" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row">
+      <brx-input-text sizeClasses="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12" formControlName="name" label="Naam" [errorMessages]="errorMessages" ngbAutofocus></brx-input-text>
+    </div>
+    <hr/>
+    <div class="row">
+      <div class="col-12">
+        <brx-button-primary type="submit" [disabled]="!form.valid">Aanmaken</brx-button-primary>
+        <brx-button-plain (click)="cancel()"><span class="brx-primary">Annuleer</span></brx-button-plain>
+      </div>
+    </div>
+  </form>
+</brx-tabs>

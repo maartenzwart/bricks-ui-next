@@ -1,4 +1,18 @@
 {
+  "activities": [
+    {
+      "id": 1,
+      "name": "Development Front-end"
+    },
+    {
+      "id": 2,
+      "name": "Development Back-end"
+    },
+    {
+      "id": 3,
+      "name": "Test 1"
+    }
+  ],
   "tenants": [
     {
       "id": 1,

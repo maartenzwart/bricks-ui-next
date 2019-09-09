@@ -21,6 +21,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HrManageActivitiesComponent} from './manage/hr-manage-activities/hr-manage-activities.component';
 import {HrManageJobsComponent} from './manage/hr-manage-jobs/hr-manage-jobs.component';
 import {HrManageJobsFormComponent} from './manage/hr-manage-jobs/hr-manage-jobs-form/hr-manage-jobs-form.component';
+import {HrManageActivitiesFormComponent} from './manage/hr-manage-activities/hr-manage-activities-form/hr-manage-activities-form.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {HrManageJobsFormComponent} from './manage/hr-manage-jobs/hr-manage-jobs-
     HrHeaderComponent,
     HrManageJobsFormComponent,
     HrManageActivitiesComponent,
-    HrManageJobsComponent
+    HrManageJobsComponent,
+    HrManageActivitiesFormComponent
   ],
   imports: [
     CommonModule,

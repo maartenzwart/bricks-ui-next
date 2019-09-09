@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, Validators} from '@angular/forms';
 import {BrxRoutes} from '../../../../../interfaces/brx-route';
+import {BrxInputErrorMessages} from '../../../../../interfaces/brx-input-error-message';
+import {ActivityService} from '../../../../../services/activity.service';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'brx-hr-manage-jobs-form',
@@ -13,6 +16,8 @@ export class HrManageJobsFormComponent implements OnInit {
     title: 'Nieuwe Klus'
   }];
 
+  showNewActivity = false;
+
   form = this.fb.group({
     id: [null],
     name: ['', Validators.required],
@@ -23,10 +28,35 @@ export class HrManageJobsFormComponent implements OnInit {
     endDate: ['', Validators.required]
   });
 
-  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder) {
+  newActivityForm = this.fb.group({
+    id: [null],
+    name: ['', Validators.required]
+  });
+
+  errorMessages: BrxInputErrorMessages = [{
+    key: 'required',
+    message: 'Dit veld is verplicht'
+  }];
+
+  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private activityService: ActivityService) {
   }
 
   ngOnInit() {
+  }
+
+  setShowNewActivity(bool: boolean) {
+    this.showNewActivity = bool;
+    this.newActivityForm.reset();
+  }
+
+  createNewActivity() {
+    if (this.newActivityForm.valid) {
+      this.activityService.createActivity(this.newActivityForm.value).pipe(first()).subscribe(result => {
+        console.log('NEW ACTIVITY', result);
+        this.form.patchValue({activity: result});
+        this.setShowNewActivity(false);
+      });
+    }
   }
 
   cancel() {
@@ -36,7 +66,9 @@ export class HrManageJobsFormComponent implements OnInit {
   }
 
   submit() {
-    console.log('SUBMIT', this.form.value);
+    if (this.form.valid) {
+      console.log('SUBMIT', this.form.value);
+    }
   }
 
 }

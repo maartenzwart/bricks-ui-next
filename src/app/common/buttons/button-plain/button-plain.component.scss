@@ -1,5 +1,9 @@
 button {
   text-transform: uppercase;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 :host ::ng-deep {

@@ -1,0 +1,8 @@
+@import "variables/index";
+
+.row-create {
+  border-top: 1px solid $grey;
+  border-bottom: 1px solid $grey;
+  background-color: lighten($light-grey, 3%);
+  padding: 10px;
+}

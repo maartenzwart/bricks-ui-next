@@ -1,1 +1,21 @@
-<p>hr-manage-activities works!</p>
+<div class="container-fluid brx-header-controls-container">
+  <div class="row align-items-center">
+    <div class="col-12 col-md-4">
+      <brx-input-text label="Filter" placeholder="Filter op uursoort" [formControl]="filterTerm"></brx-input-text>
+    </div>
+    <div class="col-12 offset-md-4 col-md-4 text-right">
+      <brx-button-create (click)="newActivity()">Nieuwe uursoort</brx-button-create>
+    </div>
+  </div>
+</div>
+<brx-list [headers]="listHeaders" [items]="filteredActivities" (sorting)="handleSort($event)">
+  <ng-container after>
+    <div brxListColumn>
+      <div brxListHeader>Acties</div>
+      <div brxListCell *ngFor="let activity of filteredActivities | orderBy:sortKey:sortReversed:true; index as index">
+        <span class="brx-primary pointer" (click)="editActivity(activity)">Wijzig</span>
+        <span class="brx-danger pointer ml-3" (click)="removeActivity(activity)">Verwijder</span>
+      </div>
+    </div>
+  </ng-container>
+</brx-list>

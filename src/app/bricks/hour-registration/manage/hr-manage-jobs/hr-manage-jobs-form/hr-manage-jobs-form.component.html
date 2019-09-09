@@ -1,9 +1,31 @@
 <brx-tabs [routes]="routes">
   <form class="container-fluid brx-container form" [formGroup]="form" (ngSubmit)="submit()">
     <div class="row">
-      <brx-input-text sizeClasses="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12" formControlName="name" label="Naam"></brx-input-text>
-      <brx-input-text sizeClasses="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12" formControlName="activity" label="Uursoort"></brx-input-text>
+      <brx-input-text sizeClasses="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12" formControlName="name" label="Naam" [errorMessages]="errorMessages"></brx-input-text>
+      <brx-input-select-activity sizeClasses="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12" formControlName="activity" label="Uursoort" [errorMessages]="errorMessages">
+        <brx-button-create input-append (click)="setShowNewActivity(true)"></brx-button-create>
+      </brx-input-select-activity>
     </div>
+    <ng-template [ngIf]="showNewActivity">
+      <div class="row row-create">
+        <div class="col-12">
+          <h2 class="title">Nieuw uursoort
+            <brx-icon-close class="float-right pointer" (click)="setShowNewActivity(false)"></brx-icon-close>
+          </h2>
+          <div class="row">
+            <brx-input-text label="Naam" [errorMessages]="errorMessages" [formControl]="newActivityForm.get('name')" name="new-activity-name"
+                            sizeClasses="col-12 col-sm-8 col-md-5 col-lg-5 col-xl-3"></brx-input-text>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <brx-button-plain (click)="createNewActivity()"
+                                [disabled]="!newActivityForm.valid"><span class="brx-primary" [class.pointer]="newActivityForm.valid">Nieuw uursoort aanmaken</span>
+              </brx-button-plain>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
     <hr/>
     <div class="row">
       <brx-input-select-project sizeClasses="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12" formControlName="project"
@@ -16,8 +38,8 @@
     </div>
     <hr/>
     <div class="row">
-      <brx-input-date sizeClasses="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6" label="Startdatum" formControlName="startDate"></brx-input-date>
-      <brx-input-date sizeClasses="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6" label="Einddatum" formControlName="endDate"></brx-input-date>
+      <brx-input-date sizeClasses="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6" label="Startdatum" formControlName="startDate" [errorMessages]="errorMessages"></brx-input-date>
+      <brx-input-date sizeClasses="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6" label="Einddatum" formControlName="endDate" [errorMessages]="errorMessages"></brx-input-date>
       <brx-form-checkbox sizeClasses="col-xl-8 col-lg-6 col-md-4 col-sm-12 col-12" label="&nbsp;" checkboxLabel="Gebruik start- en einddatum van project"></brx-form-checkbox>
     </div>
     <div class="row">
@@ -37,7 +59,7 @@
     <hr/>
     <div class="row">
       <div class="col-12">
-        <brx-button-primary type="submit">Maak klus aan</brx-button-primary>
+        <brx-button-primary type="submit" [disabled]="!form.valid">Maak klus aan</brx-button-primary>
         <brx-button-plain (click)="cancel()"><span class="brx-primary">ANNULEER</span></brx-button-plain>
       </div>
     </div>

@@ -48,6 +48,7 @@ import {InputSelectUserComponent} from './inputs/input-select-user/input-select-
 import {InputSelectProjectComponent} from './inputs/input-select-project/input-select-project.component';
 import {InputDateComponent} from './inputs/input-date/input-date.component';
 import {InputSelectCustomerComponent} from './inputs/input-select-customer/input-select-customer.component';
+import {InputSelectActivityComponent} from './inputs/input-select-activity/input-select-activity.component';
 
 
 @NgModule({
@@ -95,7 +96,8 @@ import {InputSelectCustomerComponent} from './inputs/input-select-customer/input
     InputSelectUserComponent,
     InputSelectProjectComponent,
     InputDateComponent,
-    InputSelectCustomerComponent
+    InputSelectCustomerComponent,
+    InputSelectActivityComponent
   ],
   imports: [
     CommonModule,
@@ -148,7 +150,8 @@ import {InputSelectCustomerComponent} from './inputs/input-select-customer/input
     ButtonPlainComponent,
     InputSelectUserComponent,
     InputDateComponent,
-    InputSelectProjectComponent
+    InputSelectProjectComponent,
+    InputSelectActivityComponent
   ]
 })
 export class BrxCommonModule {
