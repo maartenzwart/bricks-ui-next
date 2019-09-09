@@ -17,7 +17,6 @@ export class JwtHelper {
   }
 
   removeJwtToken(): void {
-    console.log('REMOVING!!');
     this.cookieService.delete(BrxConfig.jwt.key);
   }
 

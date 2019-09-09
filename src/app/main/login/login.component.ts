@@ -1,7 +1,9 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {AuthenticationService} from '../../services/authentication.service';
 import {Router} from '@angular/router';
-import {BrxAuthUser} from '../../interfaces/brx-auth-user';
+import {Subscription} from 'rxjs';
+import {BrxInputErrorMessages} from '../../interfaces/brx-input-error-message';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'brx-login',
@@ -9,23 +11,45 @@ import {BrxAuthUser} from '../../interfaces/brx-auth-user';
   styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  user: BrxAuthUser = {email: '', password: ''};
+  loginErrorSubscription: Subscription;
+  loginError = '';
 
-  constructor(private authService: AuthenticationService, private router: Router) {
+  loginForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required]
+  });
+
+  errorMessages: BrxInputErrorMessages = [{
+    key: 'required',
+    message: 'Dit veld is verplicht'
+  }, {
+    key: 'email',
+    message: 'Dit is geen geldig e-mailadres'
+  }];
+
+  constructor(private authService: AuthenticationService, private router: Router, private fb: FormBuilder) {
   }
 
   ngOnInit() {
     if (this.authService.isAuthenticated()) {
       this.router.navigate(['/']);
     }
+
+    this.loginErrorSubscription = this.authService.loginErrorMessage$.subscribe(error => {
+      this.loginError = error.statusText;
+    });
   }
 
-  login(email, pwd, form) {
-    form.submitted = true;
-    if (!email.errors && this.user.email && !pwd.errors && this.user.password) {
-      return this.authService.login(this.user);
+  ngOnDestroy(): void {
+    this.loginErrorSubscription.unsubscribe();
+  }
+
+  login() {
+    this.loginError = '';
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value);
     }
   }
 }

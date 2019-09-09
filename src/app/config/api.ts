@@ -1,40 +1,51 @@
-const BASE = 'http://localhost:4000';
-const PROJECTS = '/projects';
-const RELATIONS = '/relations';
-const TENANTS = '/tenants';
-const USERS = '/users';
-const ACTIVITIES = '/activities';
+const mockBase = 'http://localhost:4000';
+let apiBase = 'http://bricks.key2solutions.nl:3000/api/';
+
+const apiVersion = 'v0.1';
+apiBase += apiVersion;
+
+const projectBase = '/projects';
+const relationBase = '/relations';
+const tenantBase = '/tenants';
+const userBase = '/users';
+const activityBase = '/activities';
+
+const authentication = {
+  login: () => {
+    return `${apiBase}/login`;
+  }
+};
 
 const projects = {
   all: (): string => {
-    return BASE + PROJECTS;
+    return mockBase + projectBase;
   },
   byId: (id: string | number): string => {
-    return `${BASE}${PROJECTS}/${id}`;
+    return `${mockBase}${projectBase}/${id}`;
   }
 };
 
 const relations = {
   all: (): string => {
-    return BASE + RELATIONS;
+    return mockBase + relationBase;
   },
   byId: (id: string | number) => {
-    return `${BASE}${RELATIONS}/${id}`;
+    return `${mockBase}${relationBase}/${id}`;
   }
 };
 
 const tenants = {
   all: (): string => {
-    return BASE + TENANTS;
+    return mockBase + tenantBase;
   }
 };
 
 const users = {
   all: (): string => {
-    return BASE + USERS;
+    return mockBase + userBase;
   },
   byId: (id: string): string => {
-    return `${BASE}${USERS}/${id}`;
+    return `${mockBase}${userBase}/${id}`;
   }
 };
 
@@ -48,21 +59,22 @@ const addresses = {
 const adminSettings = {
   tenants: {
     all: () => {
-      return `${BASE}${TENANTS}`;
+      return `${mockBase}${tenantBase}`;
     }
   }
 };
 
 const activities = {
   all: (): string => {
-    return `${BASE}${ACTIVITIES}`;
+    return `${mockBase}${activityBase}`;
   },
   byId: (id: string): string => {
-    return `${BASE}${ACTIVITIES}/${id}`;
+    return `${mockBase}${activityBase}/${id}`;
   }
 };
 
 export const BRX_API = {
+  authentication,
   projects,
   relations,
   tenants,
