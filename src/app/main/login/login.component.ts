@@ -38,6 +38,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     this.loginErrorSubscription = this.authService.loginErrorMessage$.subscribe(error => {
+      if (error.status === 401) {
+        this.loginError = 'Email/wachtwoord incorrect';
+        return;
+      }
       this.loginError = error.statusText;
     });
   }

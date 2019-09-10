@@ -48,17 +48,16 @@ export class AuthenticationService {
       const {jwt, error} = result;
 
       // TODO: REMOVE DEV OVERRIDE!!!
-      const tmpJWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZ2l2ZW5OYW1lIjoiTWF4IiwiaW5zZXJ0aW9uIjoidmFuIGRlIiwiZmFtaWx5TmFtZSI6IkxhYXIiLCJpZCI6ImExMTA5YjllLTQyODktNGUxYy1iNWNkLWYxYmRlMjE1MzE5YyIsImVtYWlsIjoibWF4LnZhbmRlbGFhckBsdW1pbmlzLmV1IiwiaWF0IjoxNTE2MjM5MDIyLCJ0ZW5hbnRJZCI6MX0.XooelLySF_aRz89WutMfDAs8KVEe9C9Y4cc1Q2G_YTU';
-      this.jwtUtils.setJwtToken(tmpJWT);
-      this.router.navigate(['/']);
-      return;
-      // OVERRIDE ENDS HERE!!!
+      // const tmpJWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZ2l2ZW5OYW1lIjoiTWF4IiwiaW5zZXJ0aW9uIjoidmFuIGRlIiwiZmFtaWx5TmFtZSI6IkxhYXIiLCJpZCI6ImExMTA5YjllLTQyODktNGUxYy1iNWNkLWYxYmRlMjE1MzE5YyIsImVtYWlsIjoibWF4LnZhbmRlbGFhckBsdW1pbmlzLmV1IiwiaWF0IjoxNTE2MjM5MDIyLCJ0ZW5hbnRJZCI6MX0.XooelLySF_aRz89WutMfDAs8KVEe9C9Y4cc1Q2G_YTU';
+      // this.jwtUtils.setJwtToken(tmpJWT);
+      // this.router.navigate(['/']);
+      // return;
+      // TODO: OVERRIDE ENDS HERE!!!
 
       if (error) {
         this.announceLoginErrorMessage(error);
       }
       if (!error && jwt) {
-        console.log('SETTING THE TOKEN', result.jwt);
         this.jwtUtils.setJwtToken(result.jwt);
         this.router.navigate(['/']);
       }

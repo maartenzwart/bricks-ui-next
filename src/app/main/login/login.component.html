@@ -3,8 +3,13 @@
     <div class="brx-login-container col-lg-4 col-md-6 col-sm-8 col-10">
       <img src="assets/images/Bricks-logo-login.png" class="brx-login-logo w-100"/>
       <div class="brx-login-form-container">
-        <form class="form clearfix" (ngSubmit)="login()" [formGroup]="loginForm">
+        <form class="form" (ngSubmit)="login()" [formGroup]="loginForm">
           <h1>Login</h1>
+          <div class="row" *ngIf="loginError">
+            <div class="col-12 small text-right">
+              <span class="brx-danger text-wrap">{{loginError}}</span>
+            </div>
+          </div>
           <div class="row">
             <brx-input-text type="email" [errorMessages]="errorMessages" label="Email" formControlName="email" sizeClasses="col-12"></brx-input-text>
           </div>
@@ -12,9 +17,6 @@
             <brx-input-text sizeClasses="col-12" label="Wachtwoord" type="password" [errorMessages]="errorMessages" formControlName="password"></brx-input-text>
           </div>
           <div class="row">
-            <div class="col-12" *ngIf="loginError">
-              <span class="brx-danger text-wrap">{{loginError}}</span>
-            </div>
             <div class="col-12 text-right">
               <brx-button-primary type="submit" [disabled]="!loginForm.valid">Login</brx-button-primary>
             </div>
