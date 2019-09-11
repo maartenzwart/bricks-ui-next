@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {BrxRoute} from '../../../interfaces/brx-route';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {BrxRoutes} from '../../../interfaces/brx-route';
 
 @Component({
   selector: 'brx-tabs',
@@ -7,7 +7,8 @@ import {BrxRoute} from '../../../interfaces/brx-route';
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent implements OnInit {
-  @Input() routes: BrxRoute[];
+  @Input() routes: BrxRoutes;
+  @Output() tabClick: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {
   }

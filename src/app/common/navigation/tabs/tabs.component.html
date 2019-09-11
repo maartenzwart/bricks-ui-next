@@ -2,7 +2,12 @@
   <nav class="bg-white">
     <ul class="nav nav-tabs">
       <ng-container *ngFor="let route of routes">
-        <li class="nav-item" routerLinkActive="active" *ngIf="route.path || route.title">
+        <li class="nav-item" *ngIf="route.title && route.tab" [class.active]="route.tabActive" (click)="tabClick.emit(route.tab)">
+          <a class="nav-link pointer" [class.active]="route.tabActive">
+            <h5 class="title">{{route.title}}</h5>
+          </a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="(route.path || route.title) && !route.tab">
           <a [routerLink]="route.path" class="nav-link" routerLinkActive="active"><h5 class="title">{{route.title}}</h5></a>
         </li>
       </ng-container>

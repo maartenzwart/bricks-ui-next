@@ -5,6 +5,8 @@ export interface BrxRoute extends Route {
   firstItem?: boolean;
   icon?: any;
   inactive?: boolean;
+  tab?: string;
+  tabActive?: boolean;
 }
 
 export type BrxRoutes = BrxRoute[];
