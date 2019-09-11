@@ -207,6 +207,14 @@
     {
       "id": "6",
       "name": "VindSubsidies"
+    },
+    {
+      "id": "VxzlJfA",
+      "name": "Test Klant Max"
+    },
+    {
+      "id": "BQJwIvq",
+      "name": "Test Max Klant 2"
     }
   ],
   "projects": [
@@ -229,6 +237,10 @@
     {
       "id": "5",
       "name": "flo"
+    },
+    {
+      "id": "ZKY0mje",
+      "name": "Test Max"
     }
   ],
   "timeRegistrations": [

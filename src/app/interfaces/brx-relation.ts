@@ -1,5 +1,5 @@
 export interface BrxRelation {
-  id: number | string;
+  id: string;
   name: string;
 }
 

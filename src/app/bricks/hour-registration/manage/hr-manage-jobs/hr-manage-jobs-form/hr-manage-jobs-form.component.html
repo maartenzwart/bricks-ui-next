@@ -2,7 +2,8 @@
   <form class="container-fluid brx-container form" [formGroup]="form" (ngSubmit)="submit()">
     <div class="row">
       <brx-input-text sizeClasses="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12" formControlName="name" label="Naam" [errorMessages]="errorMessages"></brx-input-text>
-      <brx-input-select-activity sizeClasses="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12" formControlName="activity" label="Uursoort" [errorMessages]="errorMessages">
+      <brx-input-select-activity #inputActivity sizeClasses="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12" formControlName="activity" label="Uursoort"
+                                 [errorMessages]="errorMessages">
         <brx-button-create input-append (click)="setShowNewActivity(true)"></brx-button-create>
       </brx-input-select-activity>
     </div>
@@ -28,14 +29,54 @@
     </ng-template>
     <hr/>
     <div class="row">
-      <brx-input-select-project sizeClasses="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12" formControlName="project"
+      <brx-input-select-project #inputProject sizeClasses="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12" formControlName="project"
                                 label="Project">
-        <brx-button-create input-append></brx-button-create>
+        <brx-button-create input-append (click)="setShowNewProject(true)"></brx-button-create>
       </brx-input-select-project>
-      <brx-input-text sizeClasses="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12" label="Klant">
-        <brx-button-create input-append></brx-button-create>
-      </brx-input-text>
+      <brx-input-select-customer #inputCustomer sizeClasses="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12" label="Klant" formControlName="organisation">
+        <brx-button-create input-append (click)="setShowNewCustomer(true)"></brx-button-create>
+      </brx-input-select-customer>
     </div>
+    <ng-template [ngIf]="showNewProject">
+      <div class="row row-create">
+        <div class="col-12">
+          <h2 class="title">Nieuw project
+            <brx-icon-close class="float-right pointer" (click)="setShowNewProject(false)"></brx-icon-close>
+          </h2>
+          <div class="row">
+            <brx-input-text label="Naam" [errorMessages]="errorMessages" [formControl]="newProjectForm.get('name')" name="new-project-name"
+                            sizeClasses="col-12 col-sm-8 col-md-5 col-lg-5 col-xl-3"></brx-input-text>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <brx-button-plain (click)="createNewProject()"
+                                [disabled]="!newProjectForm.valid"><span class="brx-primary" [class.pointer]="newProjectForm.valid">Nieuw project aanmaken</span>
+              </brx-button-plain>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="showNewCustomer">
+      <div class="row row-create">
+        <div class="col-12">
+          <h2 class="title">Nieuwe klant
+            <brx-icon-close class="float-right pointer" (click)="setShowNewCustomer(false)"></brx-icon-close>
+          </h2>
+          <div class="row">
+            <brx-input-text label="Naam" [errorMessages]="errorMessages" [formControl]="newCustomerForm.get('name')" name="new-customer-name"
+                            sizeClasses="col-12 col-sm-8 col-md-5 col-lg-5 col-xl-3"></brx-input-text>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <brx-button-plain (click)="createNewCustomer()"
+                                [disabled]="!newCustomerForm.valid"><span class="brx-primary" [class.pointer]="newCustomerForm.valid">Nieuwe klant aanmaken</span>
+              </brx-button-plain>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
     <hr/>
     <div class="row">
       <brx-input-date sizeClasses="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6" label="Startdatum" formControlName="startDate" [errorMessages]="errorMessages"></brx-input-date>
@@ -43,12 +84,15 @@
       <brx-form-checkbox sizeClasses="col-xl-8 col-lg-6 col-md-4 col-sm-12 col-12" label="&nbsp;" checkboxLabel="Gebruik start- en einddatum van project"></brx-form-checkbox>
     </div>
     <div class="row">
-      <brx-form-checkbox sizeClasses="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3" label="Verantwoordelijke" checkboxLabel="Ikzelf"></brx-form-checkbox>
-      <brx-input-select-user sizeClasses="col-xl-4 col-lg-4 col-md-5 col-sm-9 col-9" placeholder="Zoek op medewerker" label="&nbsp;">
+      <brx-form-checkbox [formControl]="form.get('responsibilityCheckbox').get('current')" sizeClasses="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3"
+                         label="Verantwoordelijke"
+                         (click)="changeResponsibility(true)"
+                         checkboxLabel="Ikzelf"></brx-form-checkbox>
+      <brx-input-select-user [formControl]="responsibilityForm" sizeClasses="col-xl-4 col-lg-4 col-md-5 col-sm-9 col-9" placeholder="Zoek op medewerker" label="&nbsp;">
         <span class="input-group-prepend align-items-center" input-prepend>
-        <brx-input-checkbox></brx-input-checkbox>
+          <brx-input-checkbox [formControl]="form.get('responsibilityCheckbox').get('other')" (click)="changeResponsibility(false)"></brx-input-checkbox>
         </span>
-        <brx-button-create input-append></brx-button-create>
+        <brx-button-create input-append [disabled]="!form.get('responsibilityCheckbox').get('other').value"></brx-button-create>
       </brx-input-select-user>
     </div>
     <div class="row">
@@ -59,7 +103,8 @@
     <hr/>
     <div class="row">
       <div class="col-12">
-        <brx-button-primary type="submit" [disabled]="!form.valid">Maak klus aan</brx-button-primary>
+        <!--        <brx-button-primary type="submit" [disabled]="!form.valid">Maak klus aan</brx-button-primary>-->
+        <brx-button-primary type="submit">Maak klus aan</brx-button-primary>
         <brx-button-plain (click)="cancel()"><span class="brx-primary">ANNULEER</span></brx-button-plain>
       </div>
     </div>

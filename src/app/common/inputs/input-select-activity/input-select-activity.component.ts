@@ -41,6 +41,10 @@ export class InputSelectActivityComponent implements OnInit, ControlValueAccesso
   }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  public loadData() {
     this.activityService.getActivities().pipe(first()).subscribe(result => this.data = result);
   }
 

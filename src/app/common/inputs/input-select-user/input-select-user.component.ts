@@ -31,6 +31,7 @@ export class InputSelectUserComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder = '';
   @Input() errorMessages: BrxInputErrorMessages;
   @Input() users: BrxUsers;
+  @Input() disabled = false;
   @ViewChild('searchInput', {static: true}) searchInput: ElementRef;
 
   private inputValue: BrxUser;
@@ -38,6 +39,10 @@ export class InputSelectUserComponent implements OnInit, ControlValueAccessor {
   private objectKeys = Object.keys;
 
   static formatSearch(user: BrxUser): string {
+    console.log('FORMATTING', user);
+    if (!user) {
+      return '';
+    }
     const {givenName, insertion, familyName} = user;
     let fullName = givenName;
     fullName += insertion ? ` ${insertion} ` : ' ';
@@ -50,8 +55,12 @@ export class InputSelectUserComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     if (this.users === null || this.users === undefined) {
-      this.userService.getUsers().pipe(first()).subscribe(result => this.users = result);
+      this.loadData();
     }
+  }
+
+  public loadData() {
+    this.userService.getUsers().pipe(first()).subscribe(result => this.users = result);
   }
 
   get value(): BrxUser {
@@ -82,6 +91,7 @@ export class InputSelectUserComponent implements OnInit, ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 
   writeValue(val: BrxUser): void {
@@ -90,7 +100,6 @@ export class InputSelectUserComponent implements OnInit, ControlValueAccessor {
   }
 
   validate(c: FormControl) {
-    console.log('ERRORS?', c.errors, c.value);
     if (c.errors && c.dirty) {
       this.errors = c.errors;
     } else {
@@ -126,5 +135,5 @@ export class InputSelectUserComponent implements OnInit, ControlValueAccessor {
             user.email.toLowerCase().indexOf(sTerm) > -1;
         })
       )
-    )
+    );
 }

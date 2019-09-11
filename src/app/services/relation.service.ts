@@ -4,7 +4,7 @@ import {ErrorHandlingService} from './error-handling.service';
 import {Observable} from 'rxjs';
 import {BRX_API} from '../config/api';
 import {catchError} from 'rxjs/operators';
-import {BrxRelations} from '../interfaces/brx-relation';
+import {BrxRelation, BrxRelations} from '../interfaces/brx-relation';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,12 @@ export class RelationService {
   getRelations(): Observable<BrxRelations> {
     return this.http.get<BrxRelations>(BRX_API.relations.all()).pipe(
       catchError(this.errorHandlerService.handleError<BrxRelations>('getRelations', []))
+    );
+  }
+
+  createRelation(relation: BrxRelation): Observable<BrxRelation> {
+    return this.http.post<BrxRelation>(BRX_API.relations.all(), relation).pipe(
+      catchError(this.errorHandlerService.handleError<BrxRelation>('createRelation', null))
     );
   }
 }

@@ -151,7 +151,8 @@ import {InputSelectActivityComponent} from './inputs/input-select-activity/input
     InputSelectUserComponent,
     InputDateComponent,
     InputSelectProjectComponent,
-    InputSelectActivityComponent
+    InputSelectActivityComponent,
+    InputSelectCustomerComponent
   ]
 })
 export class BrxCommonModule {

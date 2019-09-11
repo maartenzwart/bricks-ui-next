@@ -26,7 +26,7 @@ export class ActivityService {
 
   createActivity(activity: BrxActivity): Observable<BrxActivity> {
     return this.http.post<BrxActivity>(BRX_API.activities.all(), activity).pipe(
-      catchError(this.errorHandlerService.handleError<BrxActivity>('postActivity', null))
+      catchError(this.errorHandlerService.handleError<BrxActivity>('createActivity', null))
     );
   }
 

@@ -41,6 +41,10 @@ export class InputSelectProjectComponent implements OnInit, ControlValueAccessor
   }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  public loadData() {
     this.projectService.getProjects().pipe(first()).subscribe(result => this.data = result);
   }
 
