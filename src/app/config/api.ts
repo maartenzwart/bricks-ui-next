@@ -35,6 +35,9 @@ const relations = {
   organisation: {
     all: (): string => {
       return mockBase + relationBase + '-organisations';
+    },
+    byId: (id: string): string => {
+      return mockBase + relationBase + `-organisations/${id}`;
     }
   }
 };

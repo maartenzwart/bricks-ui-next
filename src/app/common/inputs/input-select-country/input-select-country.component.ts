@@ -89,8 +89,14 @@ export class InputSelectCountryComponent implements OnInit, ControlValueAccessor
       country.native.toLowerCase() === value.toLowerCase());
   }
 
-  writeValue(val: string): void {
-    const country = this.getCountryByString(val);
+  writeValue(val: string | BrxExtendsCountry): void {
+    let country: BrxExtendsCountry = null;
+    if (typeof val === 'string' || val instanceof String) {
+      country = this.getCountryByString(val as string);
+    } else {
+      country = val;
+    }
+
     if (country !== null && country !== undefined) {
       this.value = country;
       this.propagateChange(this.value);

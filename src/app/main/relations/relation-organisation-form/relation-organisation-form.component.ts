@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {BrxRoutes} from '../../../interfaces/brx-route';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BrxValidators} from '../../../common/forms/validators';
@@ -6,6 +6,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {BrxInputErrorMessages} from '../../../interfaces/brx-input-error-message';
 import {RelationService} from '../../../services/relation.service';
 import {first} from 'rxjs/operators';
+import {BrxRelationOrganisation} from '../../../interfaces/brx-relation';
 
 @Component({
   selector: 'brx-relation-organisation-form',
@@ -13,6 +14,7 @@ import {first} from 'rxjs/operators';
   styleUrls: ['./relation-organisation-form.component.scss']
 })
 export class RelationOrganisationFormComponent implements OnInit {
+  @Input() organisation: BrxRelationOrganisation = null;
   routes: BrxRoutes = [{
     title: 'Organisatie',
     tab: '#organisation',
@@ -32,14 +34,27 @@ export class RelationOrganisationFormComponent implements OnInit {
     id: [null],
     name: ['', Validators.required],
     contacts: this.fb.array([]),
-    addresses: this.fb.array([this.createAddress(0)]),
-    emailAddresses: this.fb.array([this.createEmailAddress(0)]),
-    phoneNumbers: this.fb.array([this.createPhoneNumber(0)])
+    addresses: this.fb.array([this.createAddress()]),
+    emailAddresses: this.fb.array([this.createEmailAddress()]),
+    phoneNumbers: this.fb.array([this.createPhoneNumber()])
   });
 
   newContactForm = this.createContact();
 
   constructor(private activeModal: NgbActiveModal, private fb: FormBuilder, private relationService: RelationService) {
+  }
+
+
+  ngOnInit() {
+    if (this.organisation && this.organisation.id) {
+      this.organisationForm.patchValue(this.organisation);
+      const contacts = this.organisationForm.get('contacts') as FormArray;
+      this.organisation.contacts.forEach(contact => {
+        const newContact = this.createContact();
+        newContact.patchValue(contact);
+        contacts.insert(0, newContact);
+      });
+    }
   }
 
   createContact(): FormGroup {
@@ -48,13 +63,13 @@ export class RelationOrganisationFormComponent implements OnInit {
       givenName: ['', [Validators.required]],
       insertion: [''],
       familyName: ['', [Validators.required]],
-      emailAddresses: this.fb.array([this.createEmailAddress(0)]),
-      addresses: this.fb.array([this.createAddress(0)]),
-      phoneNumbers: this.fb.array([this.createPhoneNumber(0)])
+      emailAddresses: this.fb.array([this.createEmailAddress()]),
+      addresses: this.fb.array([this.createAddress()]),
+      phoneNumbers: this.fb.array([this.createPhoneNumber()])
     });
   }
 
-  createAddress(numberOfAddresses: number): FormGroup {
+  createAddress(): FormGroup {
     return this.fb.group({
       street: [''],
       houseNumber: [''],
@@ -63,12 +78,12 @@ export class RelationOrganisationFormComponent implements OnInit {
       city: [''],
       country: [''],
       type: [''],
-      phoneNumbers: this.fb.array([this.createPhoneNumber(0)]),
-      emailAddresses: this.fb.array([this.createEmailAddress(0)]),
+      phoneNumbers: this.fb.array([this.createPhoneNumber()]),
+      emailAddresses: this.fb.array([this.createEmailAddress()]),
     });
   }
 
-  createPhoneNumber(amount: number): FormGroup {
+  createPhoneNumber(): FormGroup {
     return this.fb.group({
       phoneNumber: [null, BrxValidators.Digits()],
       type: [''],
@@ -76,7 +91,7 @@ export class RelationOrganisationFormComponent implements OnInit {
     });
   }
 
-  createEmailAddress(amount: number): FormGroup {
+  createEmailAddress(): FormGroup {
     return this.fb.group({
       email: ['', Validators.email],
       type: [''],
@@ -85,17 +100,17 @@ export class RelationOrganisationFormComponent implements OnInit {
 
   addAddress(): void {
     const addresses = this.getAddressArray();
-    addresses.controls.unshift(this.createAddress(addresses.length));
+    addresses.controls.unshift(this.createAddress());
   }
 
   addEmail(index: number): void {
     const emails = this.getEmailArray();
-    emails.insert(index, this.createEmailAddress(emails.length));
+    emails.insert(index, this.createEmailAddress());
   }
 
   addPhoneNumber(index: number): void {
     const phones = this.getPhoneNumberArray();
-    phones.insert(index, this.createPhoneNumber(phones.length));
+    phones.insert(index, this.createPhoneNumber());
   }
 
   addContact(): void {
@@ -136,9 +151,6 @@ export class RelationOrganisationFormComponent implements OnInit {
     phones.removeAt(index);
   }
 
-  ngOnInit() {
-  }
-
   tabClick(tab: string) {
     this.routes.forEach(route => route.tabActive = route.tab === tab);
   }
@@ -153,8 +165,7 @@ export class RelationOrganisationFormComponent implements OnInit {
 
   submit() {
     if (this.organisationForm.valid) {
-      this.relationService.createOrganisation(this.organisationForm.value).pipe(first()).subscribe(result => {
-        console.log('RESULT', result);
+      this.relationService.createOrUpdateOrganisation(this.organisationForm.value).pipe(first()).subscribe(result => {
         this.activeModal.close(result);
       });
     }

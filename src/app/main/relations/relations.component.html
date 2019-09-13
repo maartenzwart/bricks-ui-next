@@ -10,5 +10,14 @@
     </div>
   </div>
   <div class="brx-modal-container"></div>
-  <brx-list [headers]="listHeaders" orderByKey="name" [items]="relations"></brx-list>
+  <brx-list [headers]="listHeaders" orderByKey="name" [items]="relations">
+    <ng-container after>
+      <div brxListColumn>
+        <div brxListHeader>Acties</div>
+        <div brxListCell
+             *ngFor="let relation of relations | orderBy:sortKey:sortReversed:true; index as index"><span class="brx-primary pointer" (click)="edit(relation.id)">Wijzig
+        </span></div>
+      </div>
+    </ng-container>
+  </brx-list>
 </brx-tabs>

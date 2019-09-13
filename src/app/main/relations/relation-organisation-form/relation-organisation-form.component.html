@@ -75,7 +75,7 @@
     <div class="footer">
       <div class="row">
         <div class="col-12">
-          <brx-button-primary type="submit">Maak organisatie aan</brx-button-primary>
+          <brx-button-primary type="submit">{{organisation && organisation.id ? 'Wijzig' : 'Maak organisatie aan'}}</brx-button-primary>
           <brx-button-plain
             (click)="cancel()"><span class="brx-primary">Annuleer</span></brx-button-plain>
         </div>

@@ -20,3 +20,4 @@ export interface BrxRelationOrganisation {
   contacts: BrxContacts;
 }
 
+export type BrxRelationOrganisations = BrxRelationOrganisation[];
