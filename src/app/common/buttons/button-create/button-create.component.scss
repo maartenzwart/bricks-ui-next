@@ -4,6 +4,14 @@ button {
   .content-wrapper:not(:empty) {
     padding-left: 5px;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+:host-context {
+  height: 38px;
 }
 
 :host ::ng-deep {

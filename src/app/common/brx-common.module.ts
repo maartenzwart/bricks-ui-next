@@ -29,7 +29,7 @@ import {InputTextComponent} from './inputs/input-text/input-text.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {IconDeleteComponent} from './icons/icon-delete/icon-delete.component';
 import {InputSelectCountryComponent} from './inputs/input-select-country/input-select-country.component';
-import {NgbModal, NgbModalModule, NgbModalRef, NgbTypeaheadModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalModule, NgbTypeaheadModule} from '@ng-bootstrap/ng-bootstrap';
 import {InputCheckboxComponent} from './inputs/input-checkbox/input-checkbox.component';
 import {InputPhoneNumberCountryCodeComponent} from './inputs/input-phone-number-country-code/input-phone-number-country-code.component';
 import {ButtonWarningComponent} from './buttons/button-warning/button-warning.component';
@@ -152,7 +152,8 @@ import {InputSelectActivityComponent} from './inputs/input-select-activity/input
     InputDateComponent,
     InputSelectProjectComponent,
     InputSelectActivityComponent,
-    InputSelectCustomerComponent
+    InputSelectCustomerComponent,
+    FormPhoneNumberComponent
   ]
 })
 export class BrxCommonModule {

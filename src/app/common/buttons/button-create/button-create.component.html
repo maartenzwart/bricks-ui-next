@@ -1,6 +1,6 @@
 <button class="btn brx-btn brx-btn-secondary" [type]="type" [disabled]="disabled">
-  <brx-icon-plus-light></brx-icon-plus-light>
-  <span class="content-wrapper">
+  <brx-icon-plus-light (click)="click($event)"></brx-icon-plus-light>
+  <span class="content-wrapper" (click)="click($event)">
     <ng-content></ng-content>
   </span>
 </button>

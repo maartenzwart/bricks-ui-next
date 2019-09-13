@@ -37,6 +37,7 @@ import {AdminSettingsUsersCreateComponent} from './main/settings/admin/admin-set
 import {OrganisationSettingsUserCreateComponent} from './main/settings/organisation/organisation-settings-users/organisation-settings-user-create/organisation-settings-user-create.component';
 import {HrManageJobsFormComponent} from './bricks/hour-registration/manage/hr-manage-jobs/hr-manage-jobs-form/hr-manage-jobs-form.component';
 import {HrManageActivitiesFormComponent} from './bricks/hour-registration/manage/hr-manage-activities/hr-manage-activities-form/hr-manage-activities-form.component';
+import {RelationOrganisationFormComponent} from './main/relations/relation-organisation-form/relation-organisation-form.component';
 
 export function jwtOptionsFactory(cookieService: CookieService) {
   return {
@@ -63,7 +64,8 @@ export function jwtOptionsFactory(cookieService: CookieService) {
     AdminSettingsCreateTenantComponent,
     AdminSettingsTenantListComponent,
     AdminSettingsUsersCreateComponent,
-    OrganisationSettingsUserCreateComponent
+    OrganisationSettingsUserCreateComponent,
+    RelationOrganisationFormComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +104,8 @@ export function jwtOptionsFactory(cookieService: CookieService) {
     AdminSettingsUsersCreateComponent,
     OrganisationSettingsUserCreateComponent,
     HrManageJobsFormComponent,
-    HrManageActivitiesFormComponent
+    HrManageActivitiesFormComponent,
+    RelationOrganisationFormComponent
   ]
 })
 export class AppModule {

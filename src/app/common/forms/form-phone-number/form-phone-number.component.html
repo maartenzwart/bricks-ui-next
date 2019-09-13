@@ -1,4 +1,4 @@
-<div [formGroup]="brxFormGroup">
+<ng-container [formGroup]="brxFormGroup">
   <brx-input-text label="Telefoonnummer" type="phone" name="address-phoneNumber-{{brxFormGroup.toString()}}" formControlName="phoneNumber"
                   sizeClasses="col-lg-8 col-sm-12 col-11" [errorMessages]="errorMessages">
     <brx-input-phone-number-country-code formControlName="country" [default]="country" input-prepend></brx-input-phone-number-country-code>
@@ -11,4 +11,4 @@
       </brx-button-dark>
     </div>
   </brx-input-text>
-</div>
+</ng-container>

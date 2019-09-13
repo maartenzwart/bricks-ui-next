@@ -1,0 +1,85 @@
+<brx-tabs [routes]="routes" (tabClick)="tabClick($event)">
+  <form class="form brx-content" [formGroup]="organisationForm" (ngSubmit)="submit()">
+    <div class="tab-container" *ngIf="tabActive('#organisation')">
+      <h2>Organisatie</h2>
+      <brx-input-text label="Naam" formControlName="name"></brx-input-text>
+      <hr/>
+      <h2>Adres</h2>
+      <ng-container formArrayName="addresses" *ngFor="let address of organisationForm.get('addresses').controls; let i = index">
+        <ng-container [formGroupName]="i.toString()">
+          <div class="row">
+            <brx-form-address [(brxFormGroup)]="address"></brx-form-address>
+            <div class="col-2 col-sm-4 col-md-3 col-lg-2 btn-delete">
+              <div class="form-group">
+                <label class="d-block">&nbsp;</label>
+                <div class="d-flex justify-content-end">
+                  <div>
+                    <brx-button-primary (click)="addAddress()">
+                      <brx-icon-plus-light></brx-icon-plus-light>
+                      Adres
+                    </brx-button-primary>
+                  </div>
+                  <div>
+                    <brx-button-dark (click)="removeAddress(i)" *ngIf="organisationForm.get('addresses').controls.length > 1">
+                      <brx-icon-delete color="#ffffff" transform="scale(1.2)"></brx-icon-delete>
+                    </brx-button-dark>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr/>
+        </ng-container>
+      </ng-container>
+      <h2>Contactgegevens</h2>
+      <div class="row">
+        <div class="col-6">
+          <ng-container formArrayName="emailAddresses" *ngFor="let emailAddress of organisationForm.get('emailAddresses').controls; let i = index">
+            <ng-container [formGroupName]="i.toString()">
+              <brx-form-email [(brxFormGroup)]="emailAddress" [showRemoveButton]="organisationForm.get('emailAddresses').controls.length > 1"
+                              (addEmail)="addEmail(organisationForm.get('emailAddresses').controls.length)" (removeEmail)="removeEmail(i)"></brx-form-email>
+            </ng-container>
+          </ng-container>
+        </div>
+        <div class="col-6">
+          <ng-container formArrayName="phoneNumbers" *ngFor="let phoneNumber of organisationForm.get('phoneNumbers').controls; let i = index">
+            <ng-container [formGroupName]="i.toString()">
+              <brx-form-phone-number [(brxFormGroup)]="phoneNumber" [numberOfPhoneNumbers]="organisationForm.get('phoneNumbers').controls.length"
+                                     (addPhoneNumber)="addPhoneNumber(organisationForm.get('phoneNumbers').controls.length)"
+                                     (removePhoneNumber)="removePhoneNumber(i)"></brx-form-phone-number>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="tab-container" *ngIf="tabActive('#contacts')" formGroupName="contacts">
+      <div class="row" [formGroup]="newContactForm">
+        <brx-input-text sizeClasses="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-12" [errorMessages]="errorMessages" label="Voornaam"
+                        formControlName="givenName"></brx-input-text>
+        <brx-input-text sizeClasses="col-xl-1 col-lg-2 col-md-2 col-sm-4 col-12" [errorMessages]="errorMessages" label="Tussenvoegsels"
+                        formControlName="insertion"></brx-input-text>
+        <brx-input-text sizeClasses="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-12" [errorMessages]="errorMessages" label="Achternaam" formControlName="familyName"></brx-input-text>
+        <brx-button-create class="btn-new-contact" (click)="addContact()" [disabled]="!newContactForm.valid">Voeg toe</brx-button-create>
+      </div>
+      <hr/>
+      <ng-container *ngIf="organisationForm.get('contacts').value.length > 0">
+        <div class="row" *ngFor="let contact of organisationForm.get('contacts').controls; let i = index">
+          <ng-container [formGroupName]="i.toString()">
+            <brx-input-text sizeClasses="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-12" formControlName="givenName" label="Voornaam"></brx-input-text>
+            <brx-input-text sizeClasses="col-xl-1 col-lg-2 col-md-2 col-sm-4 col-12" formControlName="insertion" label="Tussenvoegsels"></brx-input-text>
+            <brx-input-text sizeClasses="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-12" formControlName="familyName" label="Achternaam"></brx-input-text>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+    <div class="footer">
+      <div class="row">
+        <div class="col-12">
+          <brx-button-primary type="submit">Maak organisatie aan</brx-button-primary>
+          <brx-button-plain
+            (click)="cancel()"><span class="brx-primary">Annuleer</span></brx-button-plain>
+        </div>
+      </div>
+    </div>
+  </form>
+</brx-tabs>

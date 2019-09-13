@@ -1,4 +1,105 @@
 {
+  "relations-organisations": [
+    {
+      "id": 1,
+      "name": "Test Org",
+      "contacts": [
+        {
+          "id": null,
+          "givenName": "asdsdsad",
+          "insertion": "",
+          "familyName": "asdawdsd",
+          "emailAddresses": [
+            {
+              "email": "",
+              "type": ""
+            }
+          ],
+          "addresses": [
+            {
+              "street": "",
+              "houseNumber": "",
+              "suffix": "",
+              "postalCode": "",
+              "city": "",
+              "country": "",
+              "type": "",
+              "phoneNumbers": [
+                {
+                  "phoneNumber": null,
+                  "type": "",
+                  "country": "+31"
+                }
+              ],
+              "emailAddresses": [
+                {
+                  "email": "",
+                  "type": ""
+                }
+              ]
+            }
+          ],
+          "phoneNumbers": [
+            {
+              "phoneNumber": null,
+              "type": "",
+              "country": "+31"
+            }
+          ]
+        }
+      ],
+      "addresses": [
+        {
+          "street": "Aan de Bogen",
+          "houseNumber": 14,
+          "suffix": "",
+          "postalCode": "6118AS",
+          "city": "Nieuwstadt",
+          "country": {
+            "name": "Netherlands",
+            "native": "Nederland",
+            "phone": "31",
+            "continent": "EU",
+            "capital": "Amsterdam",
+            "currency": "EUR",
+            "languages": [
+              "nl"
+            ],
+            "emoji": "🇳🇱",
+            "emojiU": "U+1F1F3 U+1F1F1",
+            "abbreviation": "NL"
+          },
+          "type": "",
+          "phoneNumbers": [
+            {
+              "phoneNumber": "235423",
+              "type": "",
+              "country": "+31"
+            }
+          ],
+          "emailAddresses": [
+            {
+              "email": "ma@asd.ld",
+              "type": ""
+            }
+          ]
+        }
+      ],
+      "emailAddresses": [
+        {
+          "email": "ma@asd.ld",
+          "type": ""
+        }
+      ],
+      "phoneNumbers": [
+        {
+          "phoneNumber": "1231235434",
+          "type": "",
+          "country": "+31"
+        }
+      ]
+    }
+  ],
   "activities": [
     {
       "id": 1,

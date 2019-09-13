@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'brx-button-create',
@@ -9,10 +9,14 @@ export class ButtonCreateComponent implements OnInit {
   @Input() type = 'button';
   @Input() disabled = false;
 
+  @HostListener('click', ['$event'])
+  click(event: MouseEvent) {
+    event.cancelBubble = this.disabled;
+  }
+
   constructor() {
   }
 
   ngOnInit() {
   }
-
 }
