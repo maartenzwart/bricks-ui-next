@@ -1,12 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BrxRoutes} from '../../../interfaces/brx-route';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BrxValidators} from '../../../common/forms/validators';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {BrxInputErrorMessages} from '../../../interfaces/brx-input-error-message';
 import {RelationService} from '../../../services/relation.service';
 import {first} from 'rxjs/operators';
 import {BrxRelationOrganisation} from '../../../interfaces/brx-relation';
+import {CountryUtils} from '../../../utils';
 
 @Component({
   selector: 'brx-relation-organisation-form',
@@ -44,11 +45,40 @@ export class RelationOrganisationFormComponent implements OnInit {
   constructor(private activeModal: NgbActiveModal, private fb: FormBuilder, private relationService: RelationService) {
   }
 
+  patchChildren(formArray: FormArray, originalArray: any[], newFormGroup: () => FormGroup): FormArray {
+    formArray.clear();
+    originalArray.reverse();
+    originalArray.forEach(item => {
+      const newItem = newFormGroup();
+      newItem.patchValue(item);
+      formArray.insert(0, newItem);
+    });
+    return formArray;
+  }
+
 
   ngOnInit() {
     if (this.organisation && this.organisation.id) {
       this.organisationForm.patchValue(this.organisation);
       const contacts = this.organisationForm.get('contacts') as FormArray;
+      const emailAddresses = this.organisationForm.get('emailAddresses') as FormArray;
+      const phoneNumbers = this.organisationForm.get('phoneNumbers') as FormArray;
+      const addresses = this.organisationForm.get('addresses') as FormArray;
+
+      addresses.clear();
+      this.organisation.addresses.reverse();
+      this.organisation.addresses.forEach(item => {
+        const newItem = this.createAddress();
+        newItem.patchValue(item);
+        this.patchChildren(newItem.get('emailAddresses') as FormArray, item.emailAddresses, this.createEmailAddress.bind(this));
+        this.patchChildren(newItem.get('phoneNumbers') as FormArray, item.phoneNumbers, this.createPhoneNumber.bind(this));
+        addresses.insert(0, newItem);
+      });
+
+      this.patchChildren(emailAddresses, this.organisation.emailAddresses, this.createEmailAddress.bind(this));
+      this.patchChildren(phoneNumbers, this.organisation.phoneNumbers, this.createPhoneNumber.bind(this));
+
+      contacts.clear();
       this.organisation.contacts.forEach(contact => {
         const newContact = this.createContact();
         newContact.patchValue(contact);
@@ -85,9 +115,9 @@ export class RelationOrganisationFormComponent implements OnInit {
 
   createPhoneNumber(): FormGroup {
     return this.fb.group({
-      phoneNumber: [null, BrxValidators.Digits()],
+      phoneNumber: [''],
       type: [''],
-      country: ['+31', BrxValidators.CountryCode()]
+      country: [CountryUtils.getCountryByPhoneCode('+31')]
     });
   }
 
@@ -163,7 +193,29 @@ export class RelationOrganisationFormComponent implements OnInit {
     this.activeModal.dismiss();
   }
 
+  findInvalidControlsRecursive(formToInvestigate: FormGroup | FormArray): string[] {
+    const invalidControls: any[] = [];
+    const recursiveFunc = (form: FormGroup | FormArray) => {
+      Object.keys(form.controls).forEach(field => {
+        const control = form.get(field) as AbstractControl;
+        if (control.invalid) {
+          invalidControls.push({field, control});
+        }
+        if (control instanceof FormGroup) {
+          recursiveFunc(control);
+        } else if (control instanceof FormArray) {
+          recursiveFunc(control);
+        }
+      });
+    };
+    recursiveFunc(formToInvestigate);
+    return invalidControls;
+  }
+
   submit() {
+    console.log('Submit', this.organisationForm.value);
+    console.log('main', this.organisationForm.errors);
+    console.log('ERRORS?', this.findInvalidControlsRecursive(this.organisationForm));
     if (this.organisationForm.valid) {
       this.relationService.createOrUpdateOrganisation(this.organisationForm.value).pipe(first()).subscribe(result => {
         this.activeModal.close(result);

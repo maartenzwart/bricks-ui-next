@@ -30,6 +30,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() errorMessages: BrxInputErrorMessages;
   @Input() autocomplete: string;
   @Input() brxType;
+  @Input() customErrors: string[] = [];
   private objectKeys = Object.keys;
   private inputValue = '';
   private errors: ValidationErrors;

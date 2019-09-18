@@ -1,4 +1,15 @@
-import {Component, forwardRef, HostBinding, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewInit,
+  Component, ElementRef, EventEmitter,
+  forwardRef,
+  HostBinding,
+  Input,
+  OnChanges,
+  OnInit, Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {BrxInputErrorMessages} from '../../../interfaces/brx-input-error-message';
 import {NgbTypeahead, NgbTypeaheadSelectItemEvent} from '@ng-bootstrap/ng-bootstrap';
 import {merge, Observable, Subject} from 'rxjs';
@@ -33,8 +44,9 @@ export class InputPhoneNumberCountryCodeComponent implements OnInit, OnChanges, 
   @Input() name: string;
   @Input() errorMessages: BrxInputErrorMessages;
   @Input() default;
-  @ViewChild('countryCode', {static: true}) countryCode: HTMLElement;
+  @ViewChild('countryCode', {static: true}) countryCode: ElementRef;
   @ViewChild('instance', {static: true}) instance: NgbTypeahead;
+  @Output() validated: EventEmitter<string[]> = new EventEmitter<string[]>();
   focus$ = new Subject<string>();
   click$ = new Subject<string>();
 
@@ -63,6 +75,7 @@ export class InputPhoneNumberCountryCodeComponent implements OnInit, OnChanges, 
     if (changes.default && changes.default.currentValue && changes.default.currentValue.phone &&
       (this.value === null || this.value === undefined || this.value === '')) {
       this.value = changes.default.currentValue;
+      this.propagateChange(this.value);
     }
   }
 
@@ -82,19 +95,22 @@ export class InputPhoneNumberCountryCodeComponent implements OnInit, OnChanges, 
     } else {
       this.countryValue = val;
     }
+    this.countryCode.nativeElement.value = this.inputFormatter(this.countryValue);
     this.propagateChange(this.countryValue);
   }
 
   validate(c: FormControl) {
     if (c.errors && c.dirty) {
       this.errors = c.errors;
+      const messages: string[] = [];
+      for (const key of this.objectKeys(this.errors)) {
+        messages.push(this.getErrorMessage(key));
+      }
+      this.validated.emit(messages);
     } else {
+      this.validated.emit([]);
       this.errors = null;
     }
-  }
-
-  selectItem(item: NgbTypeaheadSelectItemEvent) {
-    console.log(item);
   }
 
   getCountryByString(value: string) {
@@ -117,6 +133,7 @@ export class InputPhoneNumberCountryCodeComponent implements OnInit, OnChanges, 
   }
 
   registerOnChange(fn: any): void {
+    this.propagateChange = fn;
   }
 
   registerOnTouched(fn: any): void {
@@ -125,12 +142,13 @@ export class InputPhoneNumberCountryCodeComponent implements OnInit, OnChanges, 
   setDisabledState(isDisabled: boolean): void {
   }
 
-  writeValue(val: string): void {
+  writeValue(val: BrxExtendsCountry): void {
     if (val !== null && val !== undefined) {
       this.value = val;
     } else {
       this.value = null;
     }
+    this.propagateChange(this.value);
   }
 
   setValue(val, event): void {
@@ -139,9 +157,12 @@ export class InputPhoneNumberCountryCodeComponent implements OnInit, OnChanges, 
         this.value = this.default || this.getCountryByString('+31');
       }
       event.target.value = this.value;
+      this.countryCode.nativeElement.value = this.inputFormatter(this.value);
       return;
     }
+    this.countryCode.nativeElement.value = this.inputFormatter(this.value);
     this.value = val;
+    this.propagateChange(this.value);
   }
 
   search = (text$: Observable<string>) => {

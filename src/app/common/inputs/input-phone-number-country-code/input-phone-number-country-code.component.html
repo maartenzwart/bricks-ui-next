@@ -5,13 +5,11 @@
        [resultTemplate]="rt"
        (focus)="focus$.next($event.target.value)"
        (click)="click$.next($event.target.value)"
-       (selectItem)="selectItem($event)"
        #countryCode
        class="form-control"
        #instance="ngbTypeahead"
        autocomplete="off"/>
 <brx-icon-sort-down (click)="countryCode.focus()"></brx-icon-sort-down>
-
 <ng-template #rt let-r="result" let-t="term">
   <ngb-highlight [result]="'+'+r.phone" [term]="[t, StringUtils.normalize(t)]"></ngb-highlight>
   <br/>

@@ -6,6 +6,7 @@ import {BrxListHeaders} from '../../interfaces/brx-list-header';
 import {BrxModalService} from '../../common/services/brx-modal.service';
 import {RelationOrganisationFormComponent} from './relation-organisation-form/relation-organisation-form.component';
 import {Subscription} from 'rxjs';
+import {or} from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'brx-relations',
@@ -33,6 +34,7 @@ export class RelationsComponent implements OnInit, OnDestroy {
     const organisation = this.relations.find(relation => relation.id === id);
     if (organisation) {
       const modalRef = this.modalService.open(RelationOrganisationFormComponent);
+      console.log('ORGANISATION', organisation);
       modalRef.componentInstance.organisation = organisation;
       modalRef.result.then(() => {
         this.loadRelations();
@@ -46,7 +48,6 @@ export class RelationsComponent implements OnInit, OnDestroy {
 
   loadRelations() {
     this.subscription = this.relationService.getOrganisations().subscribe((result) => {
-      console.log('GET RELATIONS!!!');
       this.relations = result;
     });
   }

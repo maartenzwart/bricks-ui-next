@@ -1,5 +1,5 @@
 import {Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {FormGroup, ValidationErrors} from '@angular/forms';
 import {BrxExtendsCountry} from '../../../interfaces/brx-extends-country';
 
 @Component({
@@ -17,6 +17,7 @@ export class FormPhoneNumberComponent implements OnInit {
   @Output() addPhoneNumber: EventEmitter<any> = new EventEmitter<any>();
   @Output() removePhoneNumber: EventEmitter<any> = new EventEmitter<any>();
   @Input() errorMessages;
+  countryCodeErrors: string[] = [];
 
   constructor() {
   }
@@ -24,4 +25,7 @@ export class FormPhoneNumberComponent implements OnInit {
   ngOnInit() {
   }
 
+  codeValidation(errors: string[]) {
+    this.countryCodeErrors = errors;
+  }
 }

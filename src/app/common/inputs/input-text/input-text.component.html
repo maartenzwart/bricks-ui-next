@@ -17,4 +17,9 @@
       {{getErrorMessage(key)}}
     </div>
   </ng-container>
+  <ng-container *ngIf="customErrors.length > 0">
+    <div *ngFor="let error of customErrors" class="text-danger small">
+      {{error}}
+    </div>
+  </ng-container>
 </div>

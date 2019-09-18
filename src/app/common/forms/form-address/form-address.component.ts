@@ -3,6 +3,7 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BrxAddress} from '../../../interfaces/brx-address';
 import {AddressService} from '../../../services/address.service';
 import {BrxValidators} from '../validators';
+import {CountryUtils} from '../../../utils';
 
 @Component({
   selector: 'brx-form-address',
@@ -17,6 +18,9 @@ export class FormAddressComponent implements OnInit {
     phone: [{
       key: 'digits',
       message: 'Alleen cijfers zijn toegestaan'
+    }, {
+      key: 'countryCode',
+      message: 'Geen geldig landnummer'
     }],
     email: [{
       key: 'email',
@@ -54,7 +58,7 @@ export class FormAddressComponent implements OnInit {
     return this.fb.group({
       phoneNumber: [null, BrxValidators.Digits()],
       type: [''],
-      country: [address.country || '+31', BrxValidators.CountryCode()]
+      country: [address.country || CountryUtils.getCountryByPhoneCode('+31'), BrxValidators.CountryCode()]
     });
   }
 

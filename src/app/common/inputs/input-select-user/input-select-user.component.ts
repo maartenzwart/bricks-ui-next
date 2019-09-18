@@ -39,7 +39,6 @@ export class InputSelectUserComponent implements OnInit, ControlValueAccessor {
   private objectKeys = Object.keys;
 
   static formatSearch(user: BrxUser): string {
-    console.log('FORMATTING', user);
     if (!user) {
       return '';
     }

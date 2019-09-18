@@ -8,6 +8,7 @@ import {BrxValidators} from '../../../../../common/forms/validators';
 import {BrxUser, BrxUsers} from '../../../../../interfaces/brx-user';
 import {AdminUserService} from '../../../../../services/settings/admin/admin-user.service';
 import {first} from 'rxjs/operators';
+import {CountryUtils} from '../../../../../utils';
 
 @Component({
   selector: 'brx-admin-settings-create-tenant',
@@ -98,7 +99,7 @@ export class AdminSettingsCreateTenantComponent implements OnInit {
     return this.fb.group({
       phoneNumber: [null, BrxValidators.Digits()],
       type: [''],
-      country: ['+31', BrxValidators.CountryCode()]
+      country: [CountryUtils.getCountryByPhoneCode('+31'), BrxValidators.CountryCode()]
     });
   }
 

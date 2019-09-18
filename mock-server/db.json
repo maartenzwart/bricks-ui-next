@@ -50,6 +50,80 @@
       ],
       "addresses": [
         {
+          "street": "Leesjongenstraat",
+          "houseNumber": 18,
+          "suffix": "",
+          "postalCode": "6432DL",
+          "city": "Hoensbroek",
+          "country": {
+            "name": "Netherlands",
+            "native": "Nederland",
+            "phone": "31",
+            "continent": "EU",
+            "capital": "Amsterdam",
+            "currency": "EUR",
+            "languages": [
+              "nl"
+            ],
+            "emoji": "🇳🇱",
+            "emojiU": "U+1F1F3 U+1F1F1",
+            "abbreviation": "NL"
+          },
+          "type": "",
+          "phoneNumbers": [
+            {
+              "phoneNumber": "234234234",
+              "type": "",
+              "country": {
+                "name": "Netherlands",
+                "native": "Nederland",
+                "phone": "31",
+                "continent": "EU",
+                "capital": "Amsterdam",
+                "currency": "EUR",
+                "languages": [
+                  "nl"
+                ],
+                "emoji": "🇳🇱",
+                "emojiU": "U+1F1F3 U+1F1F1",
+                "abbreviation": "NL"
+              }
+            },
+            {
+              "phoneNumber": "123123123",
+              "type": "",
+              "country": {
+                "name": "Netherlands",
+                "native": "Nederland",
+                "phone": "31",
+                "continent": "EU",
+                "capital": "Amsterdam",
+                "currency": "EUR",
+                "languages": [
+                  "nl"
+                ],
+                "emoji": "🇳🇱",
+                "emojiU": "U+1F1F3 U+1F1F1",
+                "abbreviation": "NL"
+              }
+            }
+          ],
+          "emailAddresses": [
+            {
+              "email": "tes@test5.nl7",
+              "type": ""
+            },
+            {
+              "email": "test@tre",
+              "type": ""
+            },
+            {
+              "email": "test2@test.nl",
+              "type": ""
+            }
+          ]
+        },
+        {
           "street": "Aan de Bogen",
           "houseNumber": 14,
           "suffix": "",
@@ -74,12 +148,25 @@
             {
               "phoneNumber": "235423",
               "type": "",
-              "country": "+31"
+              "country": {
+                "name": "Netherlands",
+                "native": "Nederland",
+                "phone": "31",
+                "continent": "EU",
+                "capital": "Amsterdam",
+                "currency": "EUR",
+                "languages": [
+                  "nl"
+                ],
+                "emoji": "🇳🇱",
+                "emojiU": "U+1F1F3 U+1F1F1",
+                "abbreviation": "NL"
+              }
             }
           ],
           "emailAddresses": [
             {
-              "email": "ma@asd.ld",
+              "email": "test@testnk.drg",
               "type": ""
             }
           ]
@@ -87,7 +174,11 @@
       ],
       "emailAddresses": [
         {
-          "email": "ma@asd.ld",
+          "email": "test2@test.nldw",
+          "type": ""
+        },
+        {
+          "email": "test4@test.nldw",
           "type": ""
         }
       ],
@@ -95,7 +186,38 @@
         {
           "phoneNumber": "1231235434",
           "type": "",
-          "country": "+31"
+          "country": {
+            "name": "Netherlands",
+            "native": "Nederland",
+            "phone": "31",
+            "continent": "EU",
+            "capital": "Amsterdam",
+            "currency": "EUR",
+            "languages": [
+              "nl"
+            ],
+            "emoji": "🇳🇱",
+            "emojiU": "U+1F1F3 U+1F1F1",
+            "abbreviation": "NL"
+          }
+        },
+        {
+          "phoneNumber": "34535",
+          "type": "",
+          "country": {
+            "name": "Netherlands",
+            "native": "Nederland",
+            "phone": "31",
+            "continent": "EU",
+            "capital": "Amsterdam",
+            "currency": "EUR",
+            "languages": [
+              "nl"
+            ],
+            "emoji": "🇳🇱",
+            "emojiU": "U+1F1F3 U+1F1F1",
+            "abbreviation": "NL"
+          }
         }
       ]
     }

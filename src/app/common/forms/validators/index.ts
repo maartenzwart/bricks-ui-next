@@ -1,4 +1,5 @@
 import {AbstractControl, ValidatorFn} from '@angular/forms';
+import {BrxExtendsCountry} from '../../../interfaces/brx-extends-country';
 
 function CountryCode(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
@@ -6,7 +7,8 @@ function CountryCode(): ValidatorFn {
       return null;
     }
     const regex = /\+?\d+/;
-    return /\+?\d+/.test(control.value) ? null : {countryCode: true};
+    const country: BrxExtendsCountry = control.value;
+    return country && country.phone && regex.test(country.phone) ? null : {countryCode: true};
   };
 }
 
