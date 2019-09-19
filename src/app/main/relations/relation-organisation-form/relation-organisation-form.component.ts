@@ -193,29 +193,7 @@ export class RelationOrganisationFormComponent implements OnInit {
     this.activeModal.dismiss();
   }
 
-  findInvalidControlsRecursive(formToInvestigate: FormGroup | FormArray): string[] {
-    const invalidControls: any[] = [];
-    const recursiveFunc = (form: FormGroup | FormArray) => {
-      Object.keys(form.controls).forEach(field => {
-        const control = form.get(field) as AbstractControl;
-        if (control.invalid) {
-          invalidControls.push({field, control});
-        }
-        if (control instanceof FormGroup) {
-          recursiveFunc(control);
-        } else if (control instanceof FormArray) {
-          recursiveFunc(control);
-        }
-      });
-    };
-    recursiveFunc(formToInvestigate);
-    return invalidControls;
-  }
-
   submit() {
-    console.log('Submit', this.organisationForm.value);
-    console.log('main', this.organisationForm.errors);
-    console.log('ERRORS?', this.findInvalidControlsRecursive(this.organisationForm));
     if (this.organisationForm.valid) {
       this.relationService.createOrUpdateOrganisation(this.organisationForm.value).pipe(first()).subscribe(result => {
         this.activeModal.close(result);
