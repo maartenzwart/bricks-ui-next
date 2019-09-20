@@ -20,9 +20,19 @@ export class ProjectService {
     );
   }
 
+  createOrUpdateProject(project: BrxProject): Observable<BrxProject> {
+    return project.id ? this.updateProject(project) : this.createProject(project);
+  }
+
   createProject(project: BrxProject): Observable<BrxProject> {
     return this.http.post<BrxProject>(BRX_API.projects.all(), project).pipe(
       catchError(this.errorHandlerService.handleError<BrxProject>('createProject', null))
+    );
+  }
+
+  updateProject(project: BrxProject): Observable<BrxProject> {
+    return this.http.put<BrxProject>(BRX_API.projects.byId(project.id), project).pipe(
+      catchError(this.errorHandlerService.handleError<BrxProject>('updateProject', null))
     );
   }
 }

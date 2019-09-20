@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {BrxRoutes} from '../../../interfaces/brx-route';
 import {BrxInputErrorMessages} from '../../../interfaces/brx-input-error-message';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ProjectService} from '../../../services/project.service';
+import {BrxProject} from '../../../interfaces/brx-project';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'brx-projects-form',
@@ -15,6 +17,7 @@ export class ProjectsFormComponent implements OnInit {
     title: 'Project',
     tabActive: true
   }];
+  @Input() project: BrxProject;
 
   errorMessages: BrxInputErrorMessages = [{
     key: 'required',
@@ -30,18 +33,20 @@ export class ProjectsFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.project && this.project.id) {
+      this.projectForm.patchValue(this.project);
+    }
   }
 
   submit() {
     if (this.projectForm.valid) {
-      this.projectService.createProject(this.projectForm.value);
-      this.activeModal.close();
+      this.projectService.createOrUpdateProject(this.projectForm.value).pipe(first()).subscribe(result => {
+        this.activeModal.close(result);
+      });
     }
   }
 
   cancel() {
-    this.activeModal.dismiss();
+    this.activeModal.close();
   }
-
-
 }

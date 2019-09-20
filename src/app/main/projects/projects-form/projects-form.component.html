@@ -6,7 +6,7 @@
     </div>
     <div class="row footer">
       <div class="col-12">
-        <brx-button-primary type="submit" [disabled]="!projectForm.valid">Project aanmaken</brx-button-primary>
+        <brx-button-primary type="submit" [disabled]="!projectForm.valid">{{project && project.id ? 'Wijzig' : 'Project aanmaken'}}</brx-button-primary>
         <brx-button-plain (click)="cancel()"><span class="brx-primary">Annuleer</span></brx-button-plain>
       </div>
     </div>

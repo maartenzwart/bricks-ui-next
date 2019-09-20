@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="brx-modal-container"></div>
-  <brx-list [headers]="listHeaders" orderByKey="name" [items]="relations">
+  <brx-list [headers]="listHeaders" orderByKey="name" [items]="relations" (sorting)="handleSort($event)">
     <ng-container after>
       <div brxListColumn>
         <div brxListHeader>Email</div>
