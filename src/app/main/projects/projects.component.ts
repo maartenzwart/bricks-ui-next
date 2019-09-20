@@ -3,6 +3,8 @@ import {BrxRoutes} from '../../interfaces/brx-route';
 import {ProjectService} from 'src/app/services/project.service';
 import {BrxProjects} from '../../interfaces/brx-project';
 import {BrxListHeaders} from '../../interfaces/brx-list-header';
+import {BrxModalService} from '../../common/services/brx-modal.service';
+import {ProjectsFormComponent} from './projects-form/projects-form.component';
 
 @Component({
   selector: 'brx-projects',
@@ -19,8 +21,9 @@ export class ProjectsComponent implements OnInit {
     {index: 1, key: 'name', title: 'Naam', sortable: true}
   ];
   projects: BrxProjects;
+  filterBy = '';
 
-  constructor(private projectService: ProjectService) {
+  constructor(private projectService: ProjectService, private modalService: BrxModalService) {
   }
 
   ngOnInit() {
@@ -28,6 +31,10 @@ export class ProjectsComponent implements OnInit {
       console.log(result);
       this.projects = result;
     });
+  }
+
+  createProject() {
+    this.modalService.open(ProjectsFormComponent);
   }
 
 }

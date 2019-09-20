@@ -1,3 +1,4 @@
 <brx-tabs [routes]="tabRoutes">
-  <brx-list [headers]="listHeaders" orderByKey="name" [items]="projects"></brx-list>
+  <brx-layout-common-header [(filter)]="filterBy" (createClick)="createProject()" createLabel="Nieuw Project" filterPlaceholder="Filter op naam"></brx-layout-common-header>
+  <brx-list [headers]="listHeaders" orderByKey="name" [items]="projects" [filterTerm]="filterBy"></brx-list>
 </brx-tabs>

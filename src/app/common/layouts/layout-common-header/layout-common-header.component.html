@@ -1,0 +1,10 @@
+<div class="container-fluid brx-header-controls-container">
+  <div class="row align-items-center">
+    <div class="col-12 col-md-4">
+      <brx-input-text [label]="filterLabel" [formControl]="filterTerm" [placeholder]="filterPlaceholder" autocomplete="off"></brx-input-text>
+    </div>
+    <div class="col-12 offset-md-4 col-md-4 text-right" *ngIf="createLabel">
+      <brx-button-create (click)="createClick.emit()">{{createLabel}}</brx-button-create>
+    </div>
+  </div>
+</div>

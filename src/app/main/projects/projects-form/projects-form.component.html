@@ -1,0 +1,14 @@
+<brx-tabs [routes]="routes">
+  <form class="form brx-content" [formGroup]="projectForm" (ngSubmit)="submit()">
+    <h2>Project</h2>
+    <div class="row">
+      <brx-input-text label="Naam" sizeClasses="col-xl-4 col-lg-5 col-md-6 col-sm-7 col-12" formControlName="name" [errorMessages]="errorMessages"></brx-input-text>
+    </div>
+    <div class="row footer">
+      <div class="col-12">
+        <brx-button-primary type="submit" [disabled]="!projectForm.valid">Project aanmaken</brx-button-primary>
+        <brx-button-plain (click)="cancel()"><span class="brx-primary">Annuleer</span></brx-button-plain>
+      </div>
+    </div>
+  </form>
+</brx-tabs>

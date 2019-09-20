@@ -7,7 +7,7 @@
         <brx-icon-sort-up *ngIf="orderByKey === header.key && orderByReversed"></brx-icon-sort-up>
         <brx-icon-sort-down *ngIf="orderByKey === header.key && !orderByReversed"></brx-icon-sort-down>
       </span></div>
-    <div brxListCell *ngFor="let item of items | orderBy:orderByKey:orderByReversed:true">
+    <div brxListCell *ngFor="let item of filteredItems | orderBy:orderByKey:orderByReversed:true">
       <ng-container *ngIf="header.type === brxListType.IMAGE; else boolean">
         <img [src]="item[header.key]"/>
       </ng-container>

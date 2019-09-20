@@ -49,6 +49,7 @@ import {InputSelectProjectComponent} from './inputs/input-select-project/input-s
 import {InputDateComponent} from './inputs/input-date/input-date.component';
 import {InputSelectCustomerComponent} from './inputs/input-select-customer/input-select-customer.component';
 import {InputSelectActivityComponent} from './inputs/input-select-activity/input-select-activity.component';
+import {LayoutCommonHeaderComponent} from './layouts/layout-common-header/layout-common-header.component';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import {InputSelectActivityComponent} from './inputs/input-select-activity/input
     InputSelectProjectComponent,
     InputDateComponent,
     InputSelectCustomerComponent,
-    InputSelectActivityComponent
+    InputSelectActivityComponent,
+    LayoutCommonHeaderComponent
   ],
   imports: [
     CommonModule,
@@ -153,7 +155,8 @@ import {InputSelectActivityComponent} from './inputs/input-select-activity/input
     InputSelectProjectComponent,
     InputSelectActivityComponent,
     InputSelectCustomerComponent,
-    FormPhoneNumberComponent
+    FormPhoneNumberComponent,
+    LayoutCommonHeaderComponent
   ]
 })
 export class BrxCommonModule {

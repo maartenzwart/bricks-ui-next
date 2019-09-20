@@ -28,7 +28,7 @@ export class RelationOrganisationFormComponent implements OnInit {
 
   errorMessages: BrxInputErrorMessages = [{
     key: 'required',
-    message: 'Dit veld is verplict'
+    message: 'Dit veld is verplicht'
   }];
 
   organisationForm = this.fb.group({
